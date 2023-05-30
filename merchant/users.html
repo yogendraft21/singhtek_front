@@ -101,6 +101,24 @@
         text-overflow: ellipsis;
         white-space: nowrap;
     }
+
+
+    .modal-body {
+        overflow-x: hidden;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .form-control:focus {
+        border-color: #80bdff;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    .btn-submit {
+        margin-right: 10px;
+    }
 </style>
 
 <body>
@@ -372,10 +390,11 @@
                         </div>
                     </div>
 
+
                     <!-- Add New User Modal -->
                     <div id="popupDialog" class="modal fade" tabindex="-1" aria-labelledby="popupDialogLabel"
                         aria-hidden="true">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog modal-lg"> <!-- Add 'modal-lg' class to increase the width -->
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="popupDialogLabel">Add New Request</h5>
@@ -384,17 +403,73 @@
                                 </div>
                                 <div class="modal-body">
                                     <form id="requestForm">
-                                        <div class="mb-3">
-                                            <label for="requestField1" class="form-label">Field 1:</label>
-                                            <input type="text" id="requestField1" class="form-control" required>
+                                        <div class="row"> <!-- Add 'row' class to create a row for two fields -->
+                                            <div class="col-md-6">
+                                                <!-- Use 'col-md-6' class to make two fields occupy half of the width each -->
+                                                <div class="mb-3">
+                                                    <label for="customerCode" class="form-label">Customer Code:</label>
+                                                    <input type="text" id="customerCode" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label for="customerName" class="form-label">Customer Name:</label>
+                                                    <input type="text" id="customerName" class="form-control" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row"> <!-- Add 'row' class to create a row for two fields -->
+                                            <div class="col-md-6">
+                                                <!-- Use 'col-md-6' class to make two fields occupy half of the width each -->
+                                                <div class="mb-3">
+                                                    <label for="customerCode" class="form-label">Debit Account
+                                                        Number:</label>
+                                                    <input type="text" id="debitAccountNo" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label for="customerName" class="form-label">Credit Account
+                                                        Number:</label>
+                                                    <input type="text" id="creditAccountNo" class="form-control" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row"> <!-- Add 'row' class to create a row for two fields -->
+                                            <div class="col-md-6">
+                                                <!-- Use 'col-md-6' class to make two fields occupy half of the width each -->
+                                                <div class="mb-3">
+                                                    <label for="customerCode" class="form-label">Beneficairy
+                                                        Name:</label>
+                                                    <input type="text" id="beneficiaryName" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label for="customerName" class="form-label">Beneficairy Branch
+                                                        Code:</label>
+                                                    <input type="text" id="beneficiaryBranchCode" class="form-control" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row"> <!-- Add 'row' class to create a row for two fields -->
+                                            <div class="col-md-6">
+                                                <!-- Use 'col-md-6' class to make two fields occupy half of the width each -->
+                                                <div class="mb-3">
+                                                    <label for="customerCode" class="form-label">Amount:</label>
+                                                    <input type="number" id="amount" class="form-control"
+                            required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label for="customerName" class="form-label">Remark:</label>
+                                                    <input type="text" id="remarks" class="form-control" required>
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        <div class="mb-3">
-                                            <label for="requestField2" class="form-label">Field 2:</label>
-                                            <input type="text" id="requestField2" class="form-control" required>
-                                        </div>
-
-                                        <!-- Add more fields as needed -->
+                                        <!-- Add more fields in similar row and column structure -->
 
                                         <div class="text-end mt-4">
                                             <button type="button" class="btn btn-secondary"
@@ -406,6 +481,8 @@
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
 
@@ -494,13 +571,14 @@
                     },
                 });
                 const apiData = await response.json();
-                console.log(apiData);
+                // console.log(apiData);
+                apiData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
                 arr = apiData;
                 fillTable(apiData)
                 // fetchAllow(apiData);
                 // fetchCancel(apiData);
                 // fetchPending(apiData);
-  
+
             } catch (error) {
                 console.error('An error occurred while fetching data:', error);
             }
@@ -588,92 +666,187 @@
             fillTable(filteredData)
         }
 
-        function fillTable(apiData){
+        function fillTable(apiData) {
             tableBody.innerHTML = '';
             apiData.forEach((row, index) => {
-                    const newRow = tableBody.insertRow();
-                    const checkboxCell = newRow.insertCell();
-                    checkboxCell.className = 'checkbox-row';
-                    checkboxCell.innerHTML = '<input class="form-check-input" type="checkbox">';
+                const newRow = tableBody.insertRow();
+                const checkboxCell = newRow.insertCell();
+                checkboxCell.className = 'checkbox-row';
+                checkboxCell.innerHTML = '<input class="form-check-input" type="checkbox">';
 
-                    newRow.insertCell().textContent = index + 1;
-                    newRow.insertCell().textContent = row.withdrawal_id;
-                    newRow.insertCell().textContent = row.customer_code;
-                    newRow.insertCell().textContent = row.customer_name;
-                    newRow.insertCell().textContent = row.amount;
+                newRow.insertCell().textContent = index + 1;
+                newRow.insertCell().textContent = row.withdrawal_id;
+                newRow.insertCell().textContent = row.customer_code;
+                newRow.insertCell().textContent = row.customer_name;
+                newRow.insertCell().textContent = row.amount;
 
-                    // Format the creation_date to display only the date
-                    const creationDate = new Date(row.createdAt);
-                    const formattedDate = creationDate.toLocaleDateString();
-                    newRow.insertCell().textContent = formattedDate;
+                // Format the creation_date to display only the date
+                const creationDate = new Date(row.createdAt);
+                const formattedDate = creationDate.toLocaleDateString();
+                newRow.insertCell().textContent = formattedDate;
 
-                    const actionCell = newRow.insertCell();
-                    actionCell.style.position = 'relative';
+                const actionCell = newRow.insertCell();
+                actionCell.style.position = 'relative';
+                actionCell.style.display = 'flex';
+                actionCell.style.alignItems = 'center';
 
-                    const dropdownButton = document.createElement('button');
-                    dropdownButton.className = 'btn btn-sm btn-primary dropdown-toggle';
-                    dropdownButton.type = 'button';
-                    dropdownButton.id = `actionDropdown-${index + 1}`;
-                    dropdownButton.setAttribute('data-toggle', 'dropdown');
-                    dropdownButton.setAttribute('aria-haspopup', 'true');
-                    dropdownButton.setAttribute('aria-expanded', 'false');
+                const dropdownButton = document.createElement('button');
+                dropdownButton.className = 'btn btn-sm btn-primary dropdown-toggle';
+                dropdownButton.type = 'button';
+                dropdownButton.style.maxWidth = '80px';
+                dropdownButton.style.minWidth = '80px';
+                dropdownButton.id = `actionDropdown-${index + 1}`;
+                dropdownButton.setAttribute('data-toggle', 'dropdown');
+                dropdownButton.setAttribute('aria-haspopup', 'true');
+                dropdownButton.setAttribute('aria-expanded', 'false');
 
-                    // Check if the merchant status is already 'Allow' or 'Cancel'
-                    if (row.merchant_status === 'Allow') {
-                        dropdownButton.className += ' btn-success'; // Set button background color to green
-                        dropdownButton.textContent = 'Allow'; // Set button text to 'Allow'
-                        dropdownButton.disabled = true; // Disable the dropdown button
-                    } else if (row.merchant_status === 'Cancel') {
-                        dropdownButton.className += ' btn-danger'; // Set button background color to red
-                        dropdownButton.textContent = 'Cancel'; // Set button text to 'Cancel'
-                        dropdownButton.disabled = true; // Disable the dropdown button
-                    } else {
-                        dropdownButton.textContent = 'Pending'; // Set default button text as 'Pending'
-                    }
+                // Check if the merchant status is already 'Allow' or 'Cancel'
+                if (row.merchant_status === 'Allow') {
+                    dropdownButton.className += ' btn-success'; // Set button background color to green
+                    dropdownButton.textContent = 'Allow'; // Set button text to 'Allow'
+                    dropdownButton.disabled = true; // Disable the dropdown button
+                } else if (row.merchant_status === 'Cancel') {
+                    dropdownButton.className += ' btn-danger'; // Set button background color to red
+                    dropdownButton.textContent = 'Cancel'; // Set button text to 'Cancel'
+                    dropdownButton.disabled = true; // Disable the dropdown button
+                } else {
+                    dropdownButton.textContent = 'Pending'; // Set default button text as 'Pending'
+                }
 
-                    actionCell.appendChild(dropdownButton);
+                actionCell.appendChild(dropdownButton);
 
-                    const dropdownMenu = document.createElement('div');
-                    dropdownMenu.className = 'dropdown-menu';
-                    dropdownMenu.setAttribute('aria-labelledby', `actionDropdown-${index + 1}`);
-                    dropdownMenu.style.position = 'absolute';
-                    dropdownMenu.style.minWidth = '100%';
+                // Add a space between the dropdown and delete button
+                actionCell.appendChild(document.createTextNode(' '));
 
-                    const allowOption = document.createElement('a');
-                    allowOption.className = 'dropdown-item';
-                    allowOption.href = '#';
-                    allowOption.textContent = 'Allow';
-                    allowOption.addEventListener('click', async function (event) {
-                        event.preventDefault();
-                        if (row.merchant_status === 'Allow') {
-                            disableDropdown(dropdownButton);
-                        } else {
-                            await updateMerchantStatus(row.withdrawal_id, 'Allow');
-                            selectValue(this, 'Allow', index + 1);
-                            disableDropdown(dropdownButton);
-                        }
-                    });
-                    dropdownMenu.appendChild(allowOption);
+                const deleteContainer = document.createElement('div'); // Create a div container for delete buttons
+                deleteContainer.style.display = 'flex'; // Apply flex display
+                deleteContainer.style.alignItems = 'center'; // Align items vertically in the center
 
-                    const cancelOption = document.createElement('a');
-                    cancelOption.className = 'dropdown-item';
-                    cancelOption.href = '#';
-                    cancelOption.textContent = 'Cancel';
-                    cancelOption.addEventListener('click', async function (event) {
-                        event.preventDefault();
-                        if (row.merchant_status === 'Cancel') {
-                            disableDropdown(dropdownButton);
-                        } else {
-                            await updateMerchantStatus(row.withdrawal_id, 'Cancel');
-                            selectValue(this, 'Cancel', index + 1);
-                            disableDropdown(dropdownButton);
-                        }
-                    });
-                    dropdownMenu.appendChild(cancelOption);
+                const deleteButton = document.createElement('span');
+                deleteButton.className = 'delete-button';
+                deleteButton.innerHTML = '<i class="fa fa-trash"></i>';
+                deleteButton.style.cursor = 'pointer';
+                deleteButton.style.marginRight = '10px'; // Adjust the margin as needed
+                deleteButton.style.marginLeft = '40px'; // Adjust the margin as needed
 
-                    actionCell.appendChild(dropdownMenu);
+                deleteButton.addEventListener('click', async function (event) {
+                    event.preventDefault();
+                    // Call your delete function here or perform other delete actions
+                    console.log(`Delete row ${index + 1}`);
                 });
+
+                deleteContainer.appendChild(deleteButton); // Add delete buttons to the container
+                actionCell.appendChild(deleteContainer); // Add the container to the action cell
+
+                const dropdownMenu = document.createElement('div');
+                dropdownMenu.className = 'dropdown-menu';
+                dropdownMenu.setAttribute('aria-labelledby', `actionDropdown-${index + 1}`);
+                dropdownMenu.style.position = 'absolute';
+                dropdownMenu.style.width = '150px'; // Set the desired width of the dropdown menu
+
+                const allowOption = document.createElement('a');
+                allowOption.className = 'dropdown-item';
+                allowOption.href = '#';
+                allowOption.textContent = 'Allow';
+                allowOption.addEventListener('click', async function (event) {
+                    event.preventDefault();
+                    if (row.merchant_status === 'Allow') {
+                        disableDropdown(dropdownButton);
+                    } else {
+                        await updateMerchantStatus(row.withdrawal_id, 'Allow');
+                        selectValue(this, 'Allow', index + 1);
+                        disableDropdown(dropdownButton);
+                    }
+                });
+                dropdownMenu.appendChild(allowOption);
+
+                const cancelOption = document.createElement('a');
+                cancelOption.className = 'dropdown-item';
+                cancelOption.href = '#';
+                cancelOption.textContent = 'Cancel';
+                cancelOption.addEventListener('click', async function (event) {
+                    event.preventDefault();
+                    if (row.merchant_status === 'Cancel') {
+                        disableDropdown(dropdownButton);
+                    } else {
+                        await updateMerchantStatus(row.withdrawal_id, 'Cancel');
+                        selectValue(this, 'Cancel', index + 1);
+                        disableDropdown(dropdownButton);
+                    }
+                });
+                dropdownMenu.appendChild(cancelOption);
+
+                actionCell.appendChild(dropdownMenu);
+            });
         }
+
+        document.getElementById('requestForm').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Fetch form values
+            var customerCode = document.getElementById('customerCode').value;
+            var customerName = document.getElementById('customerName').value;
+            var debitAccountNo = document.getElementById('debitAccountNo').value;
+            var creditAccountNo = document.getElementById('creditAccountNo').value;
+            var beneficiaryName = document.getElementById('beneficiaryName').value;
+            var beneficiaryBranchCode = document.getElementById('beneficiaryBranchCode').value;
+            var amount = document.getElementById('amount').value;
+            var remarks = document.getElementById('remarks').value;
+
+            // Prepare the data object
+            var data = {
+                customer_code: customerCode,
+                customer_name: customerName,
+                debit_account_no: debitAccountNo,
+                credit_account_no: creditAccountNo,
+                beneficiary_name: beneficiaryName,
+                beneficiary_branch_code: beneficiaryBranchCode,
+                amount: amount,
+                remarks: remarks
+            };
+
+            console.log(data)
+
+            try {
+                // Send the data to the API endpoint using async/await
+                await sendFormData('http://localhost:8080/User/withdrawal', data);
+                // Handle the success response
+                // alert('Request submitted successfully!');
+                // Clear the form fields
+                document.getElementById('requestForm').reset();
+            } catch (error) {
+                // Handle the error
+                console.error('Error:', error);
+                alert('Failed to submit the request.');
+            }
+        });
+
+        async function sendFormData(url, data) {
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json()
+                // console.log(result.message)
+                if (result.message) {
+                    alert("Request Submit Successfully")
+                    fetchWithdrawalData();
+                } else {
+                    // Handle the error response
+                    throw new Error('Request failed with status ' + response.status);
+                }
+            } catch (error) {
+                // Handle network errors
+                throw new Error('Request failed: ' + error.message);
+            }
+        }
+
 
 
     </script>
