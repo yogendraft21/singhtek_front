@@ -10,6 +10,9 @@
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,6 +35,12 @@
 </head>
 
 <style>
+    .checkbox-col {
+        width: 30px;
+        padding: 0;
+        text-align: center;
+    }
+
     .small-column {
         width: 50px;
         /* Adjust the width as needed */
@@ -127,16 +136,16 @@
                 <div class="navbar-nav w-100">
                     <a href="index.html" class="nav-item nav-link active"><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <div class="nav-item dropdown">
+                    <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                class="fa fa-laptop me-2"></i>All Transactions</a>
+                                class="fa fa-laptop me-2"></i>Filter Request's</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="approved.html" class="dropdown-item">Approved</a>
                             <a href="canceled.html" class="dropdown-item">Canceled</a>
                             <a href="pending.html" class="dropdown-item">Pending</a>
                         </div>
-                    </div>
-                    <a href="users.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>All Users's</a>
+                    </div> -->
+                    <a href="users.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>All Transaction's</a>
                     <a href="sucess_history.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Success
                         History</a>
                     <a href="failed_history.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Failed
@@ -297,28 +306,42 @@
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0" style="width: 300px; margin-left: -10px;">All Registered User's</h6>
-                        <button class="btn btn-primary" id="addNewUserBtn" style="width: 300px; margin-left: 30px;">
-                            <i class="bi bi-plus me-2"></i>Add New User
+                        <h6 class="mb-0" style="flex:1; margin-left: -20px;">All Transaction Requests</h6>
+                        <button class="btn btn-primary" id="addNewUserBtn" style="flex: 0.5; margin-left: 20px;">
+                            Add Request
                         </button>
-                        <div class="input-group">
+                        <div class="input-group" style="flex:2.5; margin-right: 20px;">
                             <input type="text" class="form-control search-input" placeholder="Search...">
                             <button class="btn btn-primary" type="button">Search</button>
                         </div>
+                        <div class="input-group" style="flex: 1;">
+                            <select id="nameFilter" class="form-select" style="margin-left: 10px;" size="1"
+                                onchange="handleFilterChange(this.value)">
+                                <option value="">Filter Transaction's</option>
+                                <option value="">All</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Allow">Allow</option>
+                                <option value="Cancel">Cancel</option>
+                            </select>
+                        </div>
+
                     </div>
+
+
 
                     <div class="table-responsive" style="overflow: visible;">
                         <table id="myTable" class="table text-start align-middle table-bordered table-hover mb-0"
                             style="table-layout: fixed;">
                             <thead>
                                 <tr class="text-dark">
-                                    <!-- <th scope="col" class="checkbox-col"><input class="form-check-input" type="checkbox"></th> -->
-                                    <th scope="col" class="small-column">S.No</th>
-                                    <th scope="col">User ID</th>
+                                    <th scope="col" class="checkbox-col"><input class="form-check-input"
+                                            type="checkbox"></th>
+                                    <th scope="col" class="small-column">S.No.</th>
+                                    <th scope="col">Withdrawal ID</th>
+                                    <th scope="col">Customer Code</th>
                                     <th scope="col">Customer Name</th>
-                                    <th scope="col">Phone No.</th>
-                                    <th scope="col">Account No.</th>
-                                    <th scope="col">Email</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Date</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -348,79 +371,44 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- Add New User Modal -->
-                    <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel"
+                    <div id="popupDialog" class="modal fade" tabindex="-1" aria-labelledby="popupDialogLabel"
                         aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" style="max-width: 80%;">
+                        <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="addUserModalLabel">Add New User</h5>
+                                    <h5 class="modal-title" id="popupDialogLabel">Add New Request</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form id="addUserForm">
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="customerID" class="form-label">Customer ID</label>
-                                                <input type="text" class="form-control" id="customerID" required>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="customerName" class="form-label">Customer Name</label>
-                                                <input type="text" class="form-control" id="customerName" required>
-                                            </div>
+                                    <form id="requestForm">
+                                        <div class="mb-3">
+                                            <label for="requestField1" class="form-label">Field 1:</label>
+                                            <input type="text" id="requestField1" class="form-control" required>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="email" class="form-label">Email</label>
-                                                <input type="email" class="form-control" id="email" required>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="phone" class="form-label">Phone</label>
-                                                <input type="tel" class="form-control" id="phone" required>
-                                            </div>
+
+                                        <div class="mb-3">
+                                            <label for="requestField2" class="form-label">Field 2:</label>
+                                            <input type="text" id="requestField2" class="form-control" required>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="accountNumber" class="form-label">Account Number</label>
-                                                <input type="text" class="form-control" id="accountNumber" required>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="accountName" class="form-label">Account Name</label>
-                                                <input type="text" class="form-control" id="accountName" required>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="aadharNumber" class="form-label">Aadhar Number</label>
-                                                <input type="text" class="form-control" id="aadharNumber" required>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="panNumber" class="form-label">PAN Number</label>
-                                                <input type="text" class="form-control" id="panNumber" required>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="password" class="form-label">Password</label>
-                                                <input type="password" class="form-control" id="password" required>
-                                            </div>
+
+                                        <!-- Add more fields as needed -->
+
+                                        <div class="text-end mt-4">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
                                         </div>
                                     </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-primary" id="submitUserBtn">Submit</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
+
 
             <!-- Recent Sales End -->
         </div>
@@ -450,7 +438,27 @@
     <script>
 
         // fetch merchant detail.
-        async function fetchMerchantDetail(){
+        $(document).ready(function () {
+            $('.dropdown-toggle').dropdown();
+        });
+
+        const btn = document.getElementById('addNewUserBtn')
+        btn.addEventListener('click', function (event) {
+            event.preventDefault();
+            $('#popupDialog').modal('show');
+        })
+        document.getElementById("requestForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            var requestField1Value = document.getElementById("requestField1").value;
+            var requestField2Value = document.getElementById("requestField2").value;
+
+            // Perform any necessary actions with the form values
+
+            $('#popupDialog').modal('hide');
+        });
+        // fetch merchant detail.
+        async function fetchMerchantDetail() {
             try {
                 const response = await fetch('http://localhost:8080/Merchant/username', {
                     method: 'GET',
@@ -459,7 +467,7 @@
                         'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
                     },
                 });
-                
+
                 const name = await response.json();
                 console.log(name)
                 document.getElementById("s_username").innerText = name
@@ -473,178 +481,200 @@
         fetchMerchantDetail()
 
 
-        $(document).ready(function () {
-            $('.dropdown-toggle').dropdown();
-        });
-        async function fetchUserData() {
-
-            const url = 'http://localhost:8080/Merchant/users';
-
+        const tableBody = document.getElementById('tableBody');
+        let arr = []
+        async function fetchWithdrawalData() {
             try {
-
-                const response = await fetch(url, {
+                // Fetch data from the API
+                const response = await fetch('http://localhost:8080/Merchant/getWithdrawals', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
-                    }
+                    },
                 });
-
-                // Process the response
-                const userData = await response.json();
-                // console.log(userData);
-                // Call the function with the data
-                showDataInTable(userData);
+                const apiData = await response.json();
+                console.log(apiData);
+                arr = apiData;
+                fillTable(apiData)
+                // fetchAllow(apiData);
+                // fetchCancel(apiData);
+                // fetchPending(apiData);
+  
             } catch (error) {
-                console.log('Error:', error);
+                console.error('An error occurred while fetching data:', error);
             }
         }
 
-
-        fetchUserData();
-        // setInterval(fetchUserData(),2000)
-
-        const tableBody = document.getElementById('tableBody');
-        function showDataInTable(data) {
-            // Clear existing table rows
-            tableBody.innerHTML = '';
-
-            // Iterate over the data and add rows dynamically
-            data.forEach((row, index) => {
-                const newRow = tableBody.insertRow();
-                newRow.insertCell().textContent = index + 1;
-                newRow.insertCell().textContent = row.customer_id;
-                newRow.insertCell().textContent = row.customer_name;
-                newRow.insertCell().textContent = row.phone;
-                newRow.insertCell().textContent = row.credit_account_no;
-                newRow.insertCell().textContent = row.email;
-
-                const actionCell = newRow.insertCell();
-                const deleteButton = document.createElement('button');
-                deleteButton.className = 'btn btn-sm btn-danger m-1';
-                deleteButton.textContent = 'Delete';
-                deleteButton.addEventListener('click', function () {
-                    deleteRow(index + 1);
-                });
-
-                const viewAllButton = document.createElement('button');
-                viewAllButton.className = 'btn btn-sm btn-primary';
-                viewAllButton.textContent = 'View';
-                viewAllButton.addEventListener('click', function () {
-                    viewAll(row);
-                });
-
-                actionCell.appendChild(deleteButton);
-                actionCell.appendChild(viewAllButton);
-            });
-        }
-
-        const addNewUserBtn = document.getElementById('addNewUserBtn');
-        const addUserModal = new bootstrap.Modal(document.getElementById('addUserModal'));
-        const viewModal = new bootstrap.Modal(document.getElementById('viewModal')); // Initialize the viewModal
-
-        addNewUserBtn.addEventListener('click', function () {
-            addUserModal.show();
-        });
-
-        // Function to handle form submission
-        document.getElementById('submitUserBtn').addEventListener('click', function () {
-            const form = document.getElementById('addUserForm');
-            // Retrieve form field values and perform submission logic
-            // ...
-            // Close the modal after form submission
-            addUserModal.hide();
-        });
-
-        // Function to delete a row
-        function deleteRow(rowId) {
-            const table = document.getElementById('myTable');
-            table.deleteRow(rowId);
-        }
-
-        // Function to view all details
-
-        function viewAll(user) {
-            const userInfoContainer = document.getElementById('userInfo');
-            userInfoContainer.innerHTML = `
-            <p><strong>Customer ID:</strong> ${user.customer_id}</p>
-            <p><strong>Customer Name:</strong> ${user.customer_name}</p>
-            <p><strong>Phone:</strong> ${user.phone}</p>
-            <p><strong>Account No.:</strong> ${user.credit_account_no}</p>
-            <p><strong>Email:</strong> ${user.email}</p>
-            <p><strong>Aadhar Number:</strong> ${user.aadhar_number}</p>
-            <p><strong>Pan Number:</strong> ${user.pan_number}</p>
-            <p><strong>Email:</strong> ${user.email}</p>
-        `;
-
-            $('#viewModal').modal('show');
-        }
-
-        document.getElementById('submitUserBtn').addEventListener('click', async function () {
-            // const customerIDInput = document.getElementById('customerID');
-            const customerNameInput = document.getElementById('customerName');
-            const emailInput = document.getElementById('email');
-            const phoneInput = document.getElementById('phone');
-            const accountNumberInput = document.getElementById('accountNumber');
-            const accountNameInput = document.getElementById('accountName');
-            const aadharNumberInput = document.getElementById('aadharNumber');
-            const panNumberInput = document.getElementById('panNumber');
-            const passwordInput = document.getElementById('password');
-
-            // Get the form field values
-            const formData = {
-                // customer_id: customerIDInput.value,
-                customer_name: customerNameInput.value,
-                email: emailInput.value,
-                phone: phoneInput.value,
-                credit_account_no: accountNumberInput.value,
-                account_name: accountNameInput.value,
-                aadhar_number: aadharNumberInput.value,
-                pan_number: panNumberInput.value,
-                password: passwordInput.value
-            };
-
+        // Function to update the merchant status via API
+        async function updateMerchantStatus(withdrawalId, merchantStatus) {
             try {
-                // Perform submission logic and make the API call
-                const response = await fetch('http://localhost:8080/Merchant/user/register', {
+                const response = await fetch('http://localhost:8080/Merchant/withdrawal/updatestatus', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
                     },
-                    body: JSON.stringify(formData)
+                    body: JSON.stringify({
+                        withdrawal_id: withdrawalId,
+                        merchant_status: merchantStatus
+                    })
                 });
-
                 const data = await response.json();
-
-                // Handle the API response
-                // console.log(data);
-                if(data){
-                    alert("User add Success")
-                }else{
-                    alert('Failed')
-                }
-
-                // Clear the form fields
-                customerNameInput.value = '';
-                emailInput.value = '';
-                phoneInput.value = '';
-                accountNumberInput.value = '';
-                accountNameInput.value = '';
-                aadharNumberInput.value = '';
-                panNumberInput.value = '';
-                passwordInput.value = '';
-
-                fetchUserData();
-
-                // Close the modal after form submission
-                const addUserModal = new bootstrap.Modal(document.getElementById('addUserModal'));
-                addUserModal.hide();
+                console.log(data);
             } catch (error) {
-                alert("problem with Add new User")
-                console.error('Error:', error);
+                console.error('An error occurred while updating the merchant status:', error);
             }
-        });
+        }
+
+        fetchWithdrawalData();
+
+
+
+        function disableDropdown(dropdownButton) {
+            dropdownButton.disabled = true;
+        }
+
+        // Function to handle dropdown selection
+        function selectValue(element, value, rowId) {
+            const dropdownButton = element.parentNode.parentNode.querySelector(".dropdown-toggle");
+            const dropdownMenu = element.parentNode.parentNode.querySelector(".dropdown-menu");
+
+            if (value === 'Allow') {
+                dropdownButton.classList.remove('btn-danger');
+                dropdownButton.classList.add('btn-success');
+            } else if (value === 'Cancel') {
+                dropdownButton.classList.remove('btn-success');
+                dropdownButton.classList.add('btn-danger');
+            }
+
+            dropdownButton.textContent = value;
+            dropdownButton.classList.add('text-white');
+            dropdownMenu.classList.remove('show');
+        }
+
+        function handleFilterChange(selectedValue) {
+            switch (selectedValue) {
+                case 'Allow':
+                    fetchAllow(arr);
+                    break;
+                case 'Cancel':
+                    fetchCancel(arr);
+                    break;
+                case 'Pending':
+                    fetchPending(arr);
+                    break;
+                default:
+                    fetchWithdrawalData();
+                    break;
+            }
+        }
+
+        function fetchAllow(data) {
+            const filteredData = data.filter(item => item.merchant_status === 'Allow');
+            tableBody.innerHTML = '';
+            fillTable(filteredData)
+        }
+
+        function fetchCancel(data) {
+            const filteredData = data.filter(item => item.merchant_status === 'Cancel');
+            tableBody.innerHTML = '';
+            fillTable(filteredData)
+        }
+
+        function fetchPending(data) {
+            const filteredData = data.filter(item => item.merchant_status === 'Pending');
+            tableBody.innerHTML = '';
+            fillTable(filteredData)
+        }
+
+        function fillTable(apiData){
+            tableBody.innerHTML = '';
+            apiData.forEach((row, index) => {
+                    const newRow = tableBody.insertRow();
+                    const checkboxCell = newRow.insertCell();
+                    checkboxCell.className = 'checkbox-row';
+                    checkboxCell.innerHTML = '<input class="form-check-input" type="checkbox">';
+
+                    newRow.insertCell().textContent = index + 1;
+                    newRow.insertCell().textContent = row.withdrawal_id;
+                    newRow.insertCell().textContent = row.customer_code;
+                    newRow.insertCell().textContent = row.customer_name;
+                    newRow.insertCell().textContent = row.amount;
+
+                    // Format the creation_date to display only the date
+                    const creationDate = new Date(row.createdAt);
+                    const formattedDate = creationDate.toLocaleDateString();
+                    newRow.insertCell().textContent = formattedDate;
+
+                    const actionCell = newRow.insertCell();
+                    actionCell.style.position = 'relative';
+
+                    const dropdownButton = document.createElement('button');
+                    dropdownButton.className = 'btn btn-sm btn-primary dropdown-toggle';
+                    dropdownButton.type = 'button';
+                    dropdownButton.id = `actionDropdown-${index + 1}`;
+                    dropdownButton.setAttribute('data-toggle', 'dropdown');
+                    dropdownButton.setAttribute('aria-haspopup', 'true');
+                    dropdownButton.setAttribute('aria-expanded', 'false');
+
+                    // Check if the merchant status is already 'Allow' or 'Cancel'
+                    if (row.merchant_status === 'Allow') {
+                        dropdownButton.className += ' btn-success'; // Set button background color to green
+                        dropdownButton.textContent = 'Allow'; // Set button text to 'Allow'
+                        dropdownButton.disabled = true; // Disable the dropdown button
+                    } else if (row.merchant_status === 'Cancel') {
+                        dropdownButton.className += ' btn-danger'; // Set button background color to red
+                        dropdownButton.textContent = 'Cancel'; // Set button text to 'Cancel'
+                        dropdownButton.disabled = true; // Disable the dropdown button
+                    } else {
+                        dropdownButton.textContent = 'Pending'; // Set default button text as 'Pending'
+                    }
+
+                    actionCell.appendChild(dropdownButton);
+
+                    const dropdownMenu = document.createElement('div');
+                    dropdownMenu.className = 'dropdown-menu';
+                    dropdownMenu.setAttribute('aria-labelledby', `actionDropdown-${index + 1}`);
+                    dropdownMenu.style.position = 'absolute';
+                    dropdownMenu.style.minWidth = '100%';
+
+                    const allowOption = document.createElement('a');
+                    allowOption.className = 'dropdown-item';
+                    allowOption.href = '#';
+                    allowOption.textContent = 'Allow';
+                    allowOption.addEventListener('click', async function (event) {
+                        event.preventDefault();
+                        if (row.merchant_status === 'Allow') {
+                            disableDropdown(dropdownButton);
+                        } else {
+                            await updateMerchantStatus(row.withdrawal_id, 'Allow');
+                            selectValue(this, 'Allow', index + 1);
+                            disableDropdown(dropdownButton);
+                        }
+                    });
+                    dropdownMenu.appendChild(allowOption);
+
+                    const cancelOption = document.createElement('a');
+                    cancelOption.className = 'dropdown-item';
+                    cancelOption.href = '#';
+                    cancelOption.textContent = 'Cancel';
+                    cancelOption.addEventListener('click', async function (event) {
+                        event.preventDefault();
+                        if (row.merchant_status === 'Cancel') {
+                            disableDropdown(dropdownButton);
+                        } else {
+                            await updateMerchantStatus(row.withdrawal_id, 'Cancel');
+                            selectValue(this, 'Cancel', index + 1);
+                            disableDropdown(dropdownButton);
+                        }
+                    });
+                    dropdownMenu.appendChild(cancelOption);
+
+                    actionCell.appendChild(dropdownMenu);
+                });
+        }
+
 
     </script>
 </body>

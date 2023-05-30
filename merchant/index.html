@@ -103,16 +103,16 @@
                 <div class="navbar-nav w-100">
                     <a href="index.html" class="nav-item nav-link active"><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <div class="nav-item dropdown">
+                    <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                class="fa fa-laptop me-2"></i>All Transactions</a>
+                                class="fa fa-laptop me-2"></i>Filter Request's</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="approved.html" class="dropdown-item">Approved</a>
                             <a href="pending.html" class="dropdown-item">Canceled</a>
                             <a href="canceled.html" class="dropdown-item">Pending</a>
                         </div>
-                    </div>
-                    <a href="users.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>All Users's</a>
+                    </div> -->
+                    <a href="users.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>All Transaction's</a>
                     <a href="sucess_history.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Success
                         History</a>
                     <a href="failed_history.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Failed
@@ -536,7 +536,7 @@
     <script>
 
         // fetch merchant detail.
-        async function fetchMerchantDetail(){
+        async function fetchMerchantDetail() {
             try {
                 const response = await fetch('http://localhost:8080/Merchant/username', {
                     method: 'GET',
@@ -545,7 +545,7 @@
                         'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
                     },
                 });
-                
+
                 const name = await response.json();
                 console.log(name)
                 document.getElementById("s_username").innerText = name
@@ -563,103 +563,156 @@
         });
 
         const tableBody = document.getElementById('tableBody');
-
+        // let arr = []
         async function fetchWithdrawalData() {
-      try {
-        // Fetch data from the API
-        const response = await fetch('http://localhost:8080/Merchant/getWithdrawals', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
-          },
-        });
-        const apiData = await response.json();
-        console.log(apiData);
+            try {
+                // Fetch data from the API
+                const response = await fetch('http://localhost:8080/Merchant/getWithdrawals', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
+                    },
+                });
+                const apiData = await response.json();
+                // console.log(apiData);
+                apiData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                
+                // Process the fetched API data and add rows dynamically
+                apiData.forEach((row, index) => {
+                    const newRow = tableBody.insertRow();
+                    const checkboxCell = newRow.insertCell();
+                    checkboxCell.className = 'checkbox-row';
+                    checkboxCell.innerHTML = '<input class="form-check-input" type="checkbox">';
 
-        // Process the fetched API data and add rows dynamically
-        apiData.forEach((row, index) => {
-          const newRow = tableBody.insertRow();
-          const checkboxCell = newRow.insertCell();
-          checkboxCell.className = 'checkbox-row';
-          checkboxCell.innerHTML = '<input class="form-check-input" type="checkbox">';
+                    newRow.insertCell().textContent = index + 1;
+                    newRow.insertCell().textContent = row.withdrawal_id;
+                    newRow.insertCell().textContent = row.customer_code;
+                    newRow.insertCell().textContent = row.customer_name;
+                    newRow.insertCell().textContent = row.amount;
 
-          newRow.insertCell().textContent = index + 1;
-          newRow.insertCell().textContent = row.withdrawal_id;
-          newRow.insertCell().textContent = row.customer_code;
-          newRow.insertCell().textContent = row.customer_name;
-          newRow.insertCell().textContent = row.amount;
+                    // Format the creation_date to display only the date
+                    const creationDate = new Date(row.createdAt);
+                    const formattedDate = creationDate.toLocaleDateString();
+                    newRow.insertCell().textContent = formattedDate;
 
-          // Format the creation_date to display only the date
-          const creationDate = new Date(row.creation_date);
-          const formattedDate = creationDate.toLocaleDateString();
-          newRow.insertCell().textContent = formattedDate;
+                    const actionCell = newRow.insertCell();
+                    actionCell.style.position = 'relative';
 
-          const actionCell = newRow.insertCell();
-          actionCell.style.position = 'relative';
+                    const dropdownButton = document.createElement('button');
+                    dropdownButton.className = 'btn btn-sm btn-primary dropdown-toggle';
+                    dropdownButton.type = 'button';
+                    dropdownButton.id = `actionDropdown-${index + 1}`;
+                    dropdownButton.setAttribute('data-toggle', 'dropdown');
+                    dropdownButton.setAttribute('aria-haspopup', 'true');
+                    dropdownButton.setAttribute('aria-expanded', 'false');
 
-          const dropdownButton = document.createElement('button');
-          dropdownButton.className = 'btn btn-sm btn-primary dropdown-toggle';
-          dropdownButton.type = 'button';
-          dropdownButton.id = `actionDropdown-${index + 1}`;
-          dropdownButton.setAttribute('data-toggle', 'dropdown');
-          dropdownButton.setAttribute('aria-haspopup', 'true');
-          dropdownButton.setAttribute('aria-expanded', 'false');
-          dropdownButton.textContent = row.action || 'Pending'; // Set default button text as "Pending"
-          actionCell.appendChild(dropdownButton);
+                    // Check if the merchant status is already 'Allow' or 'Cancel'
+                    if (row.merchant_status === 'Allow') {
+                        dropdownButton.className += ' btn-success'; // Set button background color to green
+                        dropdownButton.textContent = 'Allow'; // Set button text to 'Allow'
+                        dropdownButton.disabled = true; // Disable the dropdown button
+                    } else if (row.merchant_status === 'Cancel') {
+                        dropdownButton.className += ' btn-danger'; // Set button background color to red
+                        dropdownButton.textContent = 'Cancel'; // Set button text to 'Cancel'
+                        dropdownButton.disabled = true; // Disable the dropdown button
+                    } else {
+                        dropdownButton.textContent = 'Pending'; // Set default button text as 'Pending'
+                    }
 
-          const dropdownMenu = document.createElement('div');
-          dropdownMenu.className = 'dropdown-menu';
-          dropdownMenu.setAttribute('aria-labelledby', `actionDropdown-${index + 1}`);
-          dropdownMenu.style.position = 'absolute';
-          dropdownMenu.style.minWidth = '100%';
+                    actionCell.appendChild(dropdownButton);
 
-          const allowOption = document.createElement('a');
-          allowOption.className = 'dropdown-item';
-          allowOption.href = '#';
-          allowOption.textContent = 'Allow';
-          allowOption.addEventListener('click', function (event) {
-            event.preventDefault();
-            selectValue(this, 'Allow', index + 1);
-          });
-          dropdownMenu.appendChild(allowOption);
+                    const dropdownMenu = document.createElement('div');
+                    dropdownMenu.className = 'dropdown-menu';
+                    dropdownMenu.setAttribute('aria-labelledby', `actionDropdown-${index + 1}`);
+                    dropdownMenu.style.position = 'absolute';
+                    dropdownMenu.style.minWidth = '100%';
 
-          const cancelOption = document.createElement('a');
-          cancelOption.className = 'dropdown-item';
-          cancelOption.href = '#';
-          cancelOption.textContent = 'Cancel';
-          cancelOption.addEventListener('click', function (event) {
-            event.preventDefault();
-            selectValue(this, 'Cancel', index + 1);
-          });
-          dropdownMenu.appendChild(cancelOption);
+                    const allowOption = document.createElement('a');
+                    allowOption.className = 'dropdown-item';
+                    allowOption.href = '#';
+                    allowOption.textContent = 'Allow';
+                    allowOption.addEventListener('click', async function (event) {
+                        event.preventDefault();
+                        if (row.merchant_status === 'Allow') {
+                            disableDropdown(dropdownButton);
+                        } else {
+                            await updateMerchantStatus(row.withdrawal_id, 'Allow');
+                            selectValue(this, 'Allow', index + 1);
+                            disableDropdown(dropdownButton);
+                        }
+                    });
+                    dropdownMenu.appendChild(allowOption);
 
-          actionCell.appendChild(dropdownMenu);
-        });
-      } catch (error) {
-        console.error('An error occurred while fetching data:', error);
-      }
-    }
+                    const cancelOption = document.createElement('a');
+                    cancelOption.className = 'dropdown-item';
+                    cancelOption.href = '#';
+                    cancelOption.textContent = 'Cancel';
+                    cancelOption.addEventListener('click', async function (event) {
+                        event.preventDefault();
+                        if (row.merchant_status === 'Cancel') {
+                            disableDropdown(dropdownButton);
+                        } else {
+                            await updateMerchantStatus(row.withdrawal_id, 'Cancel');
+                            selectValue(this, 'Cancel', index + 1);
+                            disableDropdown(dropdownButton);
+                        }
+                    });
+                    dropdownMenu.appendChild(cancelOption);
 
-    fetchWithdrawalData();
+                    actionCell.appendChild(dropdownMenu);
+                });
+            } catch (error) {
+                console.error('An error occurred while fetching data:', error);
+            }
+        }
 
-    // Function to handle dropdown selection
-    function selectValue(element, value, rowId) {
-      const dropdownButton = element.parentNode.parentNode.querySelector(".dropdown-toggle");
-      const dropdownMenu = element.parentNode.parentNode.querySelector(".dropdown-menu");
+        // Function to update the merchant status via API
+        async function updateMerchantStatus(withdrawalId, merchantStatus) {
+            try {
+                const response = await fetch('http://localhost:8080/Merchant/withdrawal/updatestatus', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
+                    },
+                    body: JSON.stringify({
+                        withdrawal_id: withdrawalId,
+                        merchant_status: merchantStatus
+                    })
+                });
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('An error occurred while updating the merchant status:', error);
+            }
+        }
 
-      if (value === 'Allow') {
-        dropdownButton.classList.remove('btn-danger');
-        dropdownButton.classList.add('btn-success');
-      } else if (value === 'Cancel') {
-        dropdownButton.classList.remove('btn-success');
-        dropdownButton.classList.add('btn-danger');
-      }
+        fetchWithdrawalData();
 
-      dropdownButton.textContent = value;
-      dropdownButton.classList.add('text-white');
-      dropdownMenu.classList.remove('show');
-    }
+
+
+        function disableDropdown(dropdownButton) {
+            dropdownButton.disabled = true;
+        }
+
+        // Function to handle dropdown selection
+        function selectValue(element, value, rowId) {
+            const dropdownButton = element.parentNode.parentNode.querySelector(".dropdown-toggle");
+            const dropdownMenu = element.parentNode.parentNode.querySelector(".dropdown-menu");
+
+            if (value === 'Allow') {
+                dropdownButton.classList.remove('btn-danger');
+                dropdownButton.classList.add('btn-success');
+            } else if (value === 'Cancel') {
+                dropdownButton.classList.remove('btn-success');
+                dropdownButton.classList.add('btn-danger');
+            }
+
+            dropdownButton.textContent = value;
+            dropdownButton.classList.add('text-white');
+            dropdownMenu.classList.remove('show');
+        }
 
     </script>
 </body>
