@@ -267,6 +267,7 @@
     </div>
 
     <script>
+
         document.getElementById('signInBtn').addEventListener('click', function (event) {
             event.preventDefault(); // Prevent form submission
 
@@ -280,9 +281,41 @@
             }
         });
 
-        function loginWithCompany() {
-            console.log('Login as a company user');
-            // Add your logic here for company user login
+        async function loginWithCompany() {
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            const url = 'http://localhost:8080/SinghTek/login';
+            const data = {
+                email: email,
+                password: password
+            };
+            // console.log(data)
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const responseData = await response.json();
+                // Handle the API response
+                if(responseData){
+                    localStorage.setItem('login_token',JSON.stringify(responseData));
+                    alert("Login Success");
+                    location.href = "./sub-admin/index.html"
+                }else{
+                    alert("Check your email and password")
+                }
+            } catch (error) {
+                // Handle any errors
+                console.error('Error:', error);
+            }
         }
 
         async function loginWithMerchant() {

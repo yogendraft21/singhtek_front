@@ -21,14 +21,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
 </head>
 
 <style>
@@ -500,22 +500,126 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/chart/chart.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="../lib/chart/chart.min.js"></script>
+    <script src="../lib/easing/easing.min.js"></script>
+    <script src="../lib/waypoints/waypoints.min.js"></script>
+    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../lib/tempusdominus/js/moment.min.js"></script>
+    <script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
 
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="../js/main.js"></script>
     <script>
         $(document).ready(function () {
             $('.dropdown-toggle').dropdown();
         });
+        async function fetchWithdrawalData() {
+            try {
+                // Fetch data from the API
+                const response = await fetch('http://localhost:8080/SinghTek/getWithdrawals', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
+                    },
+                });
+                const apiData = await response.json();
+                console.log(apiData);
+                apiData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                
+                // Process the fetched API data and add rows dynamically
+                // apiData.forEach((row, index) => {
+                //     const newRow = tableBody.insertRow();
+                //     const checkboxCell = newRow.insertCell();
+                //     checkboxCell.className = 'checkbox-row';
+                //     checkboxCell.innerHTML = '<input class="form-check-input" type="checkbox">';
+
+                //     newRow.insertCell().textContent = index + 1;
+                //     newRow.insertCell().textContent = row.withdrawal_id;
+                //     newRow.insertCell().textContent = row.customer_code;
+                //     newRow.insertCell().textContent = row.customer_name;
+                //     newRow.insertCell().textContent = row.amount;
+
+                //     // Format the creation_date to display only the date
+                //     const creationDate = new Date(row.createdAt);
+                //     const formattedDate = creationDate.toLocaleDateString();
+                //     newRow.insertCell().textContent = formattedDate;
+
+                //     const actionCell = newRow.insertCell();
+                //     actionCell.style.position = 'relative';
+
+                //     const dropdownButton = document.createElement('button');
+                //     dropdownButton.className = 'btn btn-sm btn-primary dropdown-toggle';
+                //     dropdownButton.type = 'button';
+                //     dropdownButton.id = `actionDropdown-${index + 1}`;
+                //     dropdownButton.setAttribute('data-toggle', 'dropdown');
+                //     dropdownButton.setAttribute('aria-haspopup', 'true');
+                //     dropdownButton.setAttribute('aria-expanded', 'false');
+
+                //     // Check if the merchant status is already 'Allow' or 'Cancel'
+                //     if (row.merchant_status === 'Allow') {
+                //         dropdownButton.className += ' btn-success'; // Set button background color to green
+                //         dropdownButton.textContent = 'Allow'; // Set button text to 'Allow'
+                //         dropdownButton.disabled = true; // Disable the dropdown button
+                //     } else if (row.merchant_status === 'Cancel') {
+                //         dropdownButton.className += ' btn-danger'; // Set button background color to red
+                //         dropdownButton.textContent = 'Cancel'; // Set button text to 'Cancel'
+                //         dropdownButton.disabled = true; // Disable the dropdown button
+                //     } else {
+                //         dropdownButton.textContent = 'Pending'; // Set default button text as 'Pending'
+                //     }
+
+                //     actionCell.appendChild(dropdownButton);
+
+                //     const dropdownMenu = document.createElement('div');
+                //     dropdownMenu.className = 'dropdown-menu';
+                //     dropdownMenu.setAttribute('aria-labelledby', `actionDropdown-${index + 1}`);
+                //     dropdownMenu.style.position = 'absolute';
+                //     dropdownMenu.style.minWidth = '100%';
+
+                //     const allowOption = document.createElement('a');
+                //     allowOption.className = 'dropdown-item';
+                //     allowOption.href = '#';
+                //     allowOption.textContent = 'Allow';
+                //     allowOption.addEventListener('click', async function (event) {
+                //         event.preventDefault();
+                //         if (row.merchant_status === 'Allow') {
+                //             disableDropdown(dropdownButton);
+                //         } else {
+                //             await updateMerchantStatus(row.withdrawal_id, 'Allow');
+                //             selectValue(this, 'Allow', index + 1);
+                //             disableDropdown(dropdownButton);
+                //         }
+                //     });
+                //     dropdownMenu.appendChild(allowOption);
+
+                //     const cancelOption = document.createElement('a');
+                //     cancelOption.className = 'dropdown-item';
+                //     cancelOption.href = '#';
+                //     cancelOption.textContent = 'Cancel';
+                //     cancelOption.addEventListener('click', async function (event) {
+                //         event.preventDefault();
+                //         if (row.merchant_status === 'Cancel') {
+                //             disableDropdown(dropdownButton);
+                //         } else {
+                //             await updateMerchantStatus(row.withdrawal_id, 'Cancel');
+                //             selectValue(this, 'Cancel', index + 1);
+                //             disableDropdown(dropdownButton);
+                //         }
+                //     });
+                //     dropdownMenu.appendChild(cancelOption);
+
+                //     actionCell.appendChild(dropdownMenu);
+                // });
+            } catch (error) {
+                console.error('An error occurred while fetching data:', error);
+            }
+        }
+        
+        fetchWithdrawalData();
 
         const apiData = [
         {
