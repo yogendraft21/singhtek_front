@@ -578,6 +578,7 @@
                 // console.log(apiData);
                 apiData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
                 
+                
                 // Process the fetched API data and add rows dynamically
                 apiData.forEach((row, index) => {
                     const newRow = tableBody.insertRow();

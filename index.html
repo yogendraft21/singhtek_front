@@ -308,12 +308,13 @@
                 if(responseData){
                     localStorage.setItem('login_token',JSON.stringify(responseData));
                     alert("Login Success");
-                    location.href = "./sub-admin/index.html"
+                    location.href = "./sub_admin/index.html"
                 }else{
                     alert("Check your email and password")
                 }
             } catch (error) {
                 // Handle any errors
+                alert("error with login")
                 console.error('Error:', error);
             }
         }

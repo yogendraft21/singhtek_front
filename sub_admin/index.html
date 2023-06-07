@@ -10,6 +10,10 @@
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,25 +41,33 @@
         padding: 0;
         text-align: center;
     }
-    
+
+    .small-column {
+        width: 50px;
+        /* Adjust the width as needed */
+    }
+
     .checkbox-row {
         height: 30px;
         padding: 0;
         text-align: center;
     }
+
     .custom-search-form {
-    width: 50%;
-}
-.custom-input {
-    width: 100%;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    padding: 8px;
-}
-.search-input {
-    max-width: 50%;
-    margin-left: 30%;
-}   
+        width: 50%;
+    }
+
+    .custom-input {
+        width: 100%;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        padding: 8px;
+    }
+
+    .search-input {
+        max-width: 50%;
+        margin-left: 30%;
+    }
 </style>
 
 <body>
@@ -74,36 +86,39 @@
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
-                    <img src="./img/justapay.png" alt="" style="width: 150px; height: 45px;">
+                    <img src="../img/justapay.png" alt="" style="width: 150px; height: 45px;">
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                        <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                        <img class="rounded-circle" src="../img/user.jpg" alt="" style="width: 40px; height: 40px;">
                         <div
                             class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
                         </div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">Jhon Doe</h6>
-                        <span>Admin</span>
+                        <h6 class="mb-0" id="s_username"></h6>
+                        <span>Company User</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
                     <a href="index.html" class="nav-item nav-link active"><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <div class="nav-item dropdown">
+                    <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                class="fa fa-laptop me-2"></i>All Transactions</a>
+                                class="fa fa-laptop me-2"></i>Filter Request's</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="approved.html" class="dropdown-item">Approved</a>
                             <a href="pending.html" class="dropdown-item">Canceled</a>
                             <a href="canceled.html" class="dropdown-item">Pending</a>
                         </div>
-                    </div>
-                    <a href="users.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>All Users's</a>
-                    <a href="sucess_history.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Success History</a>
-                    <a href="failed_history.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Failed History</a>
-                    <a href="pending_history.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Pending History</a>
+                    </div> -->
+                    <a href="merchants.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>All Merchant's</a>
+                    <a href="sucess_history.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Success
+                        History</a>
+                    <a href="failed_history.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Failed
+                        History</a>
+                    <a href="pending_history.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Pending
+                        History</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="far fa-file-alt me-2"></i>Payout Detail</a>
@@ -202,9 +217,9 @@
                     </div> -->
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="img/user.jpg" alt=""
+                            <img class="rounded-circle me-lg-2" src="../img/user.jpg" alt=""
                                 style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">John Doe</span>
+                            <span class="d-none d-lg-inline-flex" id="n_username"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">My Profile</a>
@@ -224,7 +239,7 @@
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-line fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Today Wallet Amount</p>
+                                <p class="mb-2">Total Requested Amount</p>
                                 <h6 class="mb-0">$1234</h6>
                             </div>
                         </div>
@@ -251,7 +266,7 @@
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-pie fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Total Registered User's</p>
+                                <p class="mb-2">Total Registered Merchant's</p>
                                 <h6 class="mb-0">$1234</h6>
                             </div>
                         </div>
@@ -271,18 +286,22 @@
                                 <div class="col-md-3">
                                     <div class="mb-2"> <!-- Reduced margin from mb-3 to mb-2 -->
                                         <label for="startDate" class="form-label">Start Date</label>
-                                        <input type="date" class="form-control form-control-sm custom-input" id="startDate">
+                                        <input type="date" class="form-control form-control-sm custom-input"
+                                            id="startDate">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-2"> <!-- Reduced margin from mb-3 to mb-2 -->
                                         <label for="endDate" class="form-label">End Date</label>
-                                        <input type="date" class="form-control form-control-sm custom-input" id="endDate">
+                                        <input type="date" class="form-control form-control-sm custom-input"
+                                            id="endDate">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-2"> <!-- Reduced margin from mb-3 to mb-2 -->
-                                        <button type="button" class="btn btn-primary btn-sm" style="margin-top:30px; padding: 7px 5px;">Apply Filters</button> <!-- Adjusted margin-top value -->
+                                        <button type="button" class="btn btn-primary btn-sm"
+                                            style="margin-top:30px; padding: 7px 5px;">Apply Filters</button>
+                                        <!-- Adjusted margin-top value -->
                                     </div>
                                 </div>
                             </div>
@@ -290,32 +309,34 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- filter end -->
-            
+
 
             <!-- Recent Sales Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0" style="width: 300px; margin-left: -10px;">Latest Withdrawal Request's</h6>
-            <div class="input-group">
-                <input type="text" class="form-control search-input" placeholder="Search...">
-                <button class="btn btn-primary" type="button">Search</button>
-            </div>
+                        <div class="input-group">
+                            <input type="text" class="form-control search-input" placeholder="Search...">
+                            <button class="btn btn-primary" type="button">Search</button>
+                        </div>
                     </div>
 
                     <div class="table-responsive" style="overflow: visible;">
-                        <table id="myTable" class="table text-start align-middle table-bordered table-hover mb-0" style="table-layout: fixed;">
+                        <table id="myTable" class="table text-start align-middle table-bordered table-hover mb-0"
+                            style="table-layout: fixed;">
                             <thead>
                                 <tr class="text-dark">
-                                    <th scope="col" class="checkbox-col"><input class="form-check-input" type="checkbox"></th>
-                                    <th scope="col">Sr. No.</th>
+                                    <th scope="col" class="checkbox-col"><input class="form-check-input"
+                                            type="checkbox"></th>
+                                    <th scope="col" class="small-column">S.No.</th>
                                     <th scope="col">Withdrawal ID</th>
                                     <th scope="col">Customer Code</th>
                                     <th scope="col">Customer Name</th>
                                     <th scope="col">Amount</th>
-                                    <th scope="col">Remark</th>
+                                    <th scope="col">Date</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -513,13 +534,40 @@
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>
     <script>
+
+        // fetch merchant detail.
+        // async function fetchMerchantDetail() {
+        //     try {
+        //         const response = await fetch('http://localhost:8080/Merchant/username', {
+        //             method: 'GET',
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
+        //             },
+        //         });
+
+        //         const name = await response.json();
+        //         console.log(name)
+        //         document.getElementById("s_username").innerText = name
+        //         document.getElementById("n_username").innerText = name
+
+        //     } catch (error) {
+        //         alert(error)
+        //     }
+
+        // }
+        // fetchMerchantDetail()
+
         $(document).ready(function () {
             $('.dropdown-toggle').dropdown();
         });
+
+        const tableBody = document.getElementById('tableBody');
+        // let arr = []
         async function fetchWithdrawalData() {
             try {
                 // Fetch data from the API
-                const response = await fetch('http://localhost:8080/SinghTek/getWithdrawals', {
+                const response = await fetch('http://localhost:8080/Merchant/getWithdrawals', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -527,191 +575,143 @@
                     },
                 });
                 const apiData = await response.json();
-                console.log(apiData);
+                // console.log(apiData);
                 apiData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
                 
+                
                 // Process the fetched API data and add rows dynamically
-                // apiData.forEach((row, index) => {
-                //     const newRow = tableBody.insertRow();
-                //     const checkboxCell = newRow.insertCell();
-                //     checkboxCell.className = 'checkbox-row';
-                //     checkboxCell.innerHTML = '<input class="form-check-input" type="checkbox">';
+                apiData.forEach((row, index) => {
+                    const newRow = tableBody.insertRow();
+                    const checkboxCell = newRow.insertCell();
+                    checkboxCell.className = 'checkbox-row';
+                    checkboxCell.innerHTML = '<input class="form-check-input" type="checkbox">';
 
-                //     newRow.insertCell().textContent = index + 1;
-                //     newRow.insertCell().textContent = row.withdrawal_id;
-                //     newRow.insertCell().textContent = row.customer_code;
-                //     newRow.insertCell().textContent = row.customer_name;
-                //     newRow.insertCell().textContent = row.amount;
+                    newRow.insertCell().textContent = index + 1;
+                    newRow.insertCell().textContent = row.withdrawal_id;
+                    newRow.insertCell().textContent = row.customer_code;
+                    newRow.insertCell().textContent = row.customer_name;
+                    newRow.insertCell().textContent = row.amount;
 
-                //     // Format the creation_date to display only the date
-                //     const creationDate = new Date(row.createdAt);
-                //     const formattedDate = creationDate.toLocaleDateString();
-                //     newRow.insertCell().textContent = formattedDate;
+                    // Format the creation_date to display only the date
+                    const creationDate = new Date(row.createdAt);
+                    const formattedDate = creationDate.toLocaleDateString();
+                    newRow.insertCell().textContent = formattedDate;
 
-                //     const actionCell = newRow.insertCell();
-                //     actionCell.style.position = 'relative';
+                    const actionCell = newRow.insertCell();
+                    actionCell.style.position = 'relative';
 
-                //     const dropdownButton = document.createElement('button');
-                //     dropdownButton.className = 'btn btn-sm btn-primary dropdown-toggle';
-                //     dropdownButton.type = 'button';
-                //     dropdownButton.id = `actionDropdown-${index + 1}`;
-                //     dropdownButton.setAttribute('data-toggle', 'dropdown');
-                //     dropdownButton.setAttribute('aria-haspopup', 'true');
-                //     dropdownButton.setAttribute('aria-expanded', 'false');
+                    const dropdownButton = document.createElement('button');
+                    dropdownButton.className = 'btn btn-sm btn-primary dropdown-toggle';
+                    dropdownButton.type = 'button';
+                    dropdownButton.id = `actionDropdown-${index + 1}`;
+                    dropdownButton.setAttribute('data-toggle', 'dropdown');
+                    dropdownButton.setAttribute('aria-haspopup', 'true');
+                    dropdownButton.setAttribute('aria-expanded', 'false');
 
-                //     // Check if the merchant status is already 'Allow' or 'Cancel'
-                //     if (row.merchant_status === 'Allow') {
-                //         dropdownButton.className += ' btn-success'; // Set button background color to green
-                //         dropdownButton.textContent = 'Allow'; // Set button text to 'Allow'
-                //         dropdownButton.disabled = true; // Disable the dropdown button
-                //     } else if (row.merchant_status === 'Cancel') {
-                //         dropdownButton.className += ' btn-danger'; // Set button background color to red
-                //         dropdownButton.textContent = 'Cancel'; // Set button text to 'Cancel'
-                //         dropdownButton.disabled = true; // Disable the dropdown button
-                //     } else {
-                //         dropdownButton.textContent = 'Pending'; // Set default button text as 'Pending'
-                //     }
+                    // Check if the merchant status is already 'Allow' or 'Cancel'
+                    if (row.merchant_status === 'Allow') {
+                        dropdownButton.className += ' btn-success'; // Set button background color to green
+                        dropdownButton.textContent = 'Allow'; // Set button text to 'Allow'
+                        dropdownButton.disabled = true; // Disable the dropdown button
+                    } else if (row.merchant_status === 'Cancel') {
+                        dropdownButton.className += ' btn-danger'; // Set button background color to red
+                        dropdownButton.textContent = 'Cancel'; // Set button text to 'Cancel'
+                        dropdownButton.disabled = true; // Disable the dropdown button
+                    } else {
+                        dropdownButton.textContent = 'Pending'; // Set default button text as 'Pending'
+                    }
 
-                //     actionCell.appendChild(dropdownButton);
+                    actionCell.appendChild(dropdownButton);
 
-                //     const dropdownMenu = document.createElement('div');
-                //     dropdownMenu.className = 'dropdown-menu';
-                //     dropdownMenu.setAttribute('aria-labelledby', `actionDropdown-${index + 1}`);
-                //     dropdownMenu.style.position = 'absolute';
-                //     dropdownMenu.style.minWidth = '100%';
+                    const dropdownMenu = document.createElement('div');
+                    dropdownMenu.className = 'dropdown-menu';
+                    dropdownMenu.setAttribute('aria-labelledby', `actionDropdown-${index + 1}`);
+                    dropdownMenu.style.position = 'absolute';
+                    dropdownMenu.style.minWidth = '100%';
 
-                //     const allowOption = document.createElement('a');
-                //     allowOption.className = 'dropdown-item';
-                //     allowOption.href = '#';
-                //     allowOption.textContent = 'Allow';
-                //     allowOption.addEventListener('click', async function (event) {
-                //         event.preventDefault();
-                //         if (row.merchant_status === 'Allow') {
-                //             disableDropdown(dropdownButton);
-                //         } else {
-                //             await updateMerchantStatus(row.withdrawal_id, 'Allow');
-                //             selectValue(this, 'Allow', index + 1);
-                //             disableDropdown(dropdownButton);
-                //         }
-                //     });
-                //     dropdownMenu.appendChild(allowOption);
+                    const allowOption = document.createElement('a');
+                    allowOption.className = 'dropdown-item';
+                    allowOption.href = '#';
+                    allowOption.textContent = 'Allow';
+                    allowOption.addEventListener('click', async function (event) {
+                        event.preventDefault();
+                        if (row.merchant_status === 'Allow') {
+                            disableDropdown(dropdownButton);
+                        } else {
+                            await updateMerchantStatus(row.withdrawal_id, 'Allow');
+                            selectValue(this, 'Allow', index + 1);
+                            disableDropdown(dropdownButton);
+                        }
+                    });
+                    dropdownMenu.appendChild(allowOption);
 
-                //     const cancelOption = document.createElement('a');
-                //     cancelOption.className = 'dropdown-item';
-                //     cancelOption.href = '#';
-                //     cancelOption.textContent = 'Cancel';
-                //     cancelOption.addEventListener('click', async function (event) {
-                //         event.preventDefault();
-                //         if (row.merchant_status === 'Cancel') {
-                //             disableDropdown(dropdownButton);
-                //         } else {
-                //             await updateMerchantStatus(row.withdrawal_id, 'Cancel');
-                //             selectValue(this, 'Cancel', index + 1);
-                //             disableDropdown(dropdownButton);
-                //         }
-                //     });
-                //     dropdownMenu.appendChild(cancelOption);
+                    const cancelOption = document.createElement('a');
+                    cancelOption.className = 'dropdown-item';
+                    cancelOption.href = '#';
+                    cancelOption.textContent = 'Cancel';
+                    cancelOption.addEventListener('click', async function (event) {
+                        event.preventDefault();
+                        if (row.merchant_status === 'Cancel') {
+                            disableDropdown(dropdownButton);
+                        } else {
+                            await updateMerchantStatus(row.withdrawal_id, 'Cancel');
+                            selectValue(this, 'Cancel', index + 1);
+                            disableDropdown(dropdownButton);
+                        }
+                    });
+                    dropdownMenu.appendChild(cancelOption);
 
-                //     actionCell.appendChild(dropdownMenu);
-                // });
+                    actionCell.appendChild(dropdownMenu);
+                });
             } catch (error) {
                 console.error('An error occurred while fetching data:', error);
             }
         }
         
         fetchWithdrawalData();
-
-        const apiData = [
-        {
-            withdrawalId: 'WD-001',
-            customerCode: '001',
-            customerName: 'John Doe',
-            amount: '$123',
-            remark: 'Payout',
-            action: 'Pending'
-        },
-        {
-            withdrawalId: 'WD-00546562',
-            customerCode: '002',
-            customerName: 'Jane Smith',
-            amount: '$456',
-            remark: 'Refund',
-            action: 'Pending'
+        // Function to update the merchant status via API
+        async function updateMerchantStatus(withdrawalId, merchantStatus) {
+            try {
+                const response = await fetch('http://localhost:8080/Merchant/withdrawal/updatestatus', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
+                    },
+                    body: JSON.stringify({
+                        withdrawal_id: withdrawalId,
+                        merchant_status: merchantStatus
+                    })
+                });
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('An error occurred while updating the merchant status:', error);
+            }
         }
-    ];
 
-    // Process the dummy API data and add rows dynamically
-    const tableBody = document.getElementById('tableBody');
-    apiData.forEach((row, index) => {
-        const newRow = tableBody.insertRow();
-        const checkboxCell = newRow.insertCell();
-        checkboxCell.className = 'checkbox-row';
-        checkboxCell.innerHTML = '<input class="form-check-input" type="checkbox">';
+        function disableDropdown(dropdownButton) {
+            dropdownButton.disabled = true;
+        }
 
-        newRow.insertCell().textContent = index + 1;
-        newRow.insertCell().textContent = row.withdrawalId;
-        newRow.insertCell().textContent = row.customerCode;
-        newRow.insertCell().textContent = row.customerName;
-        newRow.insertCell().textContent = row.amount;
-        newRow.insertCell().textContent = row.remark;
+        // Function to handle dropdown selection
+        function selectValue(element, value, rowId) {
+            const dropdownButton = element.parentNode.parentNode.querySelector(".dropdown-toggle");
+            const dropdownMenu = element.parentNode.parentNode.querySelector(".dropdown-menu");
 
-        const actionCell = newRow.insertCell();
-        actionCell.style.position = 'relative';
-        const dropdownButton = document.createElement('button');
-        dropdownButton.className = 'btn btn-sm btn-primary dropdown-toggle';
-        dropdownButton.type = 'button';
-        dropdownButton.id = `actionDropdown-${index + 1}`;
-        dropdownButton.setAttribute('data-toggle', 'dropdown');
-        dropdownButton.setAttribute('aria-haspopup', 'true');
-        dropdownButton.setAttribute('aria-expanded', 'false');
-        dropdownButton.textContent = row.action;
-        actionCell.appendChild(dropdownButton);
+            if (value === 'Allow') {
+                dropdownButton.classList.remove('btn-danger');
+                dropdownButton.classList.add('btn-success');
+            } else if (value === 'Cancel') {
+                dropdownButton.classList.remove('btn-success');
+                dropdownButton.classList.add('btn-danger');
+            }
 
-        const dropdownMenu = document.createElement('div');
-        dropdownMenu.className = 'dropdown-menu';
-        dropdownMenu.setAttribute('aria-labelledby', `actionDropdown-${index + 1}`);
-        dropdownMenu.style.position = 'static';
-
-        const allowOption = document.createElement('a');
-        allowOption.className = 'dropdown-item';
-        allowOption.href = '#';
-        allowOption.textContent = 'Allow';
-        allowOption.addEventListener('click', function () {
-            selectValue(this, 'Allow', index + 1);
-        });
-        dropdownMenu.appendChild(allowOption);
-
-        const cancelOption = document.createElement('a');
-        cancelOption.className = 'dropdown-item';
-        cancelOption.href = '#';
-        cancelOption.textContent = 'Cancel';
-        cancelOption.addEventListener('click', function () {
-            selectValue(this, 'Cancel', index + 1);
-        });
-        dropdownMenu.appendChild(cancelOption);
-
-        actionCell.appendChild(dropdownMenu);
-    });
-
-    // Function to handle dropdown selection
-    function selectValue(element, value, rowId) {
-    const dropdownButton = element.parentNode.parentNode.querySelector(".dropdown-toggle");
-    const dropdownMenu = element.parentNode.parentNode.querySelector(".dropdown-menu");
-
-    if (value === 'Allow') {
-        dropdownButton.classList.remove('btn-danger');
-        dropdownButton.classList.add('btn-success');
-    } else if (value === 'Cancel') {
-        dropdownButton.classList.remove('btn-success');
-        dropdownButton.classList.add('btn-danger');
-    }
-
-    dropdownButton.textContent = value;
-    dropdownButton.classList.add('text-white');
-    dropdownMenu.classList.remove('show');
-}
+            dropdownButton.textContent = value;
+            dropdownButton.classList.add('text-white');
+            dropdownMenu.classList.remove('show');
+        }
 
     </script>
 </body>
-
 </html>
