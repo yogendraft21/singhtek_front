@@ -536,27 +536,27 @@
     <script>
 
         // fetch merchant detail.
-        async function fetchMerchantDetail() {
-            try {
-                const response = await fetch('http://localhost:8080/Merchant/username', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
-                    },
-                });
+        // async function fetchMerchantDetail() {
+        //     try {
+        //         const response = await fetch('http://localhost:8080/Merchant/username', {
+        //             method: 'GET',
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
+        //             },
+        //         });
 
-                const name = await response.json();
-                console.log(name)
-                document.getElementById("s_username").innerText = name
-                document.getElementById("n_username").innerText = name
+        //         const name = await response.json();
+        //         console.log(name)
+        //         document.getElementById("s_username").innerText = name
+        //         document.getElementById("n_username").innerText = name
 
-            } catch (error) {
-                alert(error)
-            }
+        //     } catch (error) {
+        //         alert(error)
+        //     }
 
-        }
-        fetchMerchantDetail()
+        // }
+        // fetchMerchantDetail()
 
         $(document).ready(function () {
             $('.dropdown-toggle').dropdown();

@@ -119,6 +119,12 @@
     .btn-submit {
         margin-right: 10px;
     }
+
+    #myTable tbody td:nth-child(4) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 </style>
 
 <body>
@@ -163,7 +169,7 @@
                             <a href="pending.html" class="dropdown-item">Pending</a>
                         </div>
                     </div> -->
-                    <a href="users.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>All Transaction's</a>
+                    <a href="merchants.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>All Merchant's</a>
                     <a href="sucess_history.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Success
                         History</a>
                     <a href="failed_history.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Failed
@@ -295,8 +301,9 @@
                             Add Merchant
                         </button>
                         <div class="input-group" style="flex:2.5; margin-right: 20px;">
-                            <input type="text" class="form-control search-input" placeholder="Search...">
-                            <button class="btn btn-primary" type="button">Search</button>
+                            <input type="text" class="form-control search-input" id="searchInput"
+                                placeholder="Search...">
+                            <button class="btn btn-primary" type="button" id="searchButton">Search</button>
                         </div>
                         <div class="input-group" style="flex: 1;">
                             <select id="nameFilter" class="form-select" style="margin-left: 10px;" size="1"
@@ -322,7 +329,7 @@
                                             type="checkbox"></th>
                                     <th scope="col" class="small-column">S.No.</th>
                                     <th scope="col">Username</th>
-                                    <th scope="col">Email</th>
+                                    <th scope="col" style="width: 20%;">Email</th>
                                     <th scope="col">Mobile</th>
                                     <th scope="col">Amount</th>
                                     <th scope="col">Transaction Limit</th>
@@ -335,6 +342,12 @@
                                 <!-- Rows will be dynamically added here -->
                             </tbody>
                         </table>
+                        <div class="table-footer">
+                            <button class="btn btn-primary m-4" id="exportButton">Export All Requests</button>
+                            <input type="file" id="importInput" accept=".csv, .xlsx, .xls" style="display: none;">
+                            <label for="importInput" class="btn btn-secondary">Choose File</label>
+                            <button class="btn btn-primary m-4" id="importButton">Import All</button>
+                        </div>
                     </div>
 
                     <!-- Popup dialog for displaying row information -->
@@ -608,161 +621,215 @@
                     fetchPending(arr);
                     break;
                 default:
-                    fetchWithdrawalData();
+                    fetchMerchantsData();
                     break;
             }
         }
 
         function fetchAllow(data) {
-            const filteredData = data.filter(item => item.merchant_status === 'Allow');
+            const filteredData = data.filter(item => item.status === 'Allow');
             tableBody.innerHTML = '';
             fillTable(filteredData)
         }
 
         function fetchCancel(data) {
-            const filteredData = data.filter(item => item.merchant_status === 'Cancel');
+            const filteredData = data.filter(item => item.status === 'Cancel');
             tableBody.innerHTML = '';
             fillTable(filteredData)
         }
 
         function fetchPending(data) {
-            const filteredData = data.filter(item => item.merchant_status === 'Pending');
+            const filteredData = data.filter(item => item.status === 'Pending');
             tableBody.innerHTML = '';
             fillTable(filteredData)
         }
 
         function fillTable(apiData) {
             tableBody.innerHTML = '';
-            apiData.forEach((row, index) => {
-                const newRow = tableBody.insertRow();
-                const checkboxCell = newRow.insertCell();
-                checkboxCell.className = 'checkbox-row';
-                checkboxCell.innerHTML = '<input class="form-check-input" type="checkbox">';
-
-                newRow.insertCell().textContent = index + 1;
-                newRow.insertCell().textContent = row.user_name;
-                newRow.insertCell().textContent = row.email;
-                newRow.insertCell().textContent = row.mobile;
-                newRow.insertCell().textContent = row.amount;
-                newRow.insertCell().textContent = row.transaction_limit;
-
-                // Format the creation_date to display only the date
-                // const creationDate = new Date(row.createdAt);
-                // const formattedDate = creationDate.toLocaleDateString();
-                // newRow.insertCell().textContent = formattedDate;
-
-                const actionCell = newRow.insertCell();
-                actionCell.style.position = 'relative';
-                actionCell.style.display = 'flex';
-                actionCell.style.alignItems = 'center';
-
-                const dropdownButton = document.createElement('button');
-                dropdownButton.className = 'btn btn-sm btn-primary dropdown-toggle';
-                dropdownButton.type = 'button';
-                dropdownButton.style.maxWidth = '80px';
-                dropdownButton.style.minWidth = '80px';
-                dropdownButton.id = `actionDropdown-${index + 1}`;
-                dropdownButton.setAttribute('data-toggle', 'dropdown');
-                dropdownButton.setAttribute('aria-haspopup', 'true');
-                dropdownButton.setAttribute('aria-expanded', 'false');
-
-                // Check if the merchant status is already 'Allow' or 'Cancel'
-                if (row.merchant_status === 'Allow') {
-                    dropdownButton.className += ' btn-success'; // Set button background color to green
-                    dropdownButton.textContent = 'Allow'; // Set button text to 'Allow'
-                    dropdownButton.disabled = true; // Disable the dropdown button
-                } else if (row.merchant_status === 'Cancel') {
-                    dropdownButton.className += ' btn-danger'; // Set button background color to red
-                    dropdownButton.textContent = 'Cancel'; // Set button text to 'Cancel'
-                    dropdownButton.disabled = true; // Disable the dropdown button
-                } else {
-                    dropdownButton.textContent = 'Pending'; // Set default button text as 'Pending'
-                }
-
-                actionCell.appendChild(dropdownButton);
-
-                // Add a space between the dropdown and delete button
-                // actionCell.appendChild(document.createTextNode(' '));
-
-                const actionbtn = newRow.insertCell();
-                actionbtn.style.position = 'relative';
-                // actionbtn.style.display = 'flex';
-                actionbtn.style.alignItems = 'center';
-
-                const deleteContainer = document.createElement('div'); // Create a div container for delete buttons
-                deleteContainer.style.display = 'flex'; // Apply flex display
-                deleteContainer.style.alignItems = 'center'; // Align items vertically in the center
-
-                const deleteButton = document.createElement('span');
-                deleteButton.className = 'delete-button';
-                deleteButton.innerHTML = '<i class="fa fa-trash"></i>';
-                deleteButton.style.cursor = 'pointer';
-                deleteButton.style.marginRight = '10px'; // Adjust the margin as needed
-                deleteButton.style.marginLeft = '10px'; // Adjust the margin as needed
-
-                deleteButton.addEventListener('click', async function (event) {
-                    event.preventDefault();
-                    // Call your delete function here or perform other delete actions
-                    console.log(`Delete row ${index + 1}`);
-                });
-                const viewButton = document.createElement('button');
-                viewButton.className = 'btn btn-sm btn-primary';
-                viewButton.textContent = 'View';
-
-                viewButton.addEventListener('click', function (event) {
-                    event.preventDefault();
-                    console.log('View button clicked for row:', row);
-                    // Implement the logic for viewing the row data here
-                });
+            // const tableBody = document.getElementById('tableBody');
+            const searchInput = document.getElementById('searchInput');
+            const searchButton = document.getElementById('searchButton');
 
 
-                actionbtn.appendChild(deleteContainer); // Add the container to the action cell
-                deleteContainer.appendChild(viewButton); // Add delete buttons to the container
-                deleteContainer.appendChild(deleteButton); // Add delete buttons to the container
-                // Add the container to the action cell
+            const applyFilter = () => {
+                const query = searchInput.value.toLowerCase().trim();
 
+                // Clear the table body
+                tableBody.innerHTML = '';
 
-                const dropdownMenu = document.createElement('div');
-                dropdownMenu.className = 'dropdown-menu';
-                dropdownMenu.setAttribute('aria-labelledby', `actionDropdown-${index + 1}`);
-                dropdownMenu.style.position = 'absolute';
-                dropdownMenu.style.width = '150px'; // Set the desired width of the dropdown menu
+                // Filter the data based on the search query
+                const filteredData = apiData.filter(row =>
+                    row.user_name.toLowerCase().includes(query) ||
+                    row.email.toLowerCase().includes(query) ||
+                    row.mobile.toLowerCase().includes(query) ||
+                    row.amount.toString().includes(query) ||
+                    row.transaction_limit.toString().includes(query)
+                );
 
-                const allowOption = document.createElement('a');
-                allowOption.className = 'dropdown-item';
-                allowOption.href = '#';
-                allowOption.textContent = 'Allow';
-                allowOption.addEventListener('click', async function (event) {
-                    event.preventDefault();
-                    if (row.merchant_status === 'Allow') {
-                        disableDropdown(dropdownButton);
+                searchButton.addEventListener('click', applyFilter);
+                searchInput.addEventListener('keyup', applyFilter);
+
+                filteredData.forEach((row, index) => {
+                    const newRow = tableBody.insertRow();
+                    newRow.style.cursor = 'pointer';
+
+                    newRow.onclick = function () {
+                        localStorage.setItem('mid',JSON.stringify(row._id))
+                        window.location.href = "./users.html"
+                    };
+
+                    const checkboxCell = newRow.insertCell();
+                    checkboxCell.className = 'checkbox-row';
+                    checkboxCell.innerHTML = '<input class="form-check-input" type="checkbox">';
+
+                    newRow.insertCell().textContent = index + 1;
+                    newRow.insertCell().textContent = row.user_name;
+                    newRow.insertCell().textContent = row.email;
+                    newRow.insertCell().textContent = row.mobile;
+                    newRow.insertCell().textContent = row.amount;
+                    newRow.insertCell().textContent = row.transaction_limit;
+
+                    // Format the creation_date to display only the date
+                    // const creationDate = new Date(row.createdAt);
+                    // const formattedDate = creationDate.toLocaleDateString();
+                    // newRow.insertCell().textContent = formattedDate;
+
+                    const actionCell = newRow.insertCell();
+                    actionCell.style.position = 'relative';
+                    actionCell.style.display = 'flex';
+                    actionCell.style.alignItems = 'center';
+
+                    const dropdownButton = document.createElement('button');
+                    dropdownButton.className = 'btn btn-sm btn-primary dropdown-toggle';
+                    dropdownButton.type = 'button';
+                    dropdownButton.style.maxWidth = '80px';
+                    dropdownButton.style.minWidth = '80px';
+                    dropdownButton.id = `actionDropdown-${index + 1}`;
+                    dropdownButton.setAttribute('data-toggle', 'dropdown');
+                    dropdownButton.setAttribute('aria-haspopup', 'true');
+                    dropdownButton.setAttribute('aria-expanded', 'false');
+
+                    // Check if the merchant status is already 'Allow' or 'Cancel'
+                    if (row.status === 'Allow') {
+                        dropdownButton.className += ' btn-success'; // Set button background color to green
+                        dropdownButton.textContent = 'Allow'; // Set button text to 'Allow'
+                        dropdownButton.disabled = true; // Disable the dropdown button
+                    } else if (row.status === 'Cancel') {
+                        dropdownButton.className += ' btn-danger'; // Set button background color to red
+                        dropdownButton.textContent = 'Cancel'; // Set button text to 'Cancel'
+                        dropdownButton.disabled = true; // Disable the dropdown button
                     } else {
-                        await updateMerchantStatus(row.withdrawal_id, 'Allow');
-                        selectValue(this, 'Allow', index + 1);
-                        disableDropdown(dropdownButton);
+                        dropdownButton.textContent = 'Pending'; // Set default button text as 'Pending'
                     }
-                });
-                dropdownMenu.appendChild(allowOption);
 
-                const cancelOption = document.createElement('a');
-                cancelOption.className = 'dropdown-item';
-                cancelOption.href = '#';
-                cancelOption.textContent = 'Cancel';
-                cancelOption.addEventListener('click', async function (event) {
-                    event.preventDefault();
-                    if (row.merchant_status === 'Cancel') {
-                        disableDropdown(dropdownButton);
-                    } else {
-                        await updateMerchantStatus(row.withdrawal_id, 'Cancel');
-                        selectValue(this, 'Cancel', index + 1);
-                        disableDropdown(dropdownButton);
-                    }
-                });
-                dropdownMenu.appendChild(cancelOption);
+                    actionCell.appendChild(dropdownButton);
 
-                actionCell.appendChild(dropdownMenu);
-            });
+                    // Add a space between the dropdown and delete button
+                    // actionCell.appendChild(document.createTextNode(' '));
+
+                    const actionbtn = newRow.insertCell();
+                    actionbtn.style.position = 'relative';
+                    // actionbtn.style.display = 'flex';
+                    actionbtn.style.alignItems = 'center';
+
+                    const deleteContainer = document.createElement('div'); // Create a div container for delete buttons
+                    deleteContainer.style.display = 'flex'; // Apply flex display
+                    deleteContainer.style.alignItems = 'center'; // Align items vertically in the center
+
+                    const deleteButton = document.createElement('span');
+                    deleteButton.className = 'delete-button';
+                    deleteButton.innerHTML = '<i class="fa fa-trash"></i>';
+                    deleteButton.style.cursor = 'pointer';
+                    deleteButton.style.marginRight = '10px'; // Adjust the margin as needed
+                    deleteButton.style.marginLeft = '10px'; // Adjust the margin as needed
+
+                    deleteButton.addEventListener('click', async function (event) {
+                        event.preventDefault();
+                        // Call your delete function here or perform other delete actions
+                        console.log(`Delete row ${index + 1}`);
+                    });
+                    const viewButton = document.createElement('button');
+                    viewButton.className = 'btn btn-sm btn-primary';
+                    viewButton.textContent = 'View';
+
+                    viewButton.addEventListener('click', function (event) {
+                        event.preventDefault();
+                        console.log('View button clicked for row:', row);
+                        // Implement the logic for viewing the row data here
+                    });
+
+
+                    actionbtn.appendChild(deleteContainer); // Add the container to the action cell
+                    deleteContainer.appendChild(viewButton); // Add delete buttons to the container
+                    deleteContainer.appendChild(deleteButton); // Add delete buttons to the container
+                    // Add the container to the action cell
+
+
+                    const dropdownMenu = document.createElement('div');
+                    dropdownMenu.className = 'dropdown-menu';
+                    dropdownMenu.setAttribute('aria-labelledby', `actionDropdown-${index + 1}`);
+                    dropdownMenu.style.position = 'absolute';
+                    dropdownMenu.style.width = '150px'; // Set the desired width of the dropdown menu
+
+                    const allowOption = document.createElement('a');
+                    allowOption.className = 'dropdown-item';
+                    allowOption.href = '#';
+                    allowOption.textContent = 'Allow';
+                    allowOption.addEventListener('click', async function (event) {
+                        event.preventDefault();
+                        if (row.merchant_status === 'Allow') {
+                            disableDropdown(dropdownButton);
+                        } else {
+                            await updateMerchantStatus(row._id, 'Allow');
+                            selectValue(this, 'Allow', index + 1);
+                            disableDropdown(dropdownButton);
+                        }
+                    });
+                    dropdownMenu.appendChild(allowOption);
+
+                    const cancelOption = document.createElement('a');
+                    cancelOption.className = 'dropdown-item';
+                    cancelOption.href = '#';
+                    cancelOption.textContent = 'Cancel';
+                    cancelOption.addEventListener('click', async function (event) {
+                        event.preventDefault();
+                        if (row.merchant_status === 'Cancel') {
+                            disableDropdown(dropdownButton);
+                        } else {
+                            await updateMerchantStatus(row._id, 'Cancel');
+                            selectValue(this, 'Cancel', index + 1);
+                            disableDropdown(dropdownButton);
+                        }
+                    });
+                    dropdownMenu.appendChild(cancelOption);
+
+                    actionCell.appendChild(dropdownMenu);
+                });
+            }
+            applyFilter();
         }
+
+        async function updateMerchantStatus(mid, merchantStatus) {
+            console.log(mid, merchantStatus)
+            try {
+                const response = await fetch('http://localhost:8080/SinghTek/merchant/updatestatus', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
+                    },
+                    body: JSON.stringify({
+                        merchant_id: mid,
+                        merchant_status: merchantStatus
+                    })
+                });
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('An error occurred while updating the merchant status:', error);
+            }
+        }
+
 
         document.getElementById('requestForm').addEventListener('submit', async function (event) {
             event.preventDefault(); // Prevent form submission
@@ -831,7 +898,24 @@
             }
         }
 
+        const exportData = document.getElementById('exportButton');
+        exportData.addEventListener('click',async()=>{
+            console.log("hi")
+            try {
+                const response = await fetch('http://localhost:8080/SinghTek/allWithdrawals', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
+                    },
+                });
 
+                const data = await response.json();
+                console.log(data)
+            } catch (error) {
+                alert(error)
+            }
+        })
 
     </script>
 </body>

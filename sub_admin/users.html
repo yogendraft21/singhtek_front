@@ -163,7 +163,7 @@
                             <a href="pending.html" class="dropdown-item">Pending</a>
                         </div>
                     </div> -->
-                    <a href="users.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>All Transaction's</a>
+                    <a href="merchants.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>All Merchant's</a>
                     <a href="sucess_history.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Success
                         History</a>
                     <a href="failed_history.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Failed
@@ -367,6 +367,7 @@
                                 <!-- Rows will be dynamically added here -->
                             </tbody>
                         </table>
+                        
                     </div>
 
                     <!-- Popup dialog for displaying row information -->
@@ -535,35 +536,36 @@
             $('#popupDialog').modal('hide');
         });
         // fetch merchant detail.
-        async function fetchMerchantDetail() {
-            try {
-                const response = await fetch('http://localhost:8080/Merchant/username', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
-                    },
-                });
+        // async function fetchMerchantDetail() {
+        //     try {
+        //         const response = await fetch('http://localhost:8080/Merchant/username', {
+        //             method: 'GET',
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
+        //             },
+        //         });
 
-                const name = await response.json();
-                console.log(name)
-                document.getElementById("s_username").innerText = name
-                document.getElementById("n_username").innerText = name
+        //         const name = await response.json();
+        //         console.log(name)
+        //         document.getElementById("s_username").innerText = name
+        //         document.getElementById("n_username").innerText = name
 
-            } catch (error) {
-                alert(error)
-            }
+        //     } catch (error) {
+        //         alert(error)
+        //     }
 
-        }
-        fetchMerchantDetail()
+        // }
+        // fetchMerchantDetail()
 
 
         const tableBody = document.getElementById('tableBody');
         let arr = []
         async function fetchWithdrawalData() {
+            const id = JSON.parse(localStorage.getItem("mid"))
             try {
                 // Fetch data from the API
-                const response = await fetch('http://localhost:8080/Merchant/getWithdrawals', {
+                const response = await fetch(`http://localhost:8080/SinghTek/getWithdrawals/${mid}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
