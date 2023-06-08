@@ -45,6 +45,9 @@
         width: 50px;
         /* Adjust the width as needed */
     }
+    .mid-column{
+        width: 80px;
+    }
 
     .custom-search-form {
         width: 50%;
@@ -118,6 +121,16 @@
 
     .btn-submit {
         margin-right: 10px;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    #myTable td {
+        /* overflow: hidden; */
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 </style>
 
@@ -325,9 +338,9 @@
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0" style="flex:1; margin-left: -20px;">All Transaction Requests</h6>
-                        <button class="btn btn-primary" id="addNewUserBtn" style="flex: 0.5; margin-left: 20px;">
+                        <!-- <button class="btn btn-primary" id="addNewUserBtn" style="flex: 0.5; margin-left: 20px;">
                             Add Request
-                        </button>
+                        </button> -->
                         <div class="input-group" style="flex:2.5; margin-right: 20px;">
                             <input type="text" class="form-control search-input" placeholder="Search...">
                             <button class="btn btn-primary" type="button">Search</button>
@@ -355,11 +368,13 @@
                                     <th scope="col" class="checkbox-col"><input class="form-check-input"
                                             type="checkbox"></th>
                                     <th scope="col" class="small-column">S.No.</th>
-                                    <th scope="col">Withdrawal ID</th>
-                                    <th scope="col">Customer Code</th>
+                                    <th scope="col" >Withdrawal ID</th>
+                                    <th scope="col" class="mid-column">Customer Code</th>
                                     <th scope="col">Customer Name</th>
-                                    <th scope="col">Amount</th>
+                                    <th scope="col" class="mid-column">Amount</th>
                                     <th scope="col">Date</th>
+                                    <th scope="col" >UTR No.</th>
+                                    <th scope="col" class="mid-column">Bank Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -367,7 +382,7 @@
                                 <!-- Rows will be dynamically added here -->
                             </tbody>
                         </table>
-                        
+
                     </div>
 
                     <!-- Popup dialog for displaying row information -->
@@ -425,14 +440,16 @@
                                                 <div class="mb-3">
                                                     <label for="customerCode" class="form-label">Debit Account
                                                         Number:</label>
-                                                    <input type="text" id="debitAccountNo" class="form-control" required>
+                                                    <input type="text" id="debitAccountNo" class="form-control"
+                                                        required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="customerName" class="form-label">Credit Account
                                                         Number:</label>
-                                                    <input type="text" id="creditAccountNo" class="form-control" required>
+                                                    <input type="text" id="creditAccountNo" class="form-control"
+                                                        required>
                                                 </div>
                                             </div>
                                         </div>
@@ -442,14 +459,16 @@
                                                 <div class="mb-3">
                                                     <label for="customerCode" class="form-label">Beneficairy
                                                         Name:</label>
-                                                    <input type="text" id="beneficiaryName" class="form-control" required>
+                                                    <input type="text" id="beneficiaryName" class="form-control"
+                                                        required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="customerName" class="form-label">Beneficairy Branch
                                                         Code:</label>
-                                                    <input type="text" id="beneficiaryBranchCode" class="form-control" required>
+                                                    <input type="text" id="beneficiaryBranchCode" class="form-control"
+                                                        required>
                                                 </div>
                                             </div>
                                         </div>
@@ -458,8 +477,7 @@
                                                 <!-- Use 'col-md-6' class to make two fields occupy half of the width each -->
                                                 <div class="mb-3">
                                                     <label for="customerCode" class="form-label">Amount:</label>
-                                                    <input type="number" id="amount" class="form-control"
-                            required>
+                                                    <input type="number" id="amount" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -513,6 +531,8 @@
 
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+
     <script>
 
         // fetch merchant detail.
@@ -520,21 +540,7 @@
             $('.dropdown-toggle').dropdown();
         });
 
-        const btn = document.getElementById('addNewUserBtn')
-        btn.addEventListener('click', function (event) {
-            event.preventDefault();
-            $('#popupDialog').modal('show');
-        })
-        document.getElementById("requestForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            var requestField1Value = document.getElementById("requestField1").value;
-            var requestField2Value = document.getElementById("requestField2").value;
-
-            // Perform any necessary actions with the form values
-
-            $('#popupDialog').modal('hide');
-        });
+        
         // fetch merchant detail.
         // async function fetchMerchantDetail() {
         //     try {
@@ -565,7 +571,7 @@
             const id = JSON.parse(localStorage.getItem("mid"))
             try {
                 // Fetch data from the API
-                const response = await fetch(`http://localhost:8080/SinghTek/getWithdrawals/${mid}`, {
+                const response = await fetch(`http://localhost:8080/SinghTek/getWithdrawals/${id}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -573,7 +579,7 @@
                     },
                 });
                 const apiData = await response.json();
-                // console.log(apiData);
+                console.log(apiData);
                 apiData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
                 arr = apiData;
                 fillTable(apiData)
@@ -687,6 +693,9 @@
                 const formattedDate = creationDate.toLocaleDateString();
                 newRow.insertCell().textContent = formattedDate;
 
+                newRow.insertCell().textContent = row.utr_number;
+                newRow.insertCell().textContent = row.bank_status;
+
                 const actionCell = newRow.insertCell();
                 actionCell.style.position = 'relative';
                 actionCell.style.display = 'flex';
@@ -729,13 +738,13 @@
                 deleteButton.innerHTML = '<i class="fa fa-trash"></i>';
                 deleteButton.style.cursor = 'pointer';
                 deleteButton.style.marginRight = '10px'; // Adjust the margin as needed
-                deleteButton.style.marginLeft = '40px'; // Adjust the margin as needed
+                deleteButton.style.marginLeft = '10px'; // Adjust the margin as needed
 
                 deleteButton.addEventListener('click', async function (event) {
                     event.preventDefault();
                     // Call your delete function here or perform other delete actions
                     console.log(`Delete row ${index + 1}`);
-                });
+                 });
 
                 deleteContainer.appendChild(deleteButton); // Add delete buttons to the container
                 actionCell.appendChild(deleteContainer); // Add the container to the action cell
@@ -782,72 +791,27 @@
             });
         }
 
-        document.getElementById('requestForm').addEventListener('submit', async function (event) {
-            event.preventDefault(); // Prevent form submission
+        
+//         document.getElementById('exportAllButton').addEventListener('click', function () {
+//   // Create a new workbook and worksheet
+//   var workbook = XLSX.utils.book_new();
+//   var worksheet = XLSX.utils.json_to_sheet(filteredData);
 
-            // Fetch form values
-            var customerCode = document.getElementById('customerCode').value;
-            var customerName = document.getElementById('customerName').value;
-            var debitAccountNo = document.getElementById('debitAccountNo').value;
-            var creditAccountNo = document.getElementById('creditAccountNo').value;
-            var beneficiaryName = document.getElementById('beneficiaryName').value;
-            var beneficiaryBranchCode = document.getElementById('beneficiaryBranchCode').value;
-            var amount = document.getElementById('amount').value;
-            var remarks = document.getElementById('remarks').value;
+//   // Add the worksheet to the workbook
+//   XLSX.utils.book_append_sheet(workbook, worksheet, 'All Payouts');
 
-            // Prepare the data object
-            var data = {
-                customer_code: customerCode,
-                customer_name: customerName,
-                debit_account_no: debitAccountNo,
-                credit_account_no: creditAccountNo,
-                beneficiary_name: beneficiaryName,
-                beneficiary_branch_code: beneficiaryBranchCode,
-                amount: amount,
-                remarks: remarks
-            };
+//   // Convert the workbook to an Excel file
+//   var excelFile = XLSX.write(workbook, { bookType: 'xls', type: 'array' });
 
-            console.log(data)
+//   // Create a Blob from the Excel file data
+//   var blob = new Blob([excelFile], { type: 'application/vnd.ms-excel' });
 
-            try {
-                // Send the data to the API endpoint using async/await
-                await sendFormData('http://localhost:8080/User/withdrawal', data);
-                // Handle the success response
-                // alert('Request submitted successfully!');
-                // Clear the form fields
-                document.getElementById('requestForm').reset();
-            } catch (error) {
-                // Handle the error
-                console.error('Error:', error);
-                alert('Failed to submit the request.');
-            }
-        });
-
-        async function sendFormData(url, data) {
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                const result = await response.json()
-                // console.log(result.message)
-                if (result.message) {
-                    alert("Request Submit Successfully")
-                    fetchWithdrawalData();
-                } else {
-                    // Handle the error response
-                    throw new Error('Request failed with status ' + response.status);
-                }
-            } catch (error) {
-                // Handle network errors
-                throw new Error('Request failed: ' + error.message);
-            }
-        }
+//   // Create a download link and trigger the download
+//   var downloadLink = document.createElement('a');
+//   downloadLink.href = URL.createObjectURL(blob);
+//   downloadLink.download = 'All_Payouts.xls';
+//   downloadLink.click();
+// });
 
 
 
