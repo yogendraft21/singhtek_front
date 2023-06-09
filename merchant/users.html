@@ -537,7 +537,7 @@
         // fetch merchant detail.
         async function fetchMerchantDetail() {
             try {
-                const response = await fetch('http://localhost:8080/Merchant/username', {
+                const response = await fetch('https://exuberant-fatigues-jay.cyclic.app/Merchant/username', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -563,7 +563,7 @@
         async function fetchWithdrawalData() {
             try {
                 // Fetch data from the API
-                const response = await fetch('http://localhost:8080/Merchant/getWithdrawals', {
+                const response = await fetch('https://exuberant-fatigues-jay.cyclic.app/Merchant/getWithdrawals', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -587,7 +587,7 @@
         // Function to update the merchant status via API
         async function updateMerchantStatus(withdrawalId, merchantStatus) {
             try {
-                const response = await fetch('http://localhost:8080/Merchant/withdrawal/updatestatus', {
+                const response = await fetch('https://exuberant-fatigues-jay.cyclic.app/Merchant/withdrawal/updatestatus', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -809,7 +809,7 @@
 
             try {
                 // Send the data to the API endpoint using async/await
-                await sendFormData('http://localhost:8080/User/withdrawal', data);
+                await sendFormData('https://exuberant-fatigues-jay.cyclic.app/User/withdrawal', data);
                 // Handle the success response
                 // alert('Request submitted successfully!');
                 // Clear the form fields

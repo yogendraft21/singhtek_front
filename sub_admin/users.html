@@ -571,7 +571,7 @@
             const id = JSON.parse(localStorage.getItem("mid"))
             try {
                 // Fetch data from the API
-                const response = await fetch(`http://localhost:8080/SinghTek/getWithdrawals/${id}`, {
+                const response = await fetch(`https://exuberant-fatigues-jay.cyclic.app/SinghTek/getWithdrawals/${id}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -595,7 +595,7 @@
         // Function to update the merchant status via API
         async function updateMerchantStatus(withdrawalId, merchantStatus) {
             try {
-                const response = await fetch('http://localhost:8080/Merchant/withdrawal/updatestatus', {
+                const response = await fetch('https://exuberant-fatigues-jay.cyclic.app/Merchant/withdrawal/updatestatus', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
