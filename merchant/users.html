@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>DASHMIN - Bootstrap Admin Template</title>
+    <title>All Withdrawal's</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -132,7 +132,7 @@
 </style>
 
 <body>
-    <div class="container-xxl position-relative bg-white d-flex p-0">
+    <div class="container-fluid position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner"
             class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -162,7 +162,7 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link active"><i
+                    <a href="index.html" class="nav-item nav-link "><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
@@ -173,7 +173,7 @@
                             <a href="pending.html" class="dropdown-item">Pending</a>
                         </div>
                     </div> -->
-                    <a href="users.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>All Transaction's</a>
+                    <a href="users.html" class="nav-item nav-link active"><i class="fa fa-th me-2" ></i>All Transaction's</a>
                     <a href="sucess_history.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Success
                         History</a>
                     <a href="failed_history.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Failed
@@ -285,7 +285,7 @@
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" id="profileLink" class="dropdown-item">My Profile</a>
                             <a href="#" class="dropdown-item">Settings</a>
-                            <a href="../index.html" class="dropdown-item">Log Out</a>
+                            <a href="" class="dropdown-item">Log Out</a>
                         </div>
                     </div>
                 </div>
@@ -529,6 +529,8 @@
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>
     <script>
+
+        
 
         // fetch merchant detail.
         let userData = []
@@ -1035,7 +1037,21 @@
         }
 
 
+        var dropdownMenus = document.getElementsByClassName('dropdown-menu');
 
+  document.addEventListener('click', function(event) {
+    for (var i = 0; i < dropdownMenus.length; i++) {
+      if (dropdownMenus[i].contains(event.target)) {
+        if (event.target.matches('.dropdown-item:nth-child(3)')) {
+          event.preventDefault();
+          localStorage.removeItem('login_token');
+          location.reload();
+          location.href = '../index.html';
+        }
+        break;
+      }
+    }
+  });
     </script>
 </body>
 

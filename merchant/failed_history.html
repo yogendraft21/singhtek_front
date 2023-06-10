@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>DASHMIN - Bootstrap Admin Template</title>
+    <title>Failed History</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -87,11 +87,14 @@
         background-color: orange;
         color: black;
     }
-
+    .custom-width{
+    width: 80%;
+    max-width: 80%;
+  }
 </style>
 
 <body>
-    <div class="container-xxl position-relative bg-white d-flex p-0">
+    <div class="container-fluid position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner"
             class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -121,7 +124,7 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link active"><i
+                    <a href="index.html" class="nav-item nav-link"><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
@@ -134,7 +137,7 @@
                     </div> -->
                     <a href="users.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>All Transaction's</a>
                     <a href="sucess_history.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Success History</a>
-                    <a href="failed_history.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Failed History</a>
+                    <a href="failed_history.html" class="nav-item nav-link active"><i class="fa fa-table me-2"></i>Failed History</a>
                     <a href="pending_history.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Pending History</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
@@ -239,16 +242,27 @@
                             <span class="d-none d-lg-inline-flex" id="n_username">John Doe</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">My Profile</a>
+                            <a href="#" id="profileLink" class="dropdown-item">My Profile</a>
                             <a href="#" class="dropdown-item">Settings</a>
-                            <a href="#" class="dropdown-item">Log Out</a>
-                        </div>
+                            <a href="" class="dropdown-item">Log Out</a>
+                        </div>  
                     </div>
                 </div>
             </nav>
             <!-- Navbar End -->
 
-
+              <!-- HTML code for the profile popup -->
+              <div class="modal" id="profileModal">
+                <div class="modal-dialog modal-lg custom-width">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">My Profile</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="profileDetails"></div>
+                    </div>
+                </div>
+            </div>
             <!-- filter start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
@@ -344,13 +358,11 @@
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>
     <script>
-        $(document).ready(function () {
-            $('.dropdown-toggle').dropdown();
-        });
          // fetch merchant detail.
-         async function fetchMerchantDetail() {
+         let userData = []
+        async function fetchMerchantDetail() {
             try {
-                const response = await fetch('http://localhost:8080/Merchant/username', {
+                const response = await fetch('https://exuberant-fatigues-jay.cyclic.app/Merchant/detail', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -359,16 +371,159 @@
                 });
 
                 const name = await response.json();
-                console.log(name)
-                document.getElementById("s_username").innerText = name
-                document.getElementById("n_username").innerText = name
+                userData = name;
+                console.log(name.user_name)
+                document.getElementById("s_username").innerText = name.user_name
+                document.getElementById("n_username").innerText = name.user_name
+                // document.getElementById("total_amount").innerText = name.amount
+
 
             } catch (error) {
-                alert(error)
+                slert(error)
             }
 
         }
         fetchMerchantDetail()
+        function generateProfileHTML(user) {
+            const { _id, user_name, email, mobile, password, transaction_limit, amount, business_detail, business_address, kyc_documents } = user;
+            const { merchant_name, business_name, business_type, business_category, business_sub_category, company_expenditure, website, bank_name, bank_account_number, bank_ifsc_code, gst, pan_number, aadhar_number } = user.business_detail;
+            const { address, pincode, city, state, country } = user.business_address;
+            const { company_pan_card, company_gst, bank_statement } = user.kyc_documents;
+
+            const html = `
+      <div class="row">
+        <div class="col-sm-4">
+          <p><strong>Dealer Code:</strong> ${_id}</p>
+        </div>
+        <div class="col-sm-4">
+          <p><strong>User Name:</strong> ${user_name}</p>
+        </div>
+        <div class="col-sm-4">
+          <p><strong>Email:</strong> ${email}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <p><strong>Mobile:</strong> ${mobile}</p>
+        </div>
+        <div class="col-sm-4">
+          <p><strong>Transaction Limit:</strong> ${transaction_limit}</p>
+        </div>
+        <div class="col-sm-4">
+          <p><strong>Amount:</strong> ${amount}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <p><strong>Merchant Name:</strong> ${merchant_name}</p>
+        </div>
+        <div class="col-sm-4">
+          <p><strong>Business Name:</strong> ${business_name}</p>
+        </div>
+        <div class="col-sm-4">
+          <p><strong>Business Type:</strong> ${business_type}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <p><strong>Business Category:</strong> ${business_category}</p>
+        </div>
+        <div class="col-sm-4">
+          <p><strong>Business Sub-Category:</strong> ${business_sub_category}</p>
+        </div>
+        <div class="col-sm-4">
+          <p><strong>Company Expenditure:</strong> ${company_expenditure}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <p><strong>Website:</strong> ${website}</p>
+        </div>
+        <div class="col-sm-4">
+          <p><strong>Bank Name:</strong> ${bank_name}</p>
+        </div>
+        <div class="col-sm-4">
+          <p><strong>Bank Account Number:</strong> ${bank_account_number}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <p><strong>Bank IFSC Code:</strong> ${bank_ifsc_code}</p>
+        </div>
+        <div class="col-sm-4">
+          <p><strong>GST:</strong> ${gst}</p>
+        </div>
+        <div class="col-sm-4">
+          <p><strong>PAN Number:</strong> ${pan_number}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <p><strong>Aadhar Number:</strong> ${aadhar_number}</p>
+        </div>
+        <div class="col-sm-4">
+          <p><strong>Address:</strong> ${address}</p>
+        </div>
+        <div class="col-sm-4">
+          <p><strong>Pincode:</strong> ${pincode}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <p><strong>City:</strong> ${city}</p>
+        </div>
+        <div class="col-sm-4">
+          <p><strong>State:</strong> ${state}</p>
+        </div>
+        <div class="col-sm-4">
+          <p><strong>Country:</strong> ${country}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <p><strong>Company PAN Card:</strong> ${company_pan_card}</p>
+        </div>
+        <div class="col-sm-4">
+          <p><strong>Company GST:</strong> ${company_gst}</p>
+        </div>
+        <div class="col-sm-4">
+          <p><strong>Bank Statement:</strong> ${bank_statement}</p>
+        </div>
+      </div>
+      <!-- Add more fields in similar row/column structure -->
+    `;
+
+            return html;
+        }
+        function openProfilePopup() {
+            const profileLink = document.getElementById('profileLink');
+            const profileDetails = document.getElementById('profileDetails');
+
+            profileLink.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent the default link behavior
+
+                // Replace the following code with your actual user data
+                // Generate HTML for user details
+                const profileHTML = generateProfileHTML(userData);
+
+                // Set the HTML content of profileDetails
+                profileDetails.innerHTML = profileHTML;
+
+                // Show the profile popup
+                const profileModal = new bootstrap.Modal(document.getElementById('profileModal'));
+                profileModal.show();
+            });
+        }
+
+        // Call the function to open the profile popup
+        openProfilePopup();
+        $(document).ready(function () {
+            $('.dropdown-toggle').dropdown();
+        });
+        
+
+
+        
         const apiData = [
   {
     withdrawalId: 'WD-001',
@@ -417,6 +572,22 @@ apiData.forEach((row, index) => {
   bankStatusCell.appendChild(bankStatusSpan);
 });
 
+
+var dropdownMenus = document.getElementsByClassName('dropdown-menu');
+
+document.addEventListener('click', function(event) {
+  for (var i = 0; i < dropdownMenus.length; i++) {
+    if (dropdownMenus[i].contains(event.target)) {
+      if (event.target.matches('.dropdown-item:nth-child(3)')) {
+        event.preventDefault();
+        localStorage.removeItem('login_token');
+        location.reload();
+        location.href = '../index.html';
+      }
+      break;
+    }
+  }
+});
     </script>
 </body>
 
