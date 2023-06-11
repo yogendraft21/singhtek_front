@@ -561,8 +561,8 @@
           }
         );
         const apiData = await response.json();
-        fillData(apiData);
         apiData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        fillData(apiData);
 
         // Process the fetched API data and add rows dynamically
 

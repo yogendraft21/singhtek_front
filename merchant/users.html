@@ -149,6 +149,11 @@
         font-weight: bold;
         color: #65e701;
     }
+    .field-label {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
 </style>
 
 <body>
@@ -276,23 +281,29 @@
                                 <div class="col-md-3">
                                     <div class="mb-2">
                                         <label for="startDate" class="form-label">Start Date</label>
-                                        <input type="date" class="form-control form-control-sm custom-input" id="startDate">
+                                        <input type="date" class="form-control form-control-sm custom-input"
+                                            id="startDate">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-2">
                                         <label for="endDate" class="form-label">End Date</label>
-                                        <input type="date" class="form-control form-control-sm custom-input" id="endDate">
+                                        <input type="date" class="form-control form-control-sm custom-input"
+                                            id="endDate">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-2">
-                                        <button type="button" class="btn btn-primary btn-sm" style="margin-top:30px; padding: 7px 5px;" id="filterDateButton">Apply Filters</button>
+                                        <button type="button" class="btn btn-primary btn-sm"
+                                            style="margin-top:30px; padding: 7px 5px;" id="filterDateButton">Apply
+                                            Filters</button>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-2">
-                                        <button type="button" class="btn btn-secondary btn-sm" style="margin-top:30px; padding: 7px 5px; margin-left: -150px;" id="resetDateButton">Reset Filters</button>
+                                        <button type="button" class="btn btn-secondary btn-sm"
+                                            style="margin-top:30px; padding: 7px 5px; margin-left: -150px;"
+                                            id="resetDateButton">Reset Filters</button>
                                     </div>
                                 </div>
                             </div>
@@ -308,7 +319,7 @@
                     </div>
                 </div>
             </div>
-            
+
 
 
             <!-- filter end -->
@@ -361,10 +372,68 @@
                             <tbody id="tableBody">
                                 <!-- Rows will be dynamically added here -->
                             </tbody>
-                                                          
+
                         </table>
-                          
+
                     </div>
+
+                    <!-- request detail popup start -->
+                    <div class="modal fade" id="popupModal" tabindex="-1" aria-labelledby="popupModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg"> <!-- Add the modal-lg class for a larger modal -->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="popupModalLabel">Request Detail</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <label class="field-label">Withdrawal ID:</label>
+                                  <span id="withdrawalIdField"></span>
+                                </div>
+                                <div class="col-md-6">
+                                  <label class="field-label">User ID:</label>
+                                  <span id="userIdField"></span>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <label class="field-label">User Name:</label>
+                                  <span id="userNameField"></span>
+                                </div>
+                                <div class="col-md-6">
+                                  <label class="field-label">Credit Account Number:</label>
+                                  <span id="creditAccountNumberField"></span>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <label class="field-label">Beneficiary Name:</label>
+                                  <span id="beneficiaryNameField"></span>
+                                </div>
+                                <div class="col-md-6">
+                                  <label class="field-label">Beneficiary Branch Code:</label>
+                                  <span id="beneficiaryBranchCodeField"></span>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <label class="field-label">Amount:</label>
+                                  <span id="amountField"></span>
+                                </div>
+                                <div class="col-md-6">
+                                  <label class="field-label">Dealer Code:</label>
+                                  <span id="dealerCode"></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+
+
+                    <!-- request detail popup end -->
 
                     <!-- Popup dialog for displaying row information -->
                     <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel"
@@ -506,6 +575,7 @@
 
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <script>
 
 
@@ -926,8 +996,6 @@
 
                     actionCell.appendChild(dropdownButton);
 
-                    // Add a space between the dropdown and delete button
-                    actionCell.appendChild(document.createTextNode(' '));
 
                     const deleteContainer = document.createElement('div'); // Create a div container for delete buttons
                     deleteContainer.style.display = 'flex'; // Apply flex display
@@ -935,19 +1003,34 @@
 
                     const deleteButton = document.createElement('span');
                     deleteButton.className = 'delete-button';
-                    deleteButton.innerHTML = '<i class="fa fa-trash"></i>';
+                    deleteButton.innerHTML = '<i class="fa fa-eye"></i>';
                     deleteButton.style.cursor = 'pointer';
                     deleteButton.style.marginRight = '10px'; // Adjust the margin as needed
-                    deleteButton.style.marginLeft = '40px'; // Adjust the margin as needed
+                    deleteButton.style.marginLeft = '20px'; // Adjust the margin as needed
 
-                    deleteButton.addEventListener('click', async function (event) {
+                    deleteButton.addEventListener('click', function (event) {
                         event.preventDefault();
                         // Call your delete function here or perform other delete actions
                         console.log(`Delete row ${index + 1}`);
+
+                        // Set the values for the fields in the modal popup
+                        document.getElementById('withdrawalIdField').textContent = row.withdrawal_id;
+                        document.getElementById('userIdField').textContent = row.user_id;
+                        document.getElementById('userNameField').textContent = row.user_name;
+                        document.getElementById('creditAccountNumberField').textContent = row.credit_account_no;
+                        document.getElementById('beneficiaryNameField').textContent = row.beneficiary_name;
+                        document.getElementById('beneficiaryBranchCodeField').textContent = row.beneficiary_branch_code;
+                        document.getElementById('amountField').textContent = row.amount;
+                        document.getElementById('dealerCode').textContent = row.dealer_code;
+
+                        // Show the Bootstrap modal popup
+                        const popupModal = new bootstrap.Modal(document.getElementById('popupModal'));
+                        popupModal.show();
                     });
 
-                    deleteContainer.appendChild(deleteButton); // Add delete buttons to the container
-                    actionCell.appendChild(deleteContainer); // Add the container to the action cell
+                    deleteContainer.appendChild(deleteButton); // Add the delete button to the container
+                    actionCell.appendChild(deleteContainer);
+
 
                     const dropdownMenu = document.createElement('div');
                     dropdownMenu.className = 'dropdown-menu';
@@ -1003,7 +1086,7 @@
             filterDateButton.addEventListener('click', applyFilter);
 
             function resetFilters() {
-                
+
                 startDate.value = '';
                 endDate.value = '';
 
@@ -1083,9 +1166,41 @@
             }
         }
 
+        const impbtn = document.getElementById('importButton')
+        impbtn.addEventListener('click', () => {
+            handleImport();
+        });
+
+        function handleImport() {
+            const fileInput = document.getElementById('excelFileInput');
+            const file = fileInput.files[0];
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, { type: 'array' });
+                const sheetName = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[sheetName];
+                const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+                const headers = jsonData[0];
+                const importedData = jsonData.slice(1).map((row) => {
+                    const rowData = {};
+                    headers.forEach((header, index) => {
+                        rowData[header] = row[index];
+                    });
+                    return rowData;
+                });
+
+                sendFormData('https://exuberant-fatigues-jay.cyclic.app/User/withdrawal', importedData)
+
+            };
+
+            reader.readAsArrayBuffer(file);
+        }
+
 
         var dropdownMenus = document.getElementsByClassName('dropdown-menu');
-
         document.addEventListener('click', function (event) {
             for (var i = 0; i < dropdownMenus.length; i++) {
                 if (dropdownMenus[i].contains(event.target)) {
