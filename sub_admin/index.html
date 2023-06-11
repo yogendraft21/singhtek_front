@@ -257,7 +257,7 @@
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-area fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Withdrawal Amount</p>
+                                <p class="mb-2">Totol Payout Amount</p>
                                 <h6 class="mb-0">$1234</h6>
                             </div>
                         </div>
@@ -281,27 +281,37 @@
                 <div class="row g-4">
                     <div class="col-12">
                         <div class="bg-light rounded p-3"> <!-- Reduced padding from p-4 to p-2 -->
-                            <h6 class="mb-3">Filters</h6>
+                            <h6 class="mb-3">Add Merchant Amount</h6>
                             <div class="row align-items-center">
                                 <div class="col-md-3">
                                     <div class="mb-2"> <!-- Reduced margin from mb-3 to mb-2 -->
-                                        <label for="startDate" class="form-label">Start Date</label>
-                                        <input type="date" class="form-control form-control-sm custom-input"
-                                            id="startDate">
+                                        <label for="merchantSelect" class="form-label">Merchant</label>
+                                        <select class="form-select form-select-sm custom-input" id="merchantSelect">
+                                            <option value="">Select Merchant</option>
+                                            <option value="merchant1">Merchant 1</option>
+                                            <option value="merchant2">Merchant 2</option>
+                                            <!-- Add more options as needed -->
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-2"> <!-- Reduced margin from mb-3 to mb-2 -->
-                                        <label for="endDate" class="form-label">End Date</label>
-                                        <input type="date" class="form-control form-control-sm custom-input"
-                                            id="endDate">
+                                        <label for="dealerCode" class="form-label">Dealer Code</label>
+                                        <input type="text" class="form-control form-control-sm custom-input"
+                                            id="dealerCode" step="0.01" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-2"> <!-- Reduced margin from mb-3 to mb-2 -->
-                                        <button type="button" class="btn btn-primary btn-sm"
-                                            style="margin-top:30px; padding: 7px 5px;">Apply Filters</button>
-                                        <!-- Adjusted margin-top value -->
+                                        <label for="amountInput" class="form-label">Amount</label>
+                                        <input type="number" class="form-control form-control-sm custom-input"
+                                            id="amountInput" step="0.01">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-2"> <!-- Reduced margin from mb-3 to mb-2 -->
+                                        <button type="button" class="btn btn-primary btn-sm btn-block"
+                                            style="margin-top: 30px;">Add Amount</button>
                                     </div>
                                 </div>
                             </div>
@@ -309,201 +319,9 @@
                     </div>
                 </div>
             </div>
+
 
             <!-- filter end -->
-
-
-            <!-- Recent Sales Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="bg-light text-center rounded p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0" style="width: 300px; margin-left: -10px;">Latest Withdrawal Request's</h6>
-                        <div class="input-group">
-                            <input type="text" class="form-control search-input" placeholder="Search...">
-                            <button class="btn btn-primary" type="button">Search</button>
-                        </div>
-                    </div>
-
-                    <div class="table-responsive" style="overflow: visible;">
-                        <table id="myTable" class="table text-start align-middle table-bordered table-hover mb-0"
-                            style="table-layout: fixed;">
-                            <thead>
-                                <tr class="text-dark">
-                                    <th scope="col" class="checkbox-col"><input class="form-check-input"
-                                            type="checkbox"></th>
-                                    <th scope="col" class="small-column">S.No.</th>
-                                    <th scope="col">Withdrawal ID</th>
-                                    <th scope="col">Customer Code</th>
-                                    <th scope="col">Customer Name</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tableBody">
-                                <!-- Rows will be dynamically added here -->
-                            </tbody>
-                        </table>
-                    </div>
-
-
-
-                </div>
-            </div>
-
-            <!-- Recent Sales End -->
-
-
-            <!-- Sales Chart Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light text-center rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Worldwide Sales</h6>
-                                <a href="">Show All</a>
-                            </div>
-                            <canvas id="worldwide-sales"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light text-center rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Salse & Revenue</h6>
-                                <a href="">Show All</a>
-                            </div>
-                            <canvas id="salse-revenue"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Sales Chart End -->
-
-
-            <!-- Widgets Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-sm-12 col-md-6 col-xl-4">
-                        <div class="h-100 bg-light rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                <h6 class="mb-0">Messages</h6>
-                                <a href="">Show All</a>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt=""
-                                    style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt=""
-                                    style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt=""
-                                    style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center pt-3">
-                                <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt=""
-                                    style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-xl-4">
-                        <div class="h-100 bg-light rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Calender</h6>
-                                <a href="">Show All</a>
-                            </div>
-                            <div id="calender"></div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-xl-4">
-                        <div class="h-100 bg-light rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">To Do List</h6>
-                                <a href="">Show All</a>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <input class="form-control bg-transparent" type="text" placeholder="Enter task">
-                                <button type="button" class="btn btn-primary ms-2">Add</button>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-2">
-                                <input class="form-check-input m-0" type="checkbox">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span>Short task goes here...</span>
-                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-2">
-                                <input class="form-check-input m-0" type="checkbox">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span>Short task goes here...</span>
-                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-2">
-                                <input class="form-check-input m-0" type="checkbox" checked>
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span><del>Short task goes here...</del></span>
-                                        <button class="btn btn-sm text-primary"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-2">
-                                <input class="form-check-input m-0" type="checkbox">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span>Short task goes here...</span>
-                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center pt-2">
-                                <input class="form-check-input m-0" type="checkbox">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span>Short task goes here...</span>
-                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Widgets End -->
 
 
             <!-- Footer Start -->
@@ -535,39 +353,15 @@
     <script src="../js/main.js"></script>
     <script>
 
-        // fetch merchant detail.
-        // async function fetchMerchantDetail() {
-        //     try {
-        //         const response = await fetch('http://localhost:8080/Merchant/username', {
-        //             method: 'GET',
-        //             headers: {
-        //                 'Content-Type': 'application/json',
-        //                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
-        //             },
-        //         });
-
-        //         const name = await response.json();
-        //         console.log(name)
-        //         document.getElementById("s_username").innerText = name
-        //         document.getElementById("n_username").innerText = name
-
-        //     } catch (error) {
-        //         alert(error)
-        //     }
-
-        // }
-        // fetchMerchantDetail()
-
         $(document).ready(function () {
             $('.dropdown-toggle').dropdown();
         });
 
-        const tableBody = document.getElementById('tableBody');
-        // let arr = []
-        async function fetchWithdrawalData() {
+
+        async function fetchMerchantsData() {
             try {
                 // Fetch data from the API
-                const response = await fetch('https://exuberant-fatigues-jay.cyclic.app/Merchant/getWithdrawals', {
+                const response = await fetch('https://exuberant-fatigues-jay.cyclic.app/SinghTek/merchants', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -575,159 +369,61 @@
                     },
                 });
                 const apiData = await response.json();
-                // console.log(apiData);
-                apiData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-                
-                
-                // Process the fetched API data and add rows dynamically
-                apiData.forEach((row, index) => {
-                    const newRow = tableBody.insertRow();
-                    const checkboxCell = newRow.insertCell();
-                    checkboxCell.className = 'checkbox-row';
-                    checkboxCell.innerHTML = '<input class="form-check-input" type="checkbox">';
+                console.log(apiData)
 
-                    newRow.insertCell().textContent = index + 1;
-                    newRow.insertCell().textContent = row.withdrawal_id;
-                    newRow.insertCell().textContent = row.customer_code;
-                    newRow.insertCell().textContent = row.customer_name;
-                    newRow.insertCell().textContent = row.amount;
+                // Get the select element
+                const merchantSelect = document.getElementById('merchantSelect');
 
-                    // Format the creation_date to display only the date
-                    const creationDate = new Date(row.createdAt);
-                    const formattedDate = creationDate.toLocaleDateString();
-                    newRow.insertCell().textContent = formattedDate;
+                // Clear existing options
+                merchantSelect.innerHTML = '';
 
-                    const actionCell = newRow.insertCell();
-                    actionCell.style.position = 'relative';
+                // Add a default option
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = 'Select Merchant';
+                merchantSelect.appendChild(defaultOption);
 
-                    const dropdownButton = document.createElement('button');
-                    dropdownButton.className = 'btn btn-sm btn-primary dropdown-toggle';
-                    dropdownButton.type = 'button';
-                    dropdownButton.id = `actionDropdown-${index + 1}`;
-                    dropdownButton.setAttribute('data-toggle', 'dropdown');
-                    dropdownButton.setAttribute('aria-haspopup', 'true');
-                    dropdownButton.setAttribute('aria-expanded', 'false');
-
-                    // Check if the merchant status is already 'Allow' or 'Cancel'
-                    if (row.merchant_status === 'Allow') {
-                        dropdownButton.className += ' btn-success'; // Set button background color to green
-                        dropdownButton.textContent = 'Allow'; // Set button text to 'Allow'
-                        dropdownButton.disabled = true; // Disable the dropdown button
-                    } else if (row.merchant_status === 'Cancel') {
-                        dropdownButton.className += ' btn-danger'; // Set button background color to red
-                        dropdownButton.textContent = 'Cancel'; // Set button text to 'Cancel'
-                        dropdownButton.disabled = true; // Disable the dropdown button
-                    } else {
-                        dropdownButton.textContent = 'Pending'; // Set default button text as 'Pending'
-                    }
-
-                    actionCell.appendChild(dropdownButton);
-
-                    const dropdownMenu = document.createElement('div');
-                    dropdownMenu.className = 'dropdown-menu';
-                    dropdownMenu.setAttribute('aria-labelledby', `actionDropdown-${index + 1}`);
-                    dropdownMenu.style.position = 'absolute';
-                    dropdownMenu.style.minWidth = '100%';
-
-                    const allowOption = document.createElement('a');
-                    allowOption.className = 'dropdown-item';
-                    allowOption.href = '#';
-                    allowOption.textContent = 'Allow';
-                    allowOption.addEventListener('click', async function (event) {
-                        event.preventDefault();
-                        if (row.merchant_status === 'Allow') {
-                            disableDropdown(dropdownButton);
-                        } else {
-                            await updateMerchantStatus(row.withdrawal_id, 'Allow');
-                            selectValue(this, 'Allow', index + 1);
-                            disableDropdown(dropdownButton);
-                        }
-                    });
-                    dropdownMenu.appendChild(allowOption);
-
-                    const cancelOption = document.createElement('a');
-                    cancelOption.className = 'dropdown-item';
-                    cancelOption.href = '#';
-                    cancelOption.textContent = 'Cancel';
-                    cancelOption.addEventListener('click', async function (event) {
-                        event.preventDefault();
-                        if (row.merchant_status === 'Cancel') {
-                            disableDropdown(dropdownButton);
-                        } else {
-                            await updateMerchantStatus(row.withdrawal_id, 'Cancel');
-                            selectValue(this, 'Cancel', index + 1);
-                            disableDropdown(dropdownButton);
-                        }
-                    });
-                    dropdownMenu.appendChild(cancelOption);
-
-                    actionCell.appendChild(dropdownMenu);
+                apiData.forEach((merchant) => {
+                    const option = document.createElement('option');
+                    option.value = merchant.user_name;
+                    option.textContent = merchant.user_name;
+                    merchantSelect.appendChild(option);
                 });
+
+                merchantSelect.addEventListener('change', function () {
+                    const selectedMerchantName = merchantSelect.value;
+                    console.log(selectedMerchantName);
+                    const selectedMerchant = apiData.find(merchant => merchant.user_name === selectedMerchantName);
+                    const dealerCodeInput = document.getElementById('dealerCode');
+                    dealerCodeInput.value = selectedMerchant && selectedMerchant._id ? selectedMerchant._id : '';
+                });
+
+
             } catch (error) {
                 console.error('An error occurred while fetching data:', error);
             }
         }
-        
-        fetchWithdrawalData();
-        // Function to update the merchant status via API
-        async function updateMerchantStatus(withdrawalId, merchantStatus) {
-            try {
-                const response = await fetch('https://exuberant-fatigues-jay.cyclic.app/Merchant/withdrawal/updatestatus', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
-                    },
-                    body: JSON.stringify({
-                        withdrawal_id: withdrawalId,
-                        merchant_status: merchantStatus
-                    })
-                });
-                const data = await response.json();
-                console.log(data);
-            } catch (error) {
-                console.error('An error occurred while updating the merchant status:', error);
-            }
-        }
 
-        function disableDropdown(dropdownButton) {
-            dropdownButton.disabled = true;
-        }
 
-        // Function to handle dropdown selection
-        function selectValue(element, value, rowId) {
-            const dropdownButton = element.parentNode.parentNode.querySelector(".dropdown-toggle");
-            const dropdownMenu = element.parentNode.parentNode.querySelector(".dropdown-menu");
-
-            if (value === 'Allow') {
-                dropdownButton.classList.remove('btn-danger');
-                dropdownButton.classList.add('btn-success');
-            } else if (value === 'Cancel') {
-                dropdownButton.classList.remove('btn-success');
-                dropdownButton.classList.add('btn-danger');
-            }
-
-            dropdownButton.textContent = value;
-            dropdownButton.classList.add('text-white');
-            dropdownMenu.classList.remove('show');
-        }
+        fetchMerchantsData();
 
 
         var dropdownMenus = document.getElementsByClassName('dropdown-menu');
 
-  document.addEventListener('click', function(event) {
-    for (var i = 0; i < dropdownMenus.length; i++) {
-      if (dropdownMenus[i].contains(event.target)) {
-        if (event.target.matches('.dropdown-item:nth-child(3)')) {
-          event.preventDefault();
-          localStorage.removeItem('login_token');
-          location.reload();
-          location.href = '../index.html';
-        }
-        break;
-      }
-    }
-  });
+        document.addEventListener('click', function (event) {
+            for (var i = 0; i < dropdownMenus.length; i++) {
+                if (dropdownMenus[i].contains(event.target)) {
+                    if (event.target.matches('.dropdown-item:nth-child(3)')) {
+                        event.preventDefault();
+                        localStorage.removeItem('login_token');
+                        location.reload();
+                        location.href = '../index.html';
+                    }
+                    break;
+                }
+            }
+        });
     </script>
 </body>
+
 </html>
