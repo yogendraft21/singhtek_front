@@ -117,6 +117,25 @@
     width: 80%;
     max-width: 80%;
   }
+
+  .wallet-balance {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+
+.wallet-balance .balance-text {
+  font-weight: bold;
+  padding-right: 5px;
+}
+
+#walletBalance {
+  font-weight: bold;
+  color: #65e701;
+}
   </style>
 
   <body>
@@ -210,9 +229,7 @@
       <!-- Content Start -->
       <div class="content">
         <!-- Navbar Start -->
-        <nav
-          class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0"
-        >
+        <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
           <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
             <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
           </a>
@@ -220,99 +237,22 @@
             <i class="fa fa-bars"></i>
           </a>
           <form class="d-none d-md-flex ms-4 custom-search-form">
-            <input
-              class="form-control border-0"
-              type="search"
-              placeholder="Search"
-            />
+            <input class="form-control border-0" type="search" placeholder="Search" />
           </form>
           <div class="navbar-nav align-items-center ms-auto">
-            <!-- <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fa fa-envelope me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Message</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/user.jpg" alt=""
-                                        style="width: 40px; height: 40px;">
-                                    <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                </div>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/user.jpg" alt=""
-                                        style="width: 40px; height: 40px;">
-                                    <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                </div>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/user.jpg" alt=""
-                                        style="width: 40px; height: 40px;">
-                                    <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                </div>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item text-center">See all message</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fa fa-bell me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Notificatin</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Profile updated</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">New user added</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Password changed</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item text-center">See all notifications</a>
-                        </div>
-                    </div> -->
+            <div class="wallet-balance me-3">
+              <i class="fas fa-inr"></i>
+              <span class="balance-text">Balance:</span>
+              <span id="walletBalance"></span>
+              <span style="color: #65e701;font-weight: bold; margin-left: 5px;">&#8377;</span>
+            </div>
             <div class="nav-item dropdown">
-              <a
-                href="#"
-                class="nav-link dropdown-toggle"
-                data-bs-toggle="dropdown"
-              >
-                <img
-                  class="rounded-circle me-lg-2"
-                  src="../img/user.jpg"
-                  alt=""
-                  style="width: 40px; height: 40px"
-                />
+              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                <img class="rounded-circle me-lg-2" src="../img/user.jpg" alt="" style="width: 40px; height: 40px" />
                 <span class="d-none d-lg-inline-flex" id="n_username"></span>
               </a>
-              <div
-                class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0"
-              >
-                <a href="#" id="profileLink" class="dropdown-item"
-                  >My Profile</a
-                >
+              <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                <a href="#" id="profileLink" class="dropdown-item">My Profile</a>
                 <a href="#" class="dropdown-item">Settings</a>
                 <a href="" class="dropdown-item">Log Out</a>
               </div>
@@ -413,7 +353,7 @@
               <table
                 id="myTable"
                 class="table text-start align-middle table-bordered table-hover mb-0"
-                style="table-layout: fixed"
+                
               >
                 <thead>
                   <tr class="text-dark">
@@ -424,6 +364,7 @@
                     <th scope="col">User Name</th>
                     <th scope="col" class="mid-column">Payout Amount</th>
                     <th scope="col">Credit Account Number</th>
+                    <th scope="col">Beneficairy Branch Code</th>
                     <th scope="col">UTR No.</th>
                     <th scope="col">Date</th>
                   </tr>
@@ -478,7 +419,7 @@
                 console.log(name.user_name)
                 document.getElementById("s_username").innerText = name.user_name
                 document.getElementById("n_username").innerText = name.user_name
-                // document.getElementById("total_amount").innerText = name.amount
+                document.getElementById("walletBalance").innerText = name.amount
 
 
             } catch (error) {
@@ -684,6 +625,7 @@
             newRow.insertCell().textContent = row.user_name;
             newRow.insertCell().textContent = row.amount;
             newRow.insertCell().textContent = row.credit_account_no;
+            newRow.insertCell().textContent = row.beneficiary_branch_code;
             newRow.insertCell().textContent = row.utr_number;
 
             // Format the creation_date to display only the date
