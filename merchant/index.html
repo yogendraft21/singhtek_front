@@ -1,169 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Merchant Dashboard</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="" name="keywords" />
-    <meta content="" name="description" />
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon" />
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<head>
+  <meta charset="utf-8" />
+  <title>Merchant Dashboard</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="" name="keywords" />
+  <meta content="" name="description" />
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Favicon -->
+  <link href="img/favicon.ico" rel="icon" />
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- Icon Font Stylesheet -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-    <!-- Libraries Stylesheet -->
-    <link
-      href="../lib/owlcarousel/assets/owl.carousel.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css"
-      rel="stylesheet"
-    />
+  <!-- Icon Font Stylesheet -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Libraries Stylesheet -->
+  <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+  <link href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
-    <!-- Template Stylesheet -->
-    <link href="../css/style.css" rel="stylesheet" />
-  </head>
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet" />
 
-  <style>
-    .checkbox-col {
-      width: 30px;
-      padding: 0;
-      text-align: center;
-    }
+  <!-- Template Stylesheet -->
+  <link href="../css/style.css" rel="stylesheet" />
+</head>
 
-    .small-column {
-      width: 50px;
-      /* Adjust the width as needed */
-    }
+<style>
+  .checkbox-col {
+    width: 30px;
+    padding: 0;
+    text-align: center;
+  }
 
-    .checkbox-row {
-      height: 30px;
-      padding: 0;
-      text-align: center;
-    }
+  .small-column {
+    width: 50px;
+    /* Adjust the width as needed */
+  }
 
-    .custom-search-form {
-      width: 50%;
-    }
+  .checkbox-row {
+    height: 30px;
+    padding: 0;
+    text-align: center;
+  }
 
-    .custom-input {
-      width: 100%;
-      border: 1px solid #ced4da;
-      border-radius: 4px;
-      padding: 8px;
-    }
+  .custom-search-form {
+    width: 50%;
+  }
 
-    .search-input {
-      max-width: 50%;
-      margin-left: 30%;
-    }
+  .custom-input {
+    width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 8px;
+  }
 
-    #myTable td.overflow-hidden-cell {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
+  .search-input {
+    max-width: 50%;
+    margin-left: 30%;
+  }
 
-    .custom-width {
-      width: 80%;
-      max-width: 80%;
-    }
+  #myTable td.overflow-hidden-cell {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .custom-width {
+    width: 80%;
+    max-width: 80%;
+  }
+
   .wallet-balance {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem;
-  background-color: #fff;
-  border-radius: 4px;
-}
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #fff;
+    border-radius: 4px;
+  }
 
 
-.wallet-balance .balance-text {
-  font-weight: bold;
-  padding-right: 5px;
-}
+  .wallet-balance .balance-text {
+    font-weight: bold;
+    padding-right: 5px;
+  }
 
-#walletBalance {
-  font-weight: bold;
-  color: #65e701;
-}
+  #walletBalance {
+    font-weight: bold;
+    color: #65e701;
+  }
+</style>
 
-
-  </style>
-
-  <body>
-    <div class="container-fluid position-relative bg-white d-flex p-0">
-      <!-- Spinner Start -->
-      <div
-        id="spinner"
-        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
-      >
-        <div
-          class="spinner-border text-primary"
-          style="width: 3rem; height: 3rem"
-          role="status"
-        >
-          <span class="sr-only">Loading...</span>
-        </div>
+<body>
+  <div class="container-fluid position-relative bg-white d-flex p-0">
+    <!-- Spinner Start -->
+    <div id="spinner"
+      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+      <div class="spinner-border text-primary" style="width: 3rem; height: 3rem" role="status">
+        <span class="sr-only">Loading...</span>
       </div>
-      <!-- Spinner End -->
+    </div>
+    <!-- Spinner End -->
 
-      <!-- Sidebar Start -->
-      <div class="sidebar pe-4 pb-3">
-        <nav class="navbar bg-light navbar-light">
-          <a href="index.html" class="navbar-brand mx-4 mb-3">
-            <img
-              src="../img/justapay.png"
-              alt=""
-              style="width: 150px; height: 45px"
-            />
-          </a>
-          <div class="d-flex align-items-center ms-4 mb-4">
-            <div class="position-relative">
-              <img
-                class="rounded-circle"
-                src="../img/user.jpg"
-                alt=""
-                style="width: 40px; height: 40px"
-              />
-              <div
-                class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"
-              ></div>
-            </div>
-            <div class="ms-3">
-              <h6 class="mb-0" id="s_username"></h6>
-              <span>Merchant</span>
+    <!-- Sidebar Start -->
+    <div class="sidebar pe-4 pb-3">
+      <nav class="navbar bg-light navbar-light">
+        <a href="index.html" class="navbar-brand mx-4 mb-3">
+          <img src="../img/justapay.png" alt="" style="width: 150px; height: 45px" />
+        </a>
+        <div class="d-flex align-items-center ms-4 mb-4">
+          <div class="position-relative">
+            <img class="rounded-circle" src="../img/user.jpg" alt="" style="width: 40px; height: 40px" />
+            <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
             </div>
           </div>
-          <div class="navbar-nav w-100">
-            <a href="index.html" class="nav-item nav-link active"
-              ><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a
-            >
-            <!-- <div class="nav-item dropdown">
+          <div class="ms-3">
+            <h6 class="mb-0" id="s_username"></h6>
+            <span>Merchant</span>
+          </div>
+        </div>
+        <div class="navbar-nav w-100">
+          <a href="index.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+          <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="fa fa-laptop me-2"></i>Filter Request's</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -172,515 +139,277 @@
                             <a href="canceled.html" class="dropdown-item">Pending</a>
                         </div>
                     </div> -->
-            <a href="users.html" class="nav-item nav-link"
-              ><i class="fa fa-th me-2"></i>All Transaction's</a
-            >
-            <a href="sucess_history.html" class="nav-item nav-link"
-              ><i class="fa fa-keyboard me-2"></i>Success History</a
-            >
-            <a href="failed_history.html" class="nav-item nav-link"
-              ><i class="fa fa-table me-2"></i>Failed History</a
-            >
-            <a href="pending_history.html" class="nav-item nav-link"
-              ><i class="fa fa-chart-bar me-2"></i>Pending History</a
-            >
-            <div class="nav-item dropdown">
-              <a
-                href="#"
-                class="nav-link dropdown-toggle"
-                data-bs-toggle="dropdown"
-                ><i class="far fa-file-alt me-2"></i>Payout Detail</a
-              >
-              <div class="dropdown-menu bg-transparent border-0">
-                <a href="signin.html" class="dropdown-item">Sign In</a>
-                <a href="signup.html" class="dropdown-item">Sign Up</a>
-                <a href="404.html" class="dropdown-item">404 Error</a>
-                <a href="blank.html" class="dropdown-item">Blank Page</a>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </div>
-      <!-- Sidebar End -->
-
-      <!-- Content Start -->
-      <div class="content">
-        <!-- Navbar Start -->
-        <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
-          <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
-            <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
-          </a>
-          <a href="#" class="sidebar-toggler flex-shrink-0">
-            <i class="fa fa-bars"></i>
-          </a>
-          <form class="d-none d-md-flex ms-4 custom-search-form">
-            <input class="form-control border-0" type="search" placeholder="Search" />
-          </form>
-          <div class="navbar-nav align-items-center ms-auto">
-            <div class="wallet-balance me-3">
-              <i class="fas fa-inr"></i>
-              <span class="balance-text">Balance:</span>
-              <span id="walletBalance"></span>
-              <span style="color: #65e701;font-weight: bold; margin-left: 5px;">&#8377;</span>
-            </div>
-            <div class="nav-item dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <img class="rounded-circle me-lg-2" src="../img/user.jpg" alt="" style="width: 40px; height: 40px" />
-                <span class="d-none d-lg-inline-flex" id="n_username"></span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                <a href="#" id="profileLink" class="dropdown-item">My Profile</a>
-                <a href="#" class="dropdown-item">Settings</a>
-                <a href="" class="dropdown-item">Log Out</a>
-              </div>
-            </div>
-          </div>
-        </nav>
-        
-        
-        <!-- Navbar End -->
-
-        <!-- HTML code for the profile popup -->
-        <div class="modal" id="profileModal">
-          <div class="modal-dialog modal-lg custom-width">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">My Profile</h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body" id="profileDetails"></div>
+          <a href="users.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>All Transaction's</a>
+          <a href="sucess_history.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Success History</a>
+          <a href="failed_history.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Failed History</a>
+          <a href="pending_history.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Pending
+            History</a>
+          <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                class="far fa-file-alt me-2"></i>Payout Detail</a>
+            <div class="dropdown-menu bg-transparent border-0">
+              <a href="signin.html" class="dropdown-item">Sign In</a>
+              <a href="signup.html" class="dropdown-item">Sign Up</a>
+              <a href="404.html" class="dropdown-item">404 Error</a>
+              <a href="blank.html" class="dropdown-item">Blank Page</a>
             </div>
           </div>
         </div>
-        <!-- Sale & Revenue Start -->
-        <div class="container-fluid pt-4 px-4">
-          <div class="row g-4">
-            <div class="col-sm-6 col-xl-3">
-              <div
-                class="bg-light rounded d-flex align-items-center justify-content-between p-4"
-              >
-                <i class="fa fa-chart-line fa-3x text-primary"></i>
-                <div class="ms-3">
-                  <p class="mb-2">Total Requests Amount</p>
-                  <h6 class="mb-0" id="total_amount"></h6>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-              <div
-                class="bg-light rounded d-flex align-items-center justify-content-between p-4"
-              >
-                <i class="fa fa-chart-bar fa-3x text-primary"></i>
-                <div class="ms-3">
-                  <p class="mb-2">Withdrawal Requests</p>
-                  <h6 class="mb-0" id="requests"></h6>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-              <div
-                class="bg-light rounded d-flex align-items-center justify-content-between p-4"
-              >
-                <i class="fa fa-chart-area fa-3x text-primary"></i>
-                <div class="ms-3">
-                  <p class="mb-2">Total Payout Amount</p>
-                  <h6 class="mb-0" id="payout_amount"></h6>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-              <div
-                class="bg-light rounded d-flex align-items-center justify-content-between p-4"
-              >
-                <i class="fa fa-chart-pie fa-3x text-primary"></i>
-                <div class="ms-3">
-                  <p class="mb-2">Total Registered User's</p>
-                  <h6 class="mb-0" id="total_users"></h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Sale & Revenue End -->
-
-        
-
-        <!-- Recent Sales Start -->
-        <div class="container-fluid pt-4 px-4">
-          <div class="bg-light text-center rounded p-4">
-            <div class="d-flex align-items-center justify-content-between mb-4">
-              <h6 class="mb-0" style="width: 300px; margin-left: -10px">
-                Latest Withdrawal Request's
-              </h6>
-              <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control search-input"
-                  placeholder="Search..."
-                />
-                <button class="btn btn-primary" type="button">Search</button>
-              </div>
-            </div>
-
-            <div
-              class="table-responsive"
-              style="height: 300px; overflow-y: auto"
-            >
-              <table
-                id="myTable"
-                class="table text-start align-middle table-bordered table-hover mb-0"
-                style="table-layout: fixed"
-              >
-                <thead>
-                  <tr class="text-dark">
-                    <th scope="col" class="checkbox-col">
-                      <input class="form-check-input" type="checkbox" />
-                    </th>
-                    <th scope="col" class="small-column">S.No.</th>
-                    <th scope="col">Withdrawal ID</th>
-                    <th scope="col">User ID</th>
-                    <th scope="col">User Name</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody id="tableBody">
-                  <!-- Rows will be dynamically added here -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- Recent Sales End -->
-
-        <!-- Sales Chart Start -->
-        <div class="container-fluid pt-4 px-4">
-          <div class="row g-4">
-            <div class="col-sm-12 col-xl-6">
-              <div class="bg-light text-center rounded p-4">
-                <div
-                  class="d-flex align-items-center justify-content-between mb-4"
-                >
-                  <h6 class="mb-0">Worldwide Sales</h6>
-                  <a href="">Show All</a>
-                </div>
-                <canvas id="worldwide-sales"></canvas>
-              </div>
-            </div>
-            <div class="col-sm-12 col-xl-6">
-              <div class="bg-light text-center rounded p-4">
-                <div
-                  class="d-flex align-items-center justify-content-between mb-4"
-                >
-                  <h6 class="mb-0">Salse & Revenue</h6>
-                  <a href="">Show All</a>
-                </div>
-                <canvas id="salse-revenue"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Sales Chart End -->
-
-        <!-- Widgets Start -->
-        <div class="container-fluid pt-4 px-4">
-          <div class="row g-4">
-            <div class="col-sm-12 col-md-6 col-xl-4">
-              <div class="h-100 bg-light rounded p-4">
-                <div
-                  class="d-flex align-items-center justify-content-between mb-2"
-                >
-                  <h6 class="mb-0">Messages</h6>
-                  <a href="">Show All</a>
-                </div>
-                <div class="d-flex align-items-center border-bottom py-3">
-                  <img
-                    class="rounded-circle flex-shrink-0"
-                    src="img/user.jpg"
-                    alt=""
-                    style="width: 40px; height: 40px"
-                  />
-                  <div class="w-100 ms-3">
-                    <div class="d-flex w-100 justify-content-between">
-                      <h6 class="mb-0">Jhon Doe</h6>
-                      <small>15 minutes ago</small>
-                    </div>
-                    <span>Short message goes here...</span>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center border-bottom py-3">
-                  <img
-                    class="rounded-circle flex-shrink-0"
-                    src="img/user.jpg"
-                    alt=""
-                    style="width: 40px; height: 40px"
-                  />
-                  <div class="w-100 ms-3">
-                    <div class="d-flex w-100 justify-content-between">
-                      <h6 class="mb-0">Jhon Doe</h6>
-                      <small>15 minutes ago</small>
-                    </div>
-                    <span>Short message goes here...</span>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center border-bottom py-3">
-                  <img
-                    class="rounded-circle flex-shrink-0"
-                    src="img/user.jpg"
-                    alt=""
-                    style="width: 40px; height: 40px"
-                  />
-                  <div class="w-100 ms-3">
-                    <div class="d-flex w-100 justify-content-between">
-                      <h6 class="mb-0">Jhon Doe</h6>
-                      <small>15 minutes ago</small>
-                    </div>
-                    <span>Short message goes here...</span>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center pt-3">
-                  <img
-                    class="rounded-circle flex-shrink-0"
-                    src="img/user.jpg"
-                    alt=""
-                    style="width: 40px; height: 40px"
-                  />
-                  <div class="w-100 ms-3">
-                    <div class="d-flex w-100 justify-content-between">
-                      <h6 class="mb-0">Jhon Doe</h6>
-                      <small>15 minutes ago</small>
-                    </div>
-                    <span>Short message goes here...</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-xl-4">
-              <div class="h-100 bg-light rounded p-4">
-                <div
-                  class="d-flex align-items-center justify-content-between mb-4"
-                >
-                  <h6 class="mb-0">Calender</h6>
-                  <a href="">Show All</a>
-                </div>
-                <div id="calender"></div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-xl-4">
-              <div class="h-100 bg-light rounded p-4">
-                <div
-                  class="d-flex align-items-center justify-content-between mb-4"
-                >
-                  <h6 class="mb-0">To Do List</h6>
-                  <a href="">Show All</a>
-                </div>
-                <div class="d-flex mb-2">
-                  <input
-                    class="form-control bg-transparent"
-                    type="text"
-                    placeholder="Enter task"
-                  />
-                  <button type="button" class="btn btn-primary ms-2">
-                    Add
-                  </button>
-                </div>
-                <div class="d-flex align-items-center border-bottom py-2">
-                  <input class="form-check-input m-0" type="checkbox" />
-                  <div class="w-100 ms-3">
-                    <div
-                      class="d-flex w-100 align-items-center justify-content-between"
-                    >
-                      <span>Short task goes here...</span>
-                      <button class="btn btn-sm">
-                        <i class="fa fa-times"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center border-bottom py-2">
-                  <input class="form-check-input m-0" type="checkbox" />
-                  <div class="w-100 ms-3">
-                    <div
-                      class="d-flex w-100 align-items-center justify-content-between"
-                    >
-                      <span>Short task goes here...</span>
-                      <button class="btn btn-sm">
-                        <i class="fa fa-times"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center border-bottom py-2">
-                  <input class="form-check-input m-0" type="checkbox" checked />
-                  <div class="w-100 ms-3">
-                    <div
-                      class="d-flex w-100 align-items-center justify-content-between"
-                    >
-                      <span><del>Short task goes here...</del></span>
-                      <button class="btn btn-sm text-primary">
-                        <i class="fa fa-times"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center border-bottom py-2">
-                  <input class="form-check-input m-0" type="checkbox" />
-                  <div class="w-100 ms-3">
-                    <div
-                      class="d-flex w-100 align-items-center justify-content-between"
-                    >
-                      <span>Short task goes here...</span>
-                      <button class="btn btn-sm">
-                        <i class="fa fa-times"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center pt-2">
-                  <input class="form-check-input m-0" type="checkbox" />
-                  <div class="w-100 ms-3">
-                    <div
-                      class="d-flex w-100 align-items-center justify-content-between"
-                    >
-                      <span>Short task goes here...</span>
-                      <button class="btn btn-sm">
-                        <i class="fa fa-times"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Widgets End -->
-
-        <!-- Footer Start -->
-
-        <!-- Footer End -->
-      </div>
-      <!-- Content End -->
-
-      <!-- Back to Top -->
-      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
-        ><i class="bi bi-arrow-up"></i
-      ></a>
+      </nav>
     </div>
+    <!-- Sidebar End -->
 
-    <!-- JavaScript Libraries -->
+    <!-- Content Start -->
+    <div class="content">
+      <!-- Navbar Start -->
+      <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+        <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+          <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+        </a>
+        <a href="#" class="sidebar-toggler flex-shrink-0">
+          <i class="fa fa-bars"></i>
+        </a>
+        <form class="d-none d-md-flex ms-4 custom-search-form">
+          <input class="form-control border-0" type="search" placeholder="Search" />
+        </form>
+        <div class="navbar-nav align-items-center ms-auto">
+          <div class="wallet-balance me-3">
+            <i class="fas fa-inr"></i>
+            <span class="balance-text">Balance:</span>
+            <span id="walletBalance"></span>
+            <span style="color: #65e701;font-weight: bold; margin-left: 5px;">&#8377;</span>
+          </div>
+          <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+              <img class="rounded-circle me-lg-2" src="../img/user.jpg" alt="" style="width: 40px; height: 40px" />
+              <span class="d-none d-lg-inline-flex" id="n_username"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+              <a href="#" id="profileLink" class="dropdown-item">My Profile</a>
+              <a href="#" class="dropdown-item">Settings</a>
+              <a href="" class="dropdown-item">Log Out</a>
+            </div>
+          </div>
+        </div>
+      </nav>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../lib/chart/chart.min.js"></script>
-    <script src="../lib/easing/easing.min.js"></script>
-    <script src="../lib/waypoints/waypoints.min.js"></script>
-    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="../lib/tempusdominus/js/moment.min.js"></script>
-    <script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Template Javascript -->
-    <script src="../js/main.js"></script>
-    <script>
-   
+      <!-- Navbar End -->
 
-      // fetch merchant detail.
-      let userData = [];
-      async function fetchMerchantDetail() {
-        try {
-          const response = await fetch(
-            "https://exuberant-fatigues-jay.cyclic.app/Merchant/detail",
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${JSON.parse(
-                  localStorage.getItem("login_token")
-                )}`,
-              },
-            }
-          );
+      <!-- HTML code for the profile popup -->
+      <div class="modal" id="profileModal">
+        <div class="modal-dialog modal-lg custom-width">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">My Profile</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="profileDetails"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Sale & Revenue Start -->
+      <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+          <div class="col-sm-6 col-xl-3">
+            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+              <i class="fa fa-chart-line fa-3x text-primary"></i>
+              <div class="ms-3">
+                <p class="mb-2">Total Requests Amount</p>
+                <h6 class="mb-0" id="total_amount"></h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+              <i class="fa fa-chart-bar fa-3x text-primary"></i>
+              <div class="ms-3">
+                <p class="mb-2">Withdrawal Requests</p>
+                <h6 class="mb-0" id="requests"></h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+              <i class="fa fa-chart-area fa-3x text-primary"></i>
+              <div class="ms-3">
+                <p class="mb-2">Total Payout Amount</p>
+                <h6 class="mb-0" id="payout_amount"></h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+              <i class="fa fa-chart-pie fa-3x text-primary"></i>
+              <div class="ms-3">
+                <p class="mb-2">Total Registered User's</p>
+                <h6 class="mb-0" id="total_users"></h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Sale & Revenue End -->
 
-          const name = await response.json();
-          userData = name;
-          console.log(name.user_name);
-          document.getElementById("s_username").innerText = name.user_name;
-          document.getElementById("n_username").innerText = name.user_name;
-          document.getElementById("walletBalance").innerText = name.amount
-        } catch (error) {
-          alert(error);
-        }
+
+
+      <!-- Recent Sales Start -->
+      <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+          <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0" style="width: 300px; margin-left: -10px">
+              Latest Withdrawal Request's
+            </h6>
+            <div class="input-group">
+              <input type="text" class="form-control search-input" placeholder="Search..." id="searchInput" />
+              <button class="btn btn-primary" type="button" id="searchButton">Search</button>
+            </div>
+          </div>
+
+          <div class="table-responsive" style="height: 300px; overflow-y: auto">
+            <table id="myTable" class="table text-start align-middle table-bordered table-hover mb-0"
+              style="table-layout: fixed">
+              <thead>
+                <tr class="text-dark">
+                  <th scope="col" class="checkbox-col">
+                    <input class="form-check-input" type="checkbox" />
+                  </th>
+                  <th scope="col" class="small-column">S.No.</th>
+                  <th scope="col">Withdrawal ID</th>
+                  <th scope="col">User ID</th>
+                  <th scope="col">User Name</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody">
+                <!-- Rows will be dynamically added here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Sales End -->
+
+      <!-- Footer Start -->
+
+      <!-- Footer End -->
+    </div>
+    <!-- Content End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+  </div>
+
+  <!-- JavaScript Libraries -->
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../lib/chart/chart.min.js"></script>
+  <script src="../lib/easing/easing.min.js"></script>
+  <script src="../lib/waypoints/waypoints.min.js"></script>
+  <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="../lib/tempusdominus/js/moment.min.js"></script>
+  <script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
+  <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+  <!-- Template Javascript -->
+  <script src="../js/main.js"></script>
+  <script>
+
+
+    // fetch merchant detail.
+    let userData = [];
+    async function fetchMerchantDetail() {
+      try {
+        const response = await fetch(
+          "https://exuberant-fatigues-jay.cyclic.app/Merchant/detail",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${JSON.parse(
+                localStorage.getItem("login_token")
+              )}`,
+            },
+          }
+        );
+
+        const name = await response.json();
+        userData = name;
+        console.log(name.user_name);
+        document.getElementById("s_username").innerText = name.user_name;
+        document.getElementById("n_username").innerText = name.user_name;
+        document.getElementById("walletBalance").innerText = name.amount
+      } catch (error) {
+        alert(error);
       }
-      fetchMerchantDetail();
-      async function fetchDashDetail() {
-        try {
-          const response = await fetch(
-            "https://exuberant-fatigues-jay.cyclic.app/Merchant/dashboard/data",
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${JSON.parse(
-                  localStorage.getItem("login_token")
-                )}`,
-              },
-            }
-          );
+    }
+    fetchMerchantDetail();
+    async function fetchDashDetail() {
+      try {
+        const response = await fetch(
+          "https://exuberant-fatigues-jay.cyclic.app/Merchant/dashboard/data",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${JSON.parse(
+                localStorage.getItem("login_token")
+              )}`,
+            },
+          }
+        );
 
-          const data = await response.json();
-          console.log(data);
-          document.getElementById('total_amount').innerText = data.totalAmount;
-          document.getElementById('requests').innerText = data.requestCount;
-          document.getElementById('payout_amount').innerText = data.successAmount;
-          document.getElementById('total_users').innerText = data.uniqueUsers;
-          
-        } catch (error) {
-          alert(error);
-        }
+        const data = await response.json();
+        console.log(data);
+        document.getElementById('total_amount').innerText = data.totalAmount;
+        document.getElementById('requests').innerText = data.requestCount;
+        document.getElementById('payout_amount').innerText = data.successAmount;
+        document.getElementById('total_users').innerText = data.uniqueUsers;
+
+      } catch (error) {
+        alert(error);
       }
-      fetchDashDetail();
+    }
+    fetchDashDetail();
 
-      function generateProfileHTML(user) {
-        const {
-          _id,
-          user_name,
-          email,
-          mobile,
-          password,
-          transaction_limit,
-          amount,
-          business_detail,
-          business_address,
-          kyc_documents,
-        } = user;
-        const {
-          merchant_name,
-          business_name,
-          business_type,
-          business_category,
-          business_sub_category,
-          company_expenditure,
-          website,
-          bank_name,
-          bank_account_number,
-          bank_ifsc_code,
-          gst,
-          pan_number,
-          aadhar_number,
-        } = user.business_detail;
-        const { address, pincode, city, state, country } =
-          user.business_address;
-        const { company_pan_card, company_gst, bank_statement } =
-          user.kyc_documents;
+    function generateProfileHTML(user) {
+      const {
+        _id,
+        user_name,
+        email,
+        mobile,
+        password,
+        transaction_limit,
+        amount,
+        business_detail,
+        business_address,
+        kyc_documents,
+      } = user;
+      const {
+        merchant_name,
+        business_name,
+        business_type,
+        business_category,
+        business_sub_category,
+        company_expenditure,
+        website,
+        bank_name,
+        bank_account_number,
+        bank_ifsc_code,
+        gst,
+        pan_number,
+        aadhar_number,
+      } = user.business_detail;
+      const { address, pincode, city, state, country } =
+        user.business_address;
+      const { company_pan_card, company_gst, bank_statement } =
+        user.kyc_documents;
 
-        const html = `
+      const html = `
       <div class="row">
         <div class="col-sm-4">
           <p><strong>Dealer Code:</strong> ${_id}</p>
@@ -783,249 +512,307 @@
       <!-- Add more fields in similar row/column structure -->
     `;
 
-        return html;
-      }
-      function openProfilePopup() {
-        const profileLink = document.getElementById("profileLink");
-        const profileDetails = document.getElementById("profileDetails");
+      return html;
+    }
+    function openProfilePopup() {
+      const profileLink = document.getElementById("profileLink");
+      const profileDetails = document.getElementById("profileDetails");
 
-        profileLink.addEventListener("click", (event) => {
-          event.preventDefault(); // Prevent the default link behavior
+      profileLink.addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent the default link behavior
 
-          // Replace the following code with your actual user data
-          // Generate HTML for user details
-          const profileHTML = generateProfileHTML(userData);
+        // Replace the following code with your actual user data
+        // Generate HTML for user details
+        const profileHTML = generateProfileHTML(userData);
 
-          // Set the HTML content of profileDetails
-          profileDetails.innerHTML = profileHTML;
+        // Set the HTML content of profileDetails
+        profileDetails.innerHTML = profileHTML;
 
-          // Show the profile popup
-          const profileModal = new bootstrap.Modal(
-            document.getElementById("profileModal")
-          );
-          profileModal.show();
-        });
-      }
-
-      // Call the function to open the profile popup
-      openProfilePopup();
-
-      $(document).ready(function () {
-        $(".dropdown-toggle").dropdown();
+        // Show the profile popup
+        const profileModal = new bootstrap.Modal(
+          document.getElementById("profileModal")
+        );
+        profileModal.show();
       });
+    }
 
-      const tableBody = document.getElementById("tableBody");
-      // let arr = []
-      async function fetchWithdrawalData() {
-        try {
-          // Fetch data from the API
-          const response = await fetch(
-            "https://exuberant-fatigues-jay.cyclic.app/Merchant/getWithdrawals",
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${JSON.parse(
-                  localStorage.getItem("login_token")
-                )}`,
-              },
-            }
-          );
-          const apiData = await response.json();
-          console.log(apiData);
-          apiData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    // Call the function to open the profile popup
+    openProfilePopup();
 
-          // Process the fetched API data and add rows dynamically
-          tableBody.innerHTML = "";
-          apiData.forEach((row, index) => {
-            const newRow = tableBody.insertRow();
-            const checkboxCell = newRow.insertCell();
-            checkboxCell.className = "checkbox-row";
-            checkboxCell.innerHTML =
-              '<input class="form-check-input" type="checkbox">';
+    $(document).ready(function () {
+      $(".dropdown-toggle").dropdown();
+    });
 
-            const cells = [
-              newRow.insertCell(),
-              newRow.insertCell(),
-              newRow.insertCell(),
-              newRow.insertCell(),
-              newRow.insertCell(),
-            ];
+    const tableBody = document.getElementById("tableBody");
+    // let arr = []
+    async function fetchWithdrawalData() {
+      try {
+        // Fetch data from the API
+        const response = await fetch(
+          "https://exuberant-fatigues-jay.cyclic.app/Merchant/getWithdrawals",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${JSON.parse(
+                localStorage.getItem("login_token")
+              )}`,
+            },
+          }
+        );
+        const apiData = await response.json();
+        fillData(apiData);
+        apiData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-            cells[0].textContent = index + 1;
-            cells[1].textContent = row.withdrawal_id;
-            cells[2].textContent = row.user_id;
-            cells[3].textContent = row.user_name;
-            cells[4].textContent = row.amount;
+        // Process the fetched API data and add rows dynamically
 
-            cells.forEach((cell) => {
-              cell.classList.add("overflow-hidden-cell");
-            });
+        function fillData(apiData) {
 
-            // Format the creation_date to display only the date
-            const creationDate = new Date(row.createdAt);
-            const formattedDate = creationDate.toLocaleDateString();
-            newRow.insertCell().textContent = formattedDate;
+          tableBody.innerHTML = '';
+          // const tableBody = document.getElementById('tableBody');
+          const searchInput = document.getElementById('searchInput');
+          const searchButton = document.getElementById('searchButton');
 
-            const actionCell = newRow.insertCell();
-            actionCell.style.position = "relative";
+          const applyFilter = () => {
+            const query = searchInput.value.toLowerCase().trim();
 
-            const dropdownButton = document.createElement("button");
-            dropdownButton.className =
-              "btn btn-sm btn-primary dropdown-toggle getdrop";
+            // Clear the table body
+            tableBody.innerHTML = '';
 
-            dropdownButton.type = "button";
-            dropdownButton.id = `actionDropdown-${index + 1}`;
-            dropdownButton.setAttribute("data-toggle", "dropdown");
-            dropdownButton.setAttribute("aria-haspopup", "true");
-            dropdownButton.setAttribute("aria-expanded", "false");
-
-            // Check if the merchant status is already 'Allow' or 'Cancel'
-            if (row.merchant_status === "Allow") {
-              dropdownButton.className += " btn-success"; // Set button background color to green
-              dropdownButton.textContent = "Allow"; // Set button text to 'Allow'
-              dropdownButton.disabled = true; // Disable the dropdown button
-            } else if (row.merchant_status === "Cancel") {
-              dropdownButton.className += " btn-danger"; // Set button background color to red
-              dropdownButton.textContent = "Cancel"; // Set button text to 'Cancel'
-              dropdownButton.disabled = true; // Disable the dropdown button
-            } else {
-              dropdownButton.textContent = "Pending"; // Set default button text as 'Pending'
-            }
-
-            actionCell.appendChild(dropdownButton);
-
-            const dropdownMenu = document.createElement("div");
-            dropdownMenu.className = "dropdown-menu dropdown-menu-end";
-            dropdownMenu.setAttribute(
-              "aria-labelledby",
-              `actionDropdown-${index + 1}`
+            // Filter the data based on the search query
+            const filteredData = apiData.filter(row =>
+              row.withdrawal_id.toLowerCase().includes(query) ||
+              row.user_id.toLowerCase().includes(query) ||
+              row.user_name.toLowerCase().includes(query) ||
+              row.amount.toString().includes(query)
+              
             );
-            dropdownMenu.style.position = "absolute";
-            dropdownMenu.style.minWidth = "100%";
 
-            const allowOption = document.createElement("a");
-            allowOption.className = "dropdown-item";
-            allowOption.href = "#";
-            allowOption.textContent = "Allow";
-            allowOption.addEventListener("click", async function (event) {
-              event.preventDefault();
+            searchButton.addEventListener('click', applyFilter);
+            searchInput.addEventListener('keyup', applyFilter);
+
+            // Find the column indexes for the "status" and "action" columns
+            const table = document.getElementById('myTable');
+
+            let statusColumnIndex = -1;
+            let actionColumnIndex = -1;
+            const headerRow = table.rows[0]; // Assuming the first row contains the table headers
+
+            for (let i = 0; i < headerRow.cells.length; i++) {
+              const cellContent = headerRow.cells[i].textContent.trim();
+
+              // Check for "status" column
+              if (cellContent === "Status") {
+                statusColumnIndex = i;
+              }
+
+              // Check for "action" column
+              if (cellContent === "Action") {
+                actionColumnIndex = i;
+              }
+
+              // Break the loop if both column indexes are found
+              if (statusColumnIndex !== -1 && actionColumnIndex !== -1) {
+                break;
+              }
+            }
+            // console.log(filteredData)
+
+            filteredData.forEach((row, index) => {
+              const newRow = tableBody.insertRow();
+              const checkboxCell = newRow.insertCell();
+              checkboxCell.className = "checkbox-row";
+              checkboxCell.innerHTML =
+                '<input class="form-check-input" type="checkbox">';
+
+              const cells = [
+                newRow.insertCell(),
+                newRow.insertCell(),
+                newRow.insertCell(),
+                newRow.insertCell(),
+                newRow.insertCell(),
+              ];
+
+              cells[0].textContent = index + 1;
+              cells[1].textContent = row.withdrawal_id;
+              cells[2].textContent = row.user_id;
+              cells[3].textContent = row.user_name;
+              cells[4].textContent = row.amount;
+
+              cells.forEach((cell) => {
+                cell.classList.add("overflow-hidden-cell");
+              });
+
+              // Format the creation_date to display only the date
+              const creationDate = new Date(row.createdAt);
+              const formattedDate = creationDate.toLocaleDateString();
+              newRow.insertCell().textContent = formattedDate;
+
+              const actionCell = newRow.insertCell();
+              actionCell.style.position = "relative";
+
+              const dropdownButton = document.createElement("button");
+              dropdownButton.className =
+                "btn btn-sm btn-primary dropdown-toggle getdrop";
+
+              dropdownButton.type = "button";
+              dropdownButton.id = `actionDropdown-${index + 1}`;
+              dropdownButton.setAttribute("data-toggle", "dropdown");
+              dropdownButton.setAttribute("aria-haspopup", "true");
+              dropdownButton.setAttribute("aria-expanded", "false");
+
+              // Check if the merchant status is already 'Allow' or 'Cancel'
               if (row.merchant_status === "Allow") {
-                disableDropdown(dropdownButton);
+                dropdownButton.className += " btn-success"; // Set button background color to green
+                dropdownButton.textContent = "Allow"; // Set button text to 'Allow'
+                dropdownButton.disabled = true; // Disable the dropdown button
+              } else if (row.merchant_status === "Cancel") {
+                dropdownButton.className += " btn-danger"; // Set button background color to red
+                dropdownButton.textContent = "Cancel"; // Set button text to 'Cancel'
+                dropdownButton.disabled = true; // Disable the dropdown button
               } else {
-                const data = await updateMerchantStatus(
-                  row.withdrawal_id,
-                  "Allow"
-                );
-                if (data.error) {
-                } else {
-                  selectValue(this, "Allow", index + 1);
+                dropdownButton.textContent = "Pending"; // Set default button text as 'Pending'
+              }
+
+              actionCell.appendChild(dropdownButton);
+
+              const dropdownMenu = document.createElement("div");
+              dropdownMenu.className = "dropdown-menu dropdown-menu-end";
+              dropdownMenu.setAttribute(
+                "aria-labelledby",
+                `actionDropdown-${index + 1}`
+              );
+              dropdownMenu.style.position = "absolute";
+              dropdownMenu.style.minWidth = "100%";
+
+              const allowOption = document.createElement("a");
+              allowOption.className = "dropdown-item";
+              allowOption.href = "#";
+              allowOption.textContent = "Allow";
+              allowOption.addEventListener("click", async function (event) {
+                event.preventDefault();
+                if (row.merchant_status === "Allow") {
                   disableDropdown(dropdownButton);
-                  fetchDashDetail();
-                  fetchWithdrawalData();
+                } else {
+                  const data = await updateMerchantStatus(
+                    row.withdrawal_id,
+                    "Allow"
+                  );
+                  if (data.error) {
+                  } else {
+                    selectValue(this, "Allow", index + 1);
+                    disableDropdown(dropdownButton);
+                    fetchDashDetail();
+                    fetchWithdrawalData();
+                  }
                 }
-              }
+              });
+              dropdownMenu.appendChild(allowOption);
+
+              const cancelOption = document.createElement("a");
+              cancelOption.className = "dropdown-item";
+              cancelOption.href = "#";
+              cancelOption.textContent = "Cancel";
+              cancelOption.addEventListener("click", async function (event) {
+                event.preventDefault();
+                if (row.merchant_status === "Cancel") {
+                  disableDropdown(dropdownButton);
+                } else {
+                  await updateMerchantStatus(row.withdrawal_id, "Cancel");
+                  selectValue(this, "Cancel", index + 1);
+                  disableDropdown(dropdownButton);
+                }
+              });
+              dropdownMenu.appendChild(cancelOption);
+
+              actionCell.appendChild(dropdownMenu);
             });
-            dropdownMenu.appendChild(allowOption);
 
-            const cancelOption = document.createElement("a");
-            cancelOption.className = "dropdown-item";
-            cancelOption.href = "#";
-            cancelOption.textContent = "Cancel";
-            cancelOption.addEventListener("click", async function (event) {
-              event.preventDefault();
-              if (row.merchant_status === "Cancel") {
-                disableDropdown(dropdownButton);
-              } else {
-                await updateMerchantStatus(row.withdrawal_id, "Cancel");
-                selectValue(this, "Cancel", index + 1);
-                disableDropdown(dropdownButton);
-              }
-            });
-            dropdownMenu.appendChild(cancelOption);
-
-            actionCell.appendChild(dropdownMenu);
-          });
-        } catch (error) {
-          console.error("An error occurred while fetching data:", error);
-        }
-      }
-
-      fetchWithdrawalData();
-      // Function to update the merchant status via API
-      async function updateMerchantStatus(withdrawalId, merchantStatus) {
-        try {
-          const response = await fetch(
-            "https://exuberant-fatigues-jay.cyclic.app/Merchant/withdrawal/updatestatus",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${JSON.parse(
-                  localStorage.getItem("login_token")
-                )}`,
-              },
-              body: JSON.stringify({
-                withdrawal_id: withdrawalId,
-                merchant_status: merchantStatus,
-              }),
-            }
-          );
-          const data = await response.json();
-          if (data.error) {
-            alert(data.error);
-            return data;
-          } else {
-            fetchMerchantDetail();
-            return data;
           }
-        } catch (error) {
-          console.error(
-            "An error occurred while updating the merchant status:",
-            error
-          );
-        }
-      }
-
-      function disableDropdown(dropdownButton) {
-        dropdownButton.disabled = true;
-      }
-
-      // Function to handle dropdown selection
-      function selectValue(element, value, rowId) {
-        const dropdownButton =
-          element.parentNode.parentNode.querySelector(".dropdown-toggle");
-        const dropdownMenu =
-          element.parentNode.parentNode.querySelector(".dropdown-menu");
-
-        if (value === "Allow") {
-          dropdownButton.classList.remove("btn-danger");
-          dropdownButton.classList.add("btn-success");
-        } else if (value === "Cancel") {
-          dropdownButton.classList.remove("btn-success");
-          dropdownButton.classList.add("btn-danger");
+          applyFilter();
         }
 
-        dropdownButton.textContent = value;
-        dropdownButton.classList.add("text-white");
-        dropdownMenu.classList.remove("show");
+      } catch (error) {
+        console.error("An error occurred while fetching data:", error);
       }
+    }
 
-      var dropdownMenus = document.getElementsByClassName("dropdown-menu");
-
-      document.addEventListener("click", function (event) {
-        for (var i = 0; i < dropdownMenus.length; i++) {
-          if (dropdownMenus[i].contains(event.target)) {
-            if (event.target.matches(".dropdown-item:nth-child(3)")) {
-              event.preventDefault();
-              localStorage.removeItem("login_token");
-              location.reload();
-              location.href = "../index.html";
-            }
-            break;
+    fetchWithdrawalData();
+    // Function to update the merchant status via API
+    async function updateMerchantStatus(withdrawalId, merchantStatus) {
+      try {
+        const response = await fetch(
+          "https://exuberant-fatigues-jay.cyclic.app/Merchant/withdrawal/updatestatus",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${JSON.parse(
+                localStorage.getItem("login_token")
+              )}`,
+            },
+            body: JSON.stringify({
+              withdrawal_id: withdrawalId,
+              merchant_status: merchantStatus,
+            }),
           }
+        );
+        const data = await response.json();
+        if (data.error) {
+          alert(data.error);
+          return data;
+        } else {
+          fetchMerchantDetail();
+          return data;
         }
-      });
-    </script>
-  </body>
+      } catch (error) {
+        console.error(
+          "An error occurred while updating the merchant status:",
+          error
+        );
+      }
+    }
+
+    function disableDropdown(dropdownButton) {
+      dropdownButton.disabled = true;
+    }
+
+    // Function to handle dropdown selection
+    function selectValue(element, value, rowId) {
+      const dropdownButton =
+        element.parentNode.parentNode.querySelector(".dropdown-toggle");
+      const dropdownMenu =
+        element.parentNode.parentNode.querySelector(".dropdown-menu");
+
+      if (value === "Allow") {
+        dropdownButton.classList.remove("btn-danger");
+        dropdownButton.classList.add("btn-success");
+      } else if (value === "Cancel") {
+        dropdownButton.classList.remove("btn-success");
+        dropdownButton.classList.add("btn-danger");
+      }
+
+      dropdownButton.textContent = value;
+      dropdownButton.classList.add("text-white");
+      dropdownMenu.classList.remove("show");
+    }
+
+    var dropdownMenus = document.getElementsByClassName("dropdown-menu");
+
+    document.addEventListener("click", function (event) {
+      for (var i = 0; i < dropdownMenus.length; i++) {
+        if (dropdownMenus[i].contains(event.target)) {
+          if (event.target.matches(".dropdown-item:nth-child(3)")) {
+            event.preventDefault();
+            localStorage.removeItem("login_token");
+            location.reload();
+            location.href = "../index.html";
+          }
+          break;
+        }
+      }
+    });
+  </script>
+</body>
+
 </html>
