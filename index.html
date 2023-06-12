@@ -307,7 +307,7 @@
 
                 const responseData = await response.json();
                 // Handle the API response
-                if(responseData){
+                if(responseData.token){
                     localStorage.setItem('login_token',JSON.stringify(responseData));
                     alert("Login Success");
                     location.href = "./sub_admin/index.html"
