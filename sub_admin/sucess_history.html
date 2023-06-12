@@ -37,26 +37,30 @@
         padding: 0;
         text-align: center;
     }
-    
+
     .checkbox-row {
         height: 30px;
         padding: 0;
         text-align: center;
     }
+
     .custom-search-form {
-    width: 50%;
-}
-.custom-input {
-    width: 100%;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    padding: 8px;
-}
-.search-input {
-    max-width: 50%;
-    margin-left: 30%;
-}   
-.bank-status {
+        width: 50%;
+    }
+
+    .custom-input {
+        width: 100%;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        padding: 8px;
+    }
+
+    .search-input {
+        max-width: 50%;
+        margin-left: 30%;
+    }
+
+    .bank-status {
         padding: 5px 10px;
         border-radius: 5px;
         font-weight: bold;
@@ -87,7 +91,6 @@
         background-color: orange;
         color: black;
     }
-
 </style>
 
 <body>
@@ -133,10 +136,13 @@
                         </div>
                     </div> -->
                     <a href="merchants.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>All Merchant's</a>
-                    <a href="sucess_history.html" class="nav-item nav-link active"><i class="fa fa-keyboard me-2"></i>Success History</a>
-                    <a href="failed_history.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Failed History</a>
-                    <a href="pending_history.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Pending History</a>
-                    <div class="nav-item dropdown">
+                    <a href="sucess_history.html" class="nav-item nav-link active"><i
+                            class="fa fa-keyboard me-2"></i>Success History</a>
+                    <a href="failed_history.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Failed
+                        History</a>
+                    <a href="pending_history.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Pending
+                        History</a>
+                    <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="far fa-file-alt me-2"></i>Payout Detail</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -145,7 +151,7 @@
                             <a href="404.html" class="dropdown-item">404 Error</a>
                             <a href="blank.html" class="dropdown-item">Blank Page</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </nav>
         </div>
@@ -259,18 +265,22 @@
                                 <div class="col-md-3">
                                     <div class="mb-2"> <!-- Reduced margin from mb-3 to mb-2 -->
                                         <label for="startDate" class="form-label">Start Date</label>
-                                        <input type="date" class="form-control form-control-sm custom-input" id="startDate">
+                                        <input type="date" class="form-control form-control-sm custom-input"
+                                            id="startDate">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-2"> <!-- Reduced margin from mb-3 to mb-2 -->
                                         <label for="endDate" class="form-label">End Date</label>
-                                        <input type="date" class="form-control form-control-sm custom-input" id="endDate">
+                                        <input type="date" class="form-control form-control-sm custom-input"
+                                            id="endDate">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-2"> <!-- Reduced margin from mb-3 to mb-2 -->
-                                        <button type="button" class="btn btn-primary btn-sm" style="margin-top:30px; padding: 7px 5px;">Apply Filters</button> <!-- Adjusted margin-top value -->
+                                        <button type="button" class="btn btn-primary btn-sm"
+                                            style="margin-top:30px; padding: 7px 5px;">Apply Filters</button>
+                                        <!-- Adjusted margin-top value -->
                                     </div>
                                 </div>
                             </div>
@@ -278,33 +288,36 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- filter end -->
-            
+
 
             <!-- Recent Sales Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0" style="width: 300px; margin-left: -10px;">Success Request's by Bank</h6>
-            <div class="input-group">
-                <input type="text" class="form-control search-input" placeholder="Search...">
-                <button class="btn btn-primary" type="button">Search</button>
-            </div>
+                        <div class="input-group">
+                            <input type="text" class="form-control search-input" placeholder="Search...">
+                            <button class="btn btn-primary" type="button">Search</button>
+                        </div>
                     </div>
 
-                    <div class="table-responsive" style="overflow: visible;">
-                        <table id="myTable" class="table text-start align-middle table-bordered table-hover mb-0" style="table-layout: fixed;">
+                    <div class="table-responsive" style="overflow: visible">
+                        <table id="myTable" class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
                                 <tr class="text-dark">
                                     <!-- <th scope="col" class="checkbox-col"><input class="form-check-input" type="checkbox"></th> -->
-                                    <th scope="col">Sr. No.</th>
-                                    <th scope="col">Withdrawal ID</th>
-                                    <th scope="col">Customer Code</th>
-                                    <th scope="col">Customer Name</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Remark</th>
-                                    <th scope="col">Bank Status</th>
+                                    <th scope="col" class="small-column">Sr. No.</th>
+                                    <th scope="col" class="mid-column">Withdrawal ID</th>
+                                    <th scope="col" class="mid-column">User ID</th>
+                                    <th scope="col">User Name</th>
+                                    <th scope="col">Dealer Code</th>
+                                    <th scope="col" class="mid-column">Payout Amount</th>
+                                    <th scope="col">Credit Account Number</th>
+                                    <th scope="col">Beneficairy Branch Code</th>
+                                    <th scope="col">UTR No.</th>
+                                    <th scope="col">Date</th>
                                 </tr>
                             </thead>
                             <tbody id="tableBody">
@@ -347,69 +360,83 @@
         $(document).ready(function () {
             $('.dropdown-toggle').dropdown();
         });
-        const apiData = [
-  {
-    withdrawalId: 'WD-001',
-    customerCode: '001',
-    customerName: 'John Doe',
-    amount: '$123',
-    remark: 'Payout',
-    bankStatus: 'Pending'
-  },
-  {
-    withdrawalId: 'WD-00546562',
-    customerCode: '002',
-    customerName: 'Jane Smith',
-    amount: '$456',
-    remark: 'Refund',
-    bankStatus: 'Success'
-  }
-];
+        const tableBody = document.getElementById("tableBody");
+        // let arr = []
+        async function fetchWithdrawalData() {
+            console.log("hi")
+            try {
+                // Fetch data from the API
+                const response = await fetch(
+                    "http://localhost:8080/SinghTek/getWithdrawals/sucess",
+                    {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${JSON.parse(
+                                localStorage.getItem("login_token")
+                            )}`,
+                        },
+                    }
+                );
+                const apiData = await response.json();
+                console.log(apiData);
+                apiData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-// Process the dummy API data and add rows dynamically
-const tableBody = document.getElementById('tableBody');
-apiData.forEach((row, index) => {
-  const newRow = tableBody.insertRow();
-  newRow.insertCell().textContent = index + 1;
-  newRow.insertCell().textContent = row.withdrawalId;
-  newRow.insertCell().textContent = row.customerCode;
-  newRow.insertCell().textContent = row.customerName;
-  newRow.insertCell().textContent = row.amount;
-  newRow.insertCell().textContent = row.remark;
+                // Process the fetched API data and add rows dynamically
+                apiData.forEach((row, index) => {
+                    const newRow = tableBody.insertRow();
+                    newRow.insertCell().textContent = index + 1;
+                    newRow.insertCell().textContent = row.withdrawal_id;
+                    newRow.insertCell().textContent = row.user_id;
+                    newRow.insertCell().textContent = row.user_name;
+                    newRow.insertCell().textContent = row.dealer_code;
+                    newRow.insertCell().textContent = row.amount;
+                    newRow.insertCell().textContent = row.credit_account_no;
+                    newRow.insertCell().textContent = row.beneficiary_branch_code;
+                    newRow.insertCell().textContent = row.utr_number;
 
-  const bankStatusCell = newRow.insertCell();
-  const bankStatusSpan = document.createElement('span');
-  bankStatusSpan.textContent = row.bankStatus;
-  bankStatusSpan.classList.add('bank-status');
+                    // Format the creation_date to display only the date
+                    const creationDate = new Date(row.updatedAt);
+                    const options = {
+                        month: "numeric",
+                        day: "numeric",
+                        year: "numeric",
+                        hour: "numeric",
+                        minute: "2-digit",
+                        hour12: true,
+                        timeZone: "Asia/Kolkata",
+                    };
+                    const formattedDate = creationDate.toLocaleString("en-IN", options);
 
-  if (row.bankStatus === 'Pending') {
-    bankStatusSpan.classList.add('bank-status-pending');
-  } else if (row.bankStatus === 'Success') {
-    bankStatusSpan.classList.add('bank-status-success');
-  } else if (row.bankStatus === 'Failed') {
-    bankStatusSpan.classList.add('bank-status-failed');
-  } else if (row.bankStatus === 'Hold') {
-    bankStatusSpan.classList.add('bank-status-hold');
-  }
+                    const dateCell = newRow.insertCell();
+                    dateCell.textContent = formattedDate;
 
-  bankStatusCell.appendChild(bankStatusSpan);
-});
-
-var dropdownMenus = document.getElementsByClassName('dropdown-menu');
-
-  document.addEventListener('click', function(event) {
-    for (var i = 0; i < dropdownMenus.length; i++) {
-      if (dropdownMenus[i].contains(event.target)) {
-        if (event.target.matches('.dropdown-item:nth-child(3)')) {
-          event.preventDefault();
-          localStorage.removeItem('login_token');
-          location.reload();
-          location.href = '../index.html';
+                    const checkIcon = document.createElement("i");
+                    checkIcon.classList.add("fa", "fa-check", "text-success", "ms-2");
+                    dateCell.appendChild(checkIcon);
+                });
+            } catch (error) {
+                console.error("An error occurred while fetching data:", error);
+            }
         }
-        break;
-      }
-    }
-  });
+
+        fetchWithdrawalData();
+
+        var dropdownMenus = document.getElementsByClassName('dropdown-menu');
+
+        document.addEventListener('click', function (event) {
+            for (var i = 0; i < dropdownMenus.length; i++) {
+                if (dropdownMenus[i].contains(event.target)) {
+                    if (event.target.matches('.dropdown-item:nth-child(3)')) {
+                        event.preventDefault();
+                        localStorage.removeItem('login_token');
+                        location.reload();
+                        location.href = '../index.html';
+                    }
+                    break;
+                }
+            }
+        });
 
     </script>
 </body>

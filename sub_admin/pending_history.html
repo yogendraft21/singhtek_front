@@ -136,7 +136,7 @@
                     <a href="sucess_history.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Success History</a>
                     <a href="failed_history.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Failed History</a>
                     <a href="pending_history.html" class="nav-item nav-link active"><i class="fa fa-chart-bar me-2"></i>Pending History</a>
-                    <div class="nav-item dropdown">
+                    <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="far fa-file-alt me-2"></i>Payout Detail</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -145,7 +145,7 @@
                             <a href="404.html" class="dropdown-item">404 Error</a>
                             <a href="blank.html" class="dropdown-item">Blank Page</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </nav>
         </div>
@@ -293,18 +293,21 @@
             </div>
                     </div>
 
-                    <div class="table-responsive" style="overflow: visible;">
-                        <table id="myTable" class="table text-start align-middle table-bordered table-hover mb-0" style="table-layout: fixed;">
+                    <div class="table-responsive" style="overflow: visible">
+                        <table id="myTable" class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
                                 <tr class="text-dark">
                                     <!-- <th scope="col" class="checkbox-col"><input class="form-check-input" type="checkbox"></th> -->
-                                    <th scope="col">Sr. No.</th>
-                                    <th scope="col">Withdrawal ID</th>
-                                    <th scope="col">Customer Code</th>
-                                    <th scope="col">Customer Name</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Remark</th>
-                                    <th scope="col">Bank Status</th>
+                                    <th scope="col" class="small-column">Sr. No.</th>
+                                    <th scope="col" class="mid-column">Withdrawal ID</th>
+                                    <th scope="col" class="mid-column">User ID</th>
+                                    <th scope="col">User Name</th>
+                                    <th scope="col">Dealer Code</th>
+                                    <th scope="col" class="mid-column">Payout Amount</th>
+                                    <th scope="col">Credit Account Number</th>
+                                    <th scope="col">Beneficairy Branch Code</th>
+                                    <th scope="col">UTR No.</th>
+                                    <th scope="col">Date</th>
                                 </tr>
                             </thead>
                             <tbody id="tableBody">
@@ -347,53 +350,67 @@
         $(document).ready(function () {
             $('.dropdown-toggle').dropdown();
         });
-        const apiData = [
-  {
-    withdrawalId: 'WD-001',
-    customerCode: '001',
-    customerName: 'John Doe',
-    amount: '$123',
-    remark: 'Payout',
-    bankStatus: 'Pending'
-  },
-  {
-    withdrawalId: 'WD-00546562',
-    customerCode: '002',
-    customerName: 'Jane Smith',
-    amount: '$456',
-    remark: 'Refund',
-    bankStatus: 'Success'
-  }
-];
+        const tableBody = document.getElementById("tableBody");
+        // let arr = []
+        async function fetchWithdrawalData() {
+            console.log("hi")
+            try {
+                // Fetch data from the API
+                const response = await fetch(
+                    "http://localhost:8080/SinghTek/getWithdrawals/pending",
+                    {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${JSON.parse(
+                                localStorage.getItem("login_token")
+                            )}`,
+                        },
+                    }
+                );
+                const apiData = await response.json();
+                console.log(apiData);
+                apiData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-// Process the dummy API data and add rows dynamically
-const tableBody = document.getElementById('tableBody');
-apiData.forEach((row, index) => {
-  const newRow = tableBody.insertRow();
-  newRow.insertCell().textContent = index + 1;
-  newRow.insertCell().textContent = row.withdrawalId;
-  newRow.insertCell().textContent = row.customerCode;
-  newRow.insertCell().textContent = row.customerName;
-  newRow.insertCell().textContent = row.amount;
-  newRow.insertCell().textContent = row.remark;
+                // Process the fetched API data and add rows dynamically
+                apiData.forEach((row, index) => {
+                    const newRow = tableBody.insertRow();
+                    newRow.insertCell().textContent = index + 1;
+                    newRow.insertCell().textContent = row.withdrawal_id;
+                    newRow.insertCell().textContent = row.user_id;
+                    newRow.insertCell().textContent = row.user_name;
+                    newRow.insertCell().textContent = row.dealer_code;
+                    newRow.insertCell().textContent = row.amount;
+                    newRow.insertCell().textContent = row.credit_account_no;
+                    newRow.insertCell().textContent = row.beneficiary_branch_code;
+                    newRow.insertCell().textContent = row.utr_number;
 
-  const bankStatusCell = newRow.insertCell();
-  const bankStatusSpan = document.createElement('span');
-  bankStatusSpan.textContent = row.bankStatus;
-  bankStatusSpan.classList.add('bank-status');
+                    // Format the creation_date to display only the date
+                    const creationDate = new Date(row.updatedAt);
+                    const options = {
+                        month: "numeric",
+                        day: "numeric",
+                        year: "numeric",
+                        hour: "numeric",
+                        minute: "2-digit",
+                        hour12: true,
+                        timeZone: "Asia/Kolkata",
+                    };
+                    const formattedDate = creationDate.toLocaleString("en-IN", options);
 
-  if (row.bankStatus === 'Pending') {
-    bankStatusSpan.classList.add('bank-status-pending');
-  } else if (row.bankStatus === 'Success') {
-    bankStatusSpan.classList.add('bank-status-success');
-  } else if (row.bankStatus === 'Failed') {
-    bankStatusSpan.classList.add('bank-status-failed');
-  } else if (row.bankStatus === 'Hold') {
-    bankStatusSpan.classList.add('bank-status-hold');
-  }
+                    const dateCell = newRow.insertCell();
+                    dateCell.textContent = formattedDate;
 
-  bankStatusCell.appendChild(bankStatusSpan);
-});
+                    const checkIcon = document.createElement("i");
+                    checkIcon.classList.add("fa", "fa-clock", "text-warning", "ms-2");
+                    dateCell.appendChild(checkIcon);
+                });
+            } catch (error) {
+                console.error("An error occurred while fetching data:", error);
+            }
+        }
+
+        fetchWithdrawalData();
 
 var dropdownMenus = document.getElementsByClassName('dropdown-menu');
 
