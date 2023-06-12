@@ -116,7 +116,7 @@
                         </div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">Jhon Doe</h6>
+                        <h6 class="mb-0" id="s_username"></h6>
                         <span>Admin</span>
                     </div>
                 </div>
@@ -236,7 +236,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="../img/user.jpg" alt=""
                                 style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">John Doe</span>
+                            <span class="d-none d-lg-inline-flex" id="n_username"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">My Profile</a>
@@ -350,6 +350,33 @@
         $(document).ready(function () {
             $('.dropdown-toggle').dropdown();
         });
+
+
+        async function fetchSinghTekDetail() {
+            try {
+                const response = await fetch('https://exuberant-fatigues-jay.cyclic.app/SinghTek/detail', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
+                    },
+                });
+
+                const name = await response.json();
+                userData = name;
+                console.log(name.user_name)
+                document.getElementById("s_username").innerText = name.username
+                document.getElementById("n_username").innerText = name.username
+                
+
+            } catch (error) {
+                alert(error)
+            }
+
+        }
+        fetchSinghTekDetail()
+
+
         const tableBody = document.getElementById("tableBody");
         // let arr = []
         async function fetchWithdrawalData() {

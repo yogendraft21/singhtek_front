@@ -357,6 +357,31 @@
             $('.dropdown-toggle').dropdown();
         });
 
+        async function fetchSinghTekDetail() {
+            try {
+                const response = await fetch('https://exuberant-fatigues-jay.cyclic.app/SinghTek/detail', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
+                    },
+                });
+
+                const name = await response.json();
+                userData = name;
+                console.log(name.user_name)
+                document.getElementById("s_username").innerText = name.username
+                document.getElementById("n_username").innerText = name.username
+                
+
+            } catch (error) {
+                alert(error)
+            }
+
+        }
+        fetchSinghTekDetail()
+
+
         async function fetchDashDetail() {
       try {
         const response = await fetch(
