@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Admin Dashboard</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+
+<style>
+    .checkbox-col {
+        width: 30px;
+        padding: 0;
+        text-align: center;
+    }
+
+    .small-column {
+        width: 50px;
+        /* Adjust the width as needed */
+    }
+
+    .checkbox-row {
+        height: 30px;
+        padding: 0;
+        text-align: center;
+    }
+
+    .custom-search-form {
+        width: 50%;
+    }
+
+    .custom-input {
+        width: 100%;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        padding: 8px;
+    }
+
+    .search-input {
+        max-width: 50%;
+        margin-left: 30%;
+    }
+</style>
+
+<body>
+    <div class="container-fluid position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner"
+            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-light navbar-light">
+                <a href="index.html" class="navbar-brand mx-4 mb-3">
+                    <img src="../img/justapay.png" alt="" style="width: 150px; height: 45px;">
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    <div class="position-relative">
+                        <img class="rounded-circle" src="../img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                        <div
+                            class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+                        </div>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0" id="s_username"></h6>
+                        <span>Admin</span>
+                    </div>
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="index.html" class="nav-item nav-link active"><i
+                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <!-- <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                class="fa fa-laptop me-2"></i>Filter Request's</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="approved.html" class="dropdown-item">Approved</a>
+                            <a href="pending.html" class="dropdown-item">Canceled</a>
+                            <a href="canceled.html" class="dropdown-item">Pending</a>
+                        </div>
+                    </div> -->
+                    <a href="#" class="nav-item nav-link"><i class="fa fa-th me-2"></i>All Merchant's</a>
+                    <a href="#" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Success
+                        History</a>
+                    <a href="#" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Failed
+                        History</a>
+                    <a href="#" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Pending
+                        History</a>
+                    <!-- <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                class="far fa-file-alt me-2"></i>Payout Detail</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="signin.html" class="dropdown-item">Sign In</a>
+                            <a href="signup.html" class="dropdown-item">Sign Up</a>
+                            <a href="404.html" class="dropdown-item">404 Error</a>
+                            <a href="blank.html" class="dropdown-item">Blank Page</a>
+                        </div>
+                    </div> -->
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                    <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+                </a>
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <form class="d-none d-md-flex ms-4 custom-search-form">
+                    <input class="form-control border-0" type="search" placeholder="Search">
+                </form>
+                <div class="navbar-nav align-items-center ms-auto">
+                    <!-- <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-envelope me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">Message</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle" src="img/user.jpg" alt=""
+                                        style="width: 40px; height: 40px;">
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle" src="img/user.jpg" alt=""
+                                        style="width: 40px; height: 40px;">
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle" src="img/user.jpg" alt=""
+                                        style="width: 40px; height: 40px;">
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item text-center">See all message</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-bell me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">Notificatin</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">Profile updated</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">New user added</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">Password changed</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item text-center">See all notifications</a>
+                        </div>
+                    </div> -->
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <img class="rounded-circle me-lg-2" src="../img/user.jpg" alt=""
+                                style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex" id="n_username"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">My Profile</a>
+                            <a href="#" class="dropdown-item">Settings</a>
+                            <a href="#" class="dropdown-item">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- Navbar End -->
+
+
+            <!-- Sale & Revenue Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-line fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Total Requested Amount</p>
+                                <h6 class="mb-0" id="total_amount"></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Withdrawal Requests</p>
+                                <h6 class="mb-0" id="requests"></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-area fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Totol Payout Amount</p>
+                                <h6 class="mb-0" id="payout_amount"></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Total Registered Merchant's</p>
+                                <h6 class="mb-0" id="total_users"></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sale & Revenue End -->
+
+
+            <!-- filter start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="bg-light rounded p-3 d-flex align-items-center justify-content-around">
+                            <h6 class="mb-0">Add Sub-Admin/Company User</h6>
+                            <button type="button" class="btn btn-primary btn-sm" id="addUserButton">Add User</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- filter end -->
+            <!-- Add User Modal -->
+            <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addUserModalLabel">Add User</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="addUserForm">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="usernameInput" class="form-label">Username</label>
+                                            <input type="text" class="form-control" id="usernameInput"
+                                                placeholder="Enter username" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="departmentInput" class="form-label">Department</label>
+                                            <input type="text" class="form-control" id="departmentInput"
+                                                placeholder="Enter department" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="firstNameInput" class="form-label">First Name</label>
+                                            <input type="text" class="form-control" id="firstNameInput"
+                                                placeholder="Enter first name" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="emailInput" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="emailInput"
+                                                placeholder="Enter email" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="designationInput" class="form-label">Designation</label>
+                                            <input type="text" class="form-control" id="designationInput"
+                                                placeholder="Enter designation" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="mobileNoInput" class="form-label">Mobile No</label>
+                                            <input type="tel" class="form-control" id="mobileNoInput"
+                                                placeholder="Enter mobile number" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="userTypeInput" class="form-label">User Type</label>
+                                            <input type="text" class="form-control" id="userTypeInput"
+                                                placeholder="Enter user type" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="lastNameInput" class="form-label">Last Name</label>
+                                            <input type="text" class="form-control" id="lastNameInput"
+                                                placeholder="Enter last name" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="passwordInput" class="form-label">Password</label>
+                                            <input type="password" class="form-control" id="passwordInput"
+                                                placeholder="Enter password" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="saveUserButton">Save User</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <!-- Footer Start -->
+
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/chart/chart.min.js"></script>
+    <script src="../lib/easing/easing.min.js"></script>
+    <script src="../lib/waypoints/waypoints.min.js"></script>
+    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../lib/tempusdominus/js/moment.min.js"></script>
+    <script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+
+
+    <!-- Template Javascript -->
+    <script src="../js/main.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('.dropdown-toggle').dropdown();
+        });
+
+        async function fetchDashDetail() {
+            try {
+                const response = await fetch(
+                    "http://localhost:8080/SinghTek/dashboard/data",
+                    {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${JSON.parse(
+                                localStorage.getItem("login_token")
+                            )}`,
+                        },
+                    }
+                );
+
+                const data = await response.json();
+                console.log(data);
+                document.getElementById('total_amount').innerText = data.totalAmount;
+                document.getElementById('requests').innerText = data.requestCount;
+                document.getElementById('payout_amount').innerText = data.successAmount;
+                document.getElementById('total_users').innerText = data.uniqueMerchants;
+
+            } catch (error) {
+                alert(error);
+            }
+        }
+        fetchDashDetail();
+
+        const addUserButton = document.getElementById('addUserButton');
+
+        // Add a click event listener to open the modal
+        addUserButton.addEventListener('click', () => {
+            const addUserModal = new bootstrap.Modal(document.getElementById('addUserModal'));
+            addUserModal.show();
+        });
+
+        document.getElementById('saveUserButton').addEventListener('click', async () => {
+            try {
+                // Get the form values
+                const username = document.getElementById('usernameInput').value;
+                const department = document.getElementById('departmentInput').value;
+                const firstName = document.getElementById('firstNameInput').value;
+                const email = document.getElementById('emailInput').value;
+                const designation = document.getElementById('designationInput').value;
+                const mobileNo = document.getElementById('mobileNoInput').value;
+                const userType = document.getElementById('userTypeInput').value;
+                const lastName = document.getElementById('lastNameInput').value;
+                const password = document.getElementById('passwordInput').value;
+
+                // Create the request body
+                const requestBody = {
+                    username,
+                    department,
+                    first_name: firstName,
+                    email,
+                    designation,
+                    mobile_no: mobileNo,
+                    user_type: userType,
+                    last_name: lastName,
+                    password,
+                };
+
+                // Make the API request
+                const response = await fetch('http://localhost:8080/Admin/sub-admin/register', {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${JSON.parse(
+                            localStorage.getItem("login_token")
+                        )}`,
+                    },
+                    body: JSON.stringify(requestBody),
+                });
+
+                if (response.ok) {
+                    const responseData = await response.json();
+                    alert(responseData.message);
+                    document.getElementById('usernameInput').value = '';
+                    document.getElementById('departmentInput').value = '';
+                    document.getElementById('firstNameInput').value = '';
+                    document.getElementById('emailInput').value = '';
+                    document.getElementById('designationInput').value = '';
+                    document.getElementById('mobileNoInput').value = '';
+                    document.getElementById('userTypeInput').value = '';
+                    document.getElementById('lastNameInput').value = '';
+                    document.getElementById('passwordInput').value = '';
+                } else {
+                    console.error('Error registering user:', response.statusText);
+                    // Display an error message to the user
+                    alert('An error occurred while registering the user');
+                }
+
+            } catch (error) {
+                console.error('Error registering user:', error);
+                // Display an error message to the user
+                alert('An error occurred while registering the user');
+            }
+        });
+
+
+
+
+        var dropdownMenus = document.getElementsByClassName('dropdown-menu');
+
+        document.addEventListener('click', function (event) {
+            for (var i = 0; i < dropdownMenus.length; i++) {
+                if (dropdownMenus[i].contains(event.target)) {
+                    if (event.target.matches('.dropdown-item:nth-child(3)')) {
+                        event.preventDefault();
+                        localStorage.removeItem('login_token');
+                        location.reload();
+                        location.href = '../index.html';
+                    }
+                    break;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
