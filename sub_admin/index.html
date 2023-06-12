@@ -360,7 +360,7 @@
         async function fetchDashDetail() {
       try {
         const response = await fetch(
-          "http://localhost:8080/SinghTek/dashboard/data",
+          "https://singhtek-justpay.onrender.com/SinghTek/dashboard/data",
           {
             method: "GET",
             headers: {
@@ -451,7 +451,7 @@
             if (selectedMerchantId && !isNaN(amount)) {
                 try {
                     // Make a PUT request to the API endpoint to add the amount to the merchant
-                    const response = await fetch(`http://localhost:8080/SinghTek/add/amount/${selectedMerchantId}`, {
+                    const response = await fetch(`https://singhtek-justpay.onrender.com/SinghTek/add/amount/${selectedMerchantId}`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
