@@ -1,195 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>All Withdrawal's</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="img/favicon.ico" rel="icon" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
 
     <!-- Libraries Stylesheet -->
-    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link
+      href="../lib/owlcarousel/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css"
+      rel="stylesheet"
+    />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Template Stylesheet -->
-    <link href="../css/style.css" rel="stylesheet">
-</head>
+    <link href="../css/style.css" rel="stylesheet" />
+  </head>
 
-<style>
+  <style>
     .checkbox-col {
-        width: 30px;
-        padding: 0;
-        text-align: center;
+      width: 30px;
+      padding: 0;
+      text-align: center;
     }
 
     .small-column {
-        width: 50px;
-        /* Adjust the width as needed */
+      width: 50px;
+      /* Adjust the width as needed */
     }
 
     .custom-search-form {
-        width: 50%;
+      width: 50%;
     }
 
     .custom-input {
-        width: 100%;
-        border: 1px solid #ced4da;
-        border-radius: 4px;
-        padding: 8px;
+      width: 100%;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      padding: 8px;
     }
 
     .search-input {
-        max-width: 50%;
-        margin-left: 30%;
+      max-width: 50%;
+      margin-left: 30%;
     }
 
     .bank-status {
-        padding: 5px 10px;
-        border-radius: 5px;
-        font-weight: bold;
-        text-align: center;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-align: center;
     }
 
     .bank-status-pending {
-        font-size: 14px;
-        background-color: gray;
-        color: white;
+      font-size: 14px;
+      background-color: gray;
+      color: white;
     }
 
     .bank-status-success {
-        font-size: 14px;
-        background-color: green;
-        color: white;
+      font-size: 14px;
+      background-color: green;
+      color: white;
     }
 
     .bank-status-failed {
-        font-size: 14px;
-        background-color: red;
-        color: white;
+      font-size: 14px;
+      background-color: red;
+      color: white;
     }
 
     .bank-status-hold {
-        font-size: 14px;
-        /* Choose the desired color for the hold status */
-        background-color: orange;
-        color: black;
+      font-size: 14px;
+      /* Choose the desired color for the hold status */
+      background-color: orange;
+      color: black;
     }
 
     .overflow-cell {
-        max-width: 150px;
-        /* Adjust the width as needed */
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+      max-width: 150px;
+      /* Adjust the width as needed */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
-
     .modal-body {
-        overflow-x: hidden;
+      overflow-x: hidden;
     }
 
     .form-label {
-        font-weight: bold;
+      font-weight: bold;
     }
 
     .form-control:focus {
-        border-color: #80bdff;
-        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+      border-color: #80bdff;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
     }
 
     .btn-submit {
-        margin-right: 10px;
+      margin-right: 10px;
     }
 
     #myTable td.overflow-hidden-cell {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
     .custom-width {
-        width: 80%;
-        max-width: 80%;
+      width: 80%;
+      max-width: 80%;
     }
 
     .wallet-balance {
-        display: flex;
-        align-items: center;
-        padding: 0.5rem;
-        background-color: #fff;
-        border-radius: 4px;
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+      background-color: #fff;
+      border-radius: 4px;
     }
 
-
     .wallet-balance .balance-text {
-        font-weight: bold;
-        padding-right: 5px;
+      font-weight: bold;
+      padding-right: 5px;
     }
 
     #walletBalance {
-        font-weight: bold;
-        color: #5ea725;
+      font-weight: bold;
+      color: #5ea725;
     }
     .field-label {
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 5px;
-}
-</style>
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+    }
+  </style>
 
-<body>
+  <body>
     <div class="container-fluid position-relative bg-white d-flex p-0">
-        <!-- Spinner Start -->
-        <div id="spinner"
-            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
+      <!-- Spinner Start -->
+      <div
+        id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+      >
+        <div
+          class="spinner-border text-primary"
+          style="width: 3rem; height: 3rem"
+          role="status"
+        >
+          <span class="sr-only">Loading...</span>
         </div>
-        <!-- Spinner End -->
+      </div>
+      <!-- Spinner End -->
 
-
-        <!-- Sidebar Start -->
-        <div class="sidebar pe-4 pb-3" >
-            <nav class="navbar bg-light navbar-light">
-                <a href="index.html" class="navbar-brand mx-4 mb-3">
-                    <img src="../img/justapay.png" alt="" style="width: 150px; height: 45px;">
-                </a>
-                <div class="d-flex align-items-center ms-4 mb-4">
-                    <div class="position-relative">
-                        <img class="rounded-circle" src="../img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                        <div
-                            class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
-                        </div>
-                    </div>
-                    <div class="ms-3">
-                        <h6 class="mb-0" id="s_username"></h6>
-                        <span>Merchant</span>
-                    </div>
-                </div>
-                <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link "><i
-                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <!-- <div class="nav-item dropdown">
+      <!-- Sidebar Start -->
+      <div class="sidebar pe-4 pb-3">
+        <nav class="navbar bg-light navbar-light">
+          <a href="index.html" class="navbar-brand mx-4 mb-3">
+            <img
+              src="../img/justapay.png"
+              alt=""
+              style="width: 150px; height: 45px"
+            />
+          </a>
+          <div class="d-flex align-items-center ms-4 mb-4">
+            <div class="position-relative">
+              <img
+                class="rounded-circle"
+                src="../img/user.jpg"
+                alt=""
+                style="width: 40px; height: 40px"
+              />
+              <div
+                class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"
+              ></div>
+            </div>
+            <div class="ms-3">
+              <h6 class="mb-0" id="s_username"></h6>
+              <span>Merchant</span>
+            </div>
+          </div>
+          <div class="navbar-nav w-100">
+            <a href="index.html" class="nav-item nav-link"
+              ><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a
+            >
+            <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="fa fa-laptop me-2"></i>Filter Request's</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -198,15 +225,19 @@
                             <a href="pending.html" class="dropdown-item">Pending</a>
                         </div>
                     </div> -->
-                    <a href="users.html" class="nav-item nav-link active"><i class="fa fa-th me-2"></i>All
-                        Transaction's</a>
-                    <a href="sucess_history.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Success
-                        History</a>
-                    <a href="failed_history.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Failed
-                        History</a>
-                    <a href="pending_history.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Pending
-                        History</a>
-                    <!-- <div class="nav-item dropdown">
+            <a href="users.html" class="nav-item nav-link active"
+              ><i class="fa fa-th me-2"></i>All Transaction's</a
+            >
+            <a href="sucess_history.html" class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>Success History</a
+            >
+            <a href="failed_history.html" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Failed History</a
+            >
+            <a href="pending_history.html" class="nav-item nav-link"
+              ><i class="fa fa-chart-bar me-2"></i>Pending History</a
+            >
+            <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="far fa-file-alt me-2"></i>Payout Detail</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -216,63 +247,152 @@
                             <a href="blank.html" class="dropdown-item">Blank Page</a>
                         </div>
                     </div> -->
-                </div>
-            </nav>
+          </div>
+        </nav>
+      </div>
+      <!-- Sidebar End -->
+
+      <!-- Content Start -->
+      <div class="content">
+        <!-- Navbar Start -->
+        <nav
+          class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0"
+        >
+          <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+            <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+          </a>
+          <a href="#" class="sidebar-toggler flex-shrink-0">
+            <i class="fa fa-bars"></i>
+          </a>
+          <form class="d-none d-md-flex ms-4 custom-search-form">
+            <input
+              class="form-control border-0"
+              type="search"
+              placeholder="Search"
+            />
+          </form>
+          <div class="navbar-nav align-items-center ms-auto">
+            <div class="wallet-balance me-3">
+              <i class="fas fa-inr"></i>
+              <span class="balance-text">Balance:</span>
+              <span id="walletBalance"></span>
+              <span style="color: #5ea725; font-weight: bold; margin-left: 5px"
+                >&#8377;</span
+              >
+            </div>
+            <div class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+              >
+                <img
+                  class="rounded-circle me-lg-2"
+                  src="../img/user.jpg"
+                  alt=""
+                  style="width: 40px; height: 40px"
+                />
+                <span class="d-none d-lg-inline-flex" id="n_username"></span>
+              </a>
+              <div
+                class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0"
+              >
+                <a href="#" id="profileLink" class="dropdown-item"
+                  >My Profile</a
+                >
+                <a href="#" class="dropdown-item">Settings</a>
+                <a href="" class="dropdown-item">Log Out</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <!-- Navbar End -->
+
+        <!-- HTML code for the profile popup -->
+        <div class="modal" id="profileModal">
+          <div class="modal-dialog modal-lg custom-width">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">My Profile</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body" id="profileDetails"></div>
+            </div>
+          </div>
         </div>
-        <!-- Sidebar End -->
 
-
-        <!-- Content Start -->
-        <div class="content">
-            <!-- Navbar Start -->
-            <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
-                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
-                    <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
-                </a>
-                <a href="#" class="sidebar-toggler flex-shrink-0">
-                    <i class="fa fa-bars"></i>
-                </a>
-                <form class="d-none d-md-flex ms-4 custom-search-form">
-                    <input class="form-control border-0" type="search" placeholder="Search" />
-                </form>
-                <div class="navbar-nav align-items-center ms-auto">
-                    <div class="wallet-balance me-3">
-                        <i class="fas fa-inr"></i>
-                        <span class="balance-text">Balance:</span>
-                        <span id="walletBalance"></span>
-                        <span style="color: #5ea725;font-weight: bold; margin-left: 5px;">&#8377;</span>
+            <div class="container-fluid pt-4 px-4">
+                <div class="d-flex align-items-center justify-content-between">
+                <div class="bg-light rounded p-3">
+                    <div class="d-flex">
+                    <div class="flex-grow-1 me-3">
+                        <input
+                        type="date"
+                        class="form-control form-control-sm custom-input"
+                        id="startDate"
+                        />
                     </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="../img/user.jpg" alt=""
-                                style="width: 40px; height: 40px" />
-                            <span class="d-none d-lg-inline-flex" id="n_username"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" id="profileLink" class="dropdown-item">My Profile</a>
-                            <a href="#" class="dropdown-item">Settings</a>
-                            <a href="" class="dropdown-item">Log Out</a>
-                        </div>
+                    <div class="flex-grow-1 me-3">
+                        <input
+                        type="date"
+                        class="form-control form-control-sm custom-input"
+                        id="endDate"
+                        />
+                    </div>
+                    <div>
+                        <button
+                        type="button"
+                        class="btn btn-primary btn-sm"
+                        id="filterDateButton"
+                        style="margin: 5px 10px 0px 0px;"
+                        >
+                        Apply Filters
+                        </button>
+                    </div>
+                    <div>
+                        <button
+                        type="button"
+                        class="btn btn-secondary btn-sm"
+                        id="resetDateButton"
+                        style="margin-top: 5px;"
+                        >
+                        Reset Filters
+                        </button>
+                    </div>
                     </div>
                 </div>
-            </nav>
-            <!-- Navbar End -->
-
-            <!-- HTML code for the profile popup -->
-            <div class="modal" id="profileModal">
-                <div class="modal-dialog modal-lg custom-width">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">My Profile</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body" id="profileDetails"></div>
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1 me-3">
+                    <button class="btn btn-primary btn-sm" id="downloadExcel" style="margin-top: 5px;">
+                        Download Excel Format
+                    </button>
                     </div>
+                    <div class="text-center me-3 mt-2 d-flex justify-content-center">
+                    <input
+                        type="file"
+                        id="excelFileInput"
+                        accept=".xlsx, .xls"
+                        style="display: inline-block; width: 220px"
+                    />
+                    <button class="btn btn-primary btn-sm ms-2" id="importButton">
+                        Upload
+                    </button>
+                    </div>
+                </div>
                 </div>
             </div>
+          
+          
+          
+          
 
-            <!-- filter start -->
-            <div class="container-fluid pt-4 px-4">
+        <!-- filter start -->
+        <!-- <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-12">
                         <div class="bg-light rounded p-3">
@@ -319,245 +439,354 @@
                         </div>
                     </div>
                 </div>
+            </div> -->
+
+        <!-- filter end -->
+
+        <!-- Recent Sales Start -->
+        <div class="container-fluid pt-4 px-4">
+          <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+              <h6 class="mb-0" style="flex: 1; margin-left: -20px">
+                All Transaction Requests
+              </h6>
+              <button
+                class="btn btn-primary"
+                id="addNewUserBtn"
+                style="flex: 0.5; margin-left: 20px"
+              >
+                Add Request
+              </button>
+              <div class="input-group" style="flex: 2.5; margin-right: 20px">
+                <input
+                  type="text"
+                  class="form-control search-input"
+                  id="searchInput"
+                  placeholder="Search..."
+                />
+                <button class="btn btn-primary" type="button" id="searchButton">
+                  Search
+                </button>
+              </div>
+              <div class="input-group" style="flex: 1">
+                <select
+                  id="nameFilter"
+                  class="form-select"
+                  style="margin-left: 10px"
+                  size="1"
+                  onchange="handleFilterChange(this.value)"
+                >
+                  <option value="">Filter Transaction's</option>
+                  <option value="">All</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Allow">Allow</option>
+                  <option value="Cancel">Cancel</option>
+                </select>
+              </div>
             </div>
 
+            <div
+              class="table-responsive"
+              style="height: 300px; overflow-y: auto"
+            >
+              <table
+                id="myTable"
+                class="table text-start align-middle table-bordered table-hover mb-0"
+                style="table-layout: fixed"
+              >
+                <thead>
+                  <tr class="text-dark">
+                    <th scope="col" class="checkbox-col">
+                      <input class="form-check-input" type="checkbox" />
+                    </th>
+                    <th scope="col" class="small-column">S.No.</th>
+                    <th scope="col">Withdrawal ID</th>
+                    <th scope="col">User ID</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="tableBody">
+                  <!-- Rows will be dynamically added here -->
+                </tbody>
+              </table>
+            </div>
 
-
-            <!-- filter end -->
-
-
-            <!-- Recent Sales Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="bg-light text-center rounded p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0" style="flex:1; margin-left: -20px;">All Transaction Requests</h6>
-                        <button class="btn btn-primary" id="addNewUserBtn" style="flex: 0.5; margin-left: 20px;">
-                            Add Request
-                        </button>
-                        <div class="input-group" style="flex:2.5; margin-right: 20px;">
-                            <input type="text" class="form-control search-input" id="searchInput"
-                                placeholder="Search...">
-                            <button class="btn btn-primary" type="button" id="searchButton">Search</button>
-                        </div>
-                        <div class="input-group" style="flex: 1;">
-                            <select id="nameFilter" class="form-select" style="margin-left: 10px;" size="1"
-                                onchange="handleFilterChange(this.value)">
-                                <option value="">Filter Transaction's</option>
-                                <option value="">All</option>
-                                <option value="Pending">Pending</option>
-                                <option value="Allow">Allow</option>
-                                <option value="Cancel">Cancel</option>
-                            </select>
-                        </div>
-
+            <!-- request detail popup start -->
+            <div
+              class="modal fade"
+              id="popupModal"
+              tabindex="-1"
+              aria-labelledby="popupModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-lg">
+                <!-- Add the modal-lg class for a larger modal -->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="popupModalLabel">
+                      Request Detail
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label class="field-label">Withdrawal ID:</label>
+                        <span id="withdrawalIdField"></span>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="field-label">User ID:</label>
+                        <span id="userIdField"></span>
+                      </div>
                     </div>
-
-
-
-                    <div class="table-responsive" style="height: 300px; overflow-y: auto;">
-                        <table id="myTable" class="table text-start align-middle table-bordered table-hover mb-0"
-                            style="table-layout: fixed;">
-                            <thead>
-                                <tr class="text-dark">
-                                    <th scope="col" class="checkbox-col"><input class="form-check-input"
-                                            type="checkbox"></th>
-                                    <th scope="col" class="small-column">S.No.</th>
-                                    <th scope="col">Withdrawal ID</th>
-                                    <th scope="col">User ID</th>
-                                    <th scope="col">User Name</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tableBody">
-                                <!-- Rows will be dynamically added here -->
-                            </tbody>
-
-                        </table>
-
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label class="field-label">User Name:</label>
+                        <span id="userNameField"></span>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="field-label"
+                          >Credit Account Number:</label
+                        >
+                        <span id="creditAccountNumberField"></span>
+                      </div>
                     </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label class="field-label">Beneficiary Name:</label>
+                        <span id="beneficiaryNameField"></span>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="field-label"
+                          >Beneficiary Branch Code:</label
+                        >
+                        <span id="beneficiaryBranchCodeField"></span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label class="field-label">Amount:</label>
+                        <span id="amountField"></span>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="field-label">Dealer Code:</label>
+                        <span id="dealerCode"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-                    <!-- request detail popup start -->
-                    <div class="modal fade" id="popupModal" tabindex="-1" aria-labelledby="popupModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg"> <!-- Add the modal-lg class for a larger modal -->
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="popupModalLabel">Request Detail</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <label class="field-label">Withdrawal ID:</label>
-                                  <span id="withdrawalIdField"></span>
-                                </div>
-                                <div class="col-md-6">
-                                  <label class="field-label">User ID:</label>
-                                  <span id="userIdField"></span>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <label class="field-label">User Name:</label>
-                                  <span id="userNameField"></span>
-                                </div>
-                                <div class="col-md-6">
-                                  <label class="field-label">Credit Account Number:</label>
-                                  <span id="creditAccountNumberField"></span>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <label class="field-label">Beneficiary Name:</label>
-                                  <span id="beneficiaryNameField"></span>
-                                </div>
-                                <div class="col-md-6">
-                                  <label class="field-label">Beneficiary Branch Code:</label>
-                                  <span id="beneficiaryBranchCodeField"></span>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <label class="field-label">Amount:</label>
-                                  <span id="amountField"></span>
-                                </div>
-                                <div class="col-md-6">
-                                  <label class="field-label">Dealer Code:</label>
-                                  <span id="dealerCode"></span>
-                                </div>
-                              </div>
-                            </div>
+            <!-- request detail popup end -->
+
+            <!-- Popup dialog for displaying row information -->
+            <div
+              class="modal fade"
+              id="viewModal"
+              tabindex="-1"
+              aria-labelledby="viewModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="viewModalLabel">
+                      User Information
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <div id="userInfo"></div>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Add New User Modal -->
+            <div
+              id="popupDialog"
+              class="modal fade"
+              tabindex="-1"
+              aria-labelledby="popupDialogLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-lg">
+                <!-- Add 'modal-lg' class to increase the width -->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="popupDialogLabel">
+                      Add New Request
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="requestForm">
+                      <div class="row">
+                        <!-- Add 'row' class to create a row for two fields -->
+                        <div class="col-md-6">
+                          <!-- Use 'col-md-6' class to make two fields occupy half of the width each -->
+                          <div class="mb-3">
+                            <label for="customerCode" class="form-label"
+                              >User ID:</label
+                            >
+                            <input
+                              type="text"
+                              id="customerCode"
+                              class="form-control"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="mb-3">
+                            <label for="customerName" class="form-label"
+                              >User Name:</label
+                            >
+                            <input
+                              type="text"
+                              id="customerName"
+                              class="form-control"
+                              required
+                            />
                           </div>
                         </div>
                       </div>
-                      
-
-
-                    <!-- request detail popup end -->
-
-                    <!-- Popup dialog for displaying row information -->
-                    <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="viewModalLabel">User Information</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div id="userInfo"></div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                </div>
-                            </div>
+                      <div class="row">
+                        <!-- Add 'row' class to create a row for two fields -->
+                        <div class="col-md-6">
+                          <!-- Use 'col-md-6' class to make two fields occupy half of the width each -->
+                          <div class="mb-3">
+                            <label for="customerCode" class="form-label"
+                              >Dealer Code:</label
+                            >
+                            <input
+                              type="text"
+                              id="debitAccountNo"
+                              class="form-control"
+                              required
+                            />
+                          </div>
                         </div>
-                    </div>
-
-
-                    <!-- Add New User Modal -->
-                    <div id="popupDialog" class="modal fade" tabindex="-1" aria-labelledby="popupDialogLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-lg"> <!-- Add 'modal-lg' class to increase the width -->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="popupDialogLabel">Add New Request</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form id="requestForm">
-                                        <div class="row"> <!-- Add 'row' class to create a row for two fields -->
-                                            <div class="col-md-6">
-                                                <!-- Use 'col-md-6' class to make two fields occupy half of the width each -->
-                                                <div class="mb-3">
-                                                    <label for="customerCode" class="form-label">User ID:</label>
-                                                    <input type="text" id="customerCode" class="form-control" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label for="customerName" class="form-label">User Name:</label>
-                                                    <input type="text" id="customerName" class="form-control" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row"> <!-- Add 'row' class to create a row for two fields -->
-                                            <div class="col-md-6">
-                                                <!-- Use 'col-md-6' class to make two fields occupy half of the width each -->
-                                                <div class="mb-3">
-                                                    <label for="customerCode" class="form-label">Dealer Code:</label>
-                                                    <input type="text" id="debitAccountNo" class="form-control"
-                                                        required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label for="customerName" class="form-label">Credit Account
-                                                        Number:</label>
-                                                    <input type="text" id="creditAccountNo" class="form-control"
-                                                        required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row"> <!-- Add 'row' class to create a row for two fields -->
-                                            <div class="col-md-6">
-                                                <!-- Use 'col-md-6' class to make two fields occupy half of the width each -->
-                                                <div class="mb-3">
-                                                    <label for="customerCode" class="form-label">Beneficairy
-                                                        Name:</label>
-                                                    <input type="text" id="beneficiaryName" class="form-control"
-                                                        required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label for="customerName" class="form-label">Beneficairy Branch
-                                                        Code:</label>
-                                                    <input type="text" id="beneficiaryBranchCode" class="form-control"
-                                                        required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row"> <!-- Add 'row' class to create a row for two fields -->
-                                            <div class="col-md-6">
-                                                <!-- Use 'col-md-6' class to make two fields occupy half of the width each -->
-                                                <div class="mb-3">
-                                                    <label for="customerCode" class="form-label">Amount:</label>
-                                                    <input type="number" id="amount" class="form-control" required>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <!-- Add more fields in similar row and column structure -->
-
-                                        <div class="text-end mt-4">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                        <div class="col-md-6">
+                          <div class="mb-3">
+                            <label for="customerName" class="form-label"
+                              >Credit Account Number:</label
+                            >
+                            <input
+                              type="text"
+                              id="creditAccountNo"
+                              class="form-control"
+                              required
+                            />
+                          </div>
                         </div>
-                    </div>
+                      </div>
+                      <div class="row">
+                        <!-- Add 'row' class to create a row for two fields -->
+                        <div class="col-md-6">
+                          <!-- Use 'col-md-6' class to make two fields occupy half of the width each -->
+                          <div class="mb-3">
+                            <label for="customerCode" class="form-label"
+                              >Beneficairy Name:</label
+                            >
+                            <input
+                              type="text"
+                              id="beneficiaryName"
+                              class="form-control"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="mb-3">
+                            <label for="customerName" class="form-label"
+                              >Beneficairy Branch Code:</label
+                            >
+                            <input
+                              type="text"
+                              id="beneficiaryBranchCode"
+                              class="form-control"
+                              required
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <!-- Add 'row' class to create a row for two fields -->
+                        <div class="col-md-6">
+                          <!-- Use 'col-md-6' class to make two fields occupy half of the width each -->
+                          <div class="mb-3">
+                            <label for="customerCode" class="form-label"
+                              >Amount:</label
+                            >
+                            <input
+                              type="number"
+                              id="amount"
+                              class="form-control"
+                              required
+                            />
+                          </div>
+                        </div>
+                      </div>
 
+                      <!-- Add more fields in similar row and column structure -->
 
+                      <div class="text-end mt-4">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                          Submit
+                        </button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
+              </div>
             </div>
-
-
-            <!-- Recent Sales End -->
+          </div>
         </div>
-        <!-- Content End -->
 
+        <!-- Recent Sales End -->
+      </div>
+      <!-- Content End -->
 
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+      <!-- Back to Top -->
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
+        ><i class="bi bi-arrow-up"></i
+      ></a>
     </div>
 
     <!-- JavaScript Libraries -->
@@ -572,50 +801,73 @@
     <script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-
-
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>
     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <script>
-
-
-
-        // fetch merchant detail.
-        let userData = []
-        async function fetchMerchantDetail() {
-            try {
-                const response = await fetch('https://exuberant-fatigues-jay.cyclic.app/Merchant/detail', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
-                    },
-                });
-
-                const name = await response.json();
-                userData = name;
-                console.log(name.amount)
-                document.getElementById("s_username").innerText = name.user_name
-                document.getElementById("n_username").innerText = name.user_name
-                document.getElementById("walletBalance").innerText = name.amount
-
-
-            } catch (error) {
-                slert(error)
+      // fetch merchant detail.
+      let userData = [];
+      async function fetchMerchantDetail() {
+        try {
+          const response = await fetch(
+            "https://exuberant-fatigues-jay.cyclic.app/Merchant/detail",
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${JSON.parse(
+                  localStorage.getItem("login_token")
+                )}`,
+              },
             }
+          );
 
+          const name = await response.json();
+          userData = name;
+          console.log(name.amount);
+          document.getElementById("s_username").innerText = name.user_name;
+          document.getElementById("n_username").innerText = name.user_name;
+          document.getElementById("walletBalance").innerText = name.amount;
+        } catch (error) {
+          slert(error);
         }
-        fetchMerchantDetail()
+      }
+      fetchMerchantDetail();
 
+      function generateProfileHTML(user) {
+        const {
+          _id,
+          user_name,
+          email,
+          mobile,
+          password,
+          transaction_limit,
+          amount,
+          business_detail,
+          business_address,
+          kyc_documents,
+        } = user;
+        const {
+          merchant_name,
+          business_name,
+          business_type,
+          business_category,
+          business_sub_category,
+          company_expenditure,
+          website,
+          bank_name,
+          bank_account_number,
+          bank_ifsc_code,
+          gst,
+          pan_number,
+          aadhar_number,
+        } = user.business_detail;
+        const { address, pincode, city, state, country } =
+          user.business_address;
+        const { company_pan_card, company_gst, bank_statement } =
+          user.kyc_documents;
 
-        function generateProfileHTML(user) {
-            const { _id, user_name, email, mobile, password, transaction_limit, amount, business_detail, business_address, kyc_documents } = user;
-            const { merchant_name, business_name, business_type, business_category, business_sub_category, company_expenditure, website, bank_name, bank_account_number, bank_ifsc_code, gst, pan_number, aadhar_number } = user.business_detail;
-            const { address, pincode, city, state, country } = user.business_address;
-            const { company_pan_card, company_gst, bank_statement } = user.kyc_documents;
-
-            const html = `
+        const html = `
       <div class="row">
         <div class="col-sm-4">
           <p><strong>Dealer Code:</strong> ${_id}</p>
@@ -718,504 +970,543 @@
       <!-- Add more fields in similar row/column structure -->
     `;
 
-            return html;
+        return html;
+      }
+      function openProfilePopup() {
+        const profileLink = document.getElementById("profileLink");
+        const profileDetails = document.getElementById("profileDetails");
+
+        profileLink.addEventListener("click", (event) => {
+          event.preventDefault(); // Prevent the default link behavior
+
+          // Replace the following code with your actual user data
+          // Generate HTML for user details
+          const profileHTML = generateProfileHTML(userData);
+
+          // Set the HTML content of profileDetails
+          profileDetails.innerHTML = profileHTML;
+
+          // Show the profile popup
+          const profileModal = new bootstrap.Modal(
+            document.getElementById("profileModal")
+          );
+          profileModal.show();
+        });
+      }
+
+      // Call the function to open the profile popup
+      openProfilePopup();
+
+      $(document).ready(function () {
+        $(".dropdown-toggle").dropdown();
+      });
+
+      const btn = document.getElementById("addNewUserBtn");
+      btn.addEventListener("click", function (event) {
+        event.preventDefault();
+        $("#popupDialog").modal("show");
+      });
+      document
+        .getElementById("requestForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          var requestField1Value =
+            document.getElementById("requestField1").value;
+          var requestField2Value =
+            document.getElementById("requestField2").value;
+
+          // Perform any necessary actions with the form values
+
+          $("#popupDialog").modal("hide");
+        });
+
+      const tableBody = document.getElementById("tableBody");
+      let arr = [];
+      async function fetchWithdrawalData() {
+        try {
+          // Fetch data from the API
+          const response = await fetch(
+            "https://exuberant-fatigues-jay.cyclic.app/Merchant/getWithdrawals",
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${JSON.parse(
+                  localStorage.getItem("login_token")
+                )}`,
+              },
+            }
+          );
+          const apiData = await response.json();
+          // console.log(apiData);
+          apiData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+          arr = apiData;
+          fillTable(apiData);
+          // fetchAllow(apiData);
+          // fetchCancel(apiData);
+          // fetchPending(apiData);
+        } catch (error) {
+          console.error("An error occurred while fetching data:", error);
         }
-        function openProfilePopup() {
-            const profileLink = document.getElementById('profileLink');
-            const profileDetails = document.getElementById('profileDetails');
+      }
 
-            profileLink.addEventListener('click', (event) => {
-                event.preventDefault(); // Prevent the default link behavior
+      // Function to update the merchant status via API
+      async function updateMerchantStatus(withdrawalId, merchantStatus) {
+        try {
+          const response = await fetch(
+            "https://exuberant-fatigues-jay.cyclic.app/Merchant/withdrawal/updatestatus",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${JSON.parse(
+                  localStorage.getItem("login_token")
+                )}`,
+              },
+              body: JSON.stringify({
+                withdrawal_id: withdrawalId,
+                merchant_status: merchantStatus,
+              }),
+            }
+          );
+          const data = await response.json();
 
-                // Replace the following code with your actual user data
-                // Generate HTML for user details
-                const profileHTML = generateProfileHTML(userData);
+          if (data.error) {
+            alert(data.error);
+            return data;
+          } else {
+            fetchMerchantDetail();
+            return data;
+          }
+        } catch (error) {
+          console.error(
+            "An error occurred while updating the merchant status:",
+            error
+          );
+        }
+      }
 
-                // Set the HTML content of profileDetails
-                profileDetails.innerHTML = profileHTML;
+      fetchWithdrawalData();
 
-                // Show the profile popup
-                const profileModal = new bootstrap.Modal(document.getElementById('profileModal'));
-                profileModal.show();
+      function disableDropdown(dropdownButton) {
+        dropdownButton.disabled = true;
+      }
+
+      // Function to handle dropdown selection
+      function selectValue(element, value, rowId) {
+        const dropdownButton =
+          element.parentNode.parentNode.querySelector(".dropdown-toggle");
+        const dropdownMenu =
+          element.parentNode.parentNode.querySelector(".dropdown-menu");
+
+        if (value === "Allow") {
+          dropdownButton.classList.remove("btn-danger");
+          dropdownButton.classList.add("btn-success");
+        } else if (value === "Cancel") {
+          dropdownButton.classList.remove("btn-success");
+          dropdownButton.classList.add("btn-danger");
+        }
+
+        dropdownButton.textContent = value;
+        dropdownButton.classList.add("text-white");
+        dropdownMenu.classList.remove("show");
+      }
+
+      function handleFilterChange(selectedValue) {
+        switch (selectedValue) {
+          case "Allow":
+            fetchAllow(arr);
+            break;
+          case "Cancel":
+            fetchCancel(arr);
+            break;
+          case "Pending":
+            fetchPending(arr);
+            break;
+          default:
+            fetchWithdrawalData();
+            break;
+        }
+      }
+
+      function fetchAllow(data) {
+        const filteredData = data.filter(
+          (item) => item.merchant_status === "Allow"
+        );
+        tableBody.innerHTML = "";
+        fillTable(filteredData);
+      }
+
+      function fetchCancel(data) {
+        const filteredData = data.filter(
+          (item) => item.merchant_status === "Cancel"
+        );
+        tableBody.innerHTML = "";
+        fillTable(filteredData);
+      }
+
+      function fetchPending(data) {
+        const filteredData = data.filter(
+          (item) => item.merchant_status === "Pending"
+        );
+        tableBody.innerHTML = "";
+        fillTable(filteredData);
+      }
+
+      function fillTable(apiData) {
+        tableBody.innerHTML = "";
+        const searchInput = document.getElementById("searchInput");
+        const searchButton = document.getElementById("searchButton");
+
+        const applyFilter = () => {
+          const query = searchInput.value.toLowerCase().trim();
+          const startDate = document.getElementById("startDate").value;
+          const endDate = document.getElementById("endDate").value;
+
+          // Clear the table body
+          tableBody.innerHTML = "";
+
+          // Filter the data based on the search query and date range
+          const filteredData = apiData.filter((row) => {
+            const createdAtDate = new Date(row.createdAt.substring(0, 10));
+            const isRowInDateRange =
+              (!startDate || createdAtDate >= new Date(startDate)) &&
+              (!endDate || createdAtDate <= new Date(endDate));
+            const isRowMatchingQuery =
+              row.withdrawal_id.toLowerCase().includes(query) ||
+              row.user_id.toLowerCase().includes(query) ||
+              row.user_name.toLowerCase().includes(query) ||
+              row.amount.toString().includes(query);
+            return isRowInDateRange && isRowMatchingQuery;
+          });
+
+          searchButton.addEventListener("click", applyFilter);
+          searchInput.addEventListener("keyup", applyFilter);
+
+          // Find the column indexes for the "status" and "action" columns
+          const table = document.getElementById("myTable");
+
+          let statusColumnIndex = -1;
+          let actionColumnIndex = -1;
+          const headerRow = table.rows[0]; // Assuming the first row contains the table headers
+
+          for (let i = 0; i < headerRow.cells.length; i++) {
+            const cellContent = headerRow.cells[i].textContent.trim();
+
+            // Check for "status" column
+            if (cellContent === "Status") {
+              statusColumnIndex = i;
+            }
+
+            // Check for "action" column
+            if (cellContent === "Action") {
+              actionColumnIndex = i;
+            }
+
+            // Break the loop if both column indexes are found
+            if (statusColumnIndex !== -1 && actionColumnIndex !== -1) {
+              break;
+            }
+          }
+
+          filteredData.forEach((row, index) => {
+            const newRow = tableBody.insertRow();
+            const checkboxCell = newRow.insertCell();
+            checkboxCell.className = "checkbox-row";
+            checkboxCell.innerHTML =
+              '<input class="form-check-input" type="checkbox">';
+
+            const cells = [
+              newRow.insertCell(),
+              newRow.insertCell(),
+              newRow.insertCell(),
+              newRow.insertCell(),
+              newRow.insertCell(),
+            ];
+
+            cells[0].textContent = index + 1;
+            cells[1].textContent = row.withdrawal_id;
+            cells[2].textContent = row.user_id;
+            cells[3].textContent = row.user_name;
+            cells[4].textContent = row.amount;
+
+            cells.forEach((cell) => {
+              cell.classList.add("overflow-hidden-cell");
             });
-        }
 
-        // Call the function to open the profile popup
-        openProfilePopup();
+            // Format the creation_date to display only the date
+            const creationDate = new Date(row.createdAt);
+            const formattedDate = creationDate.toLocaleDateString();
+            newRow.insertCell().textContent = formattedDate;
 
+            const actionCell = newRow.insertCell();
+            actionCell.style.position = "relative";
+            actionCell.style.display = "flex";
+            actionCell.style.alignItems = "center";
 
+            const dropdownButton = document.createElement("button");
+            dropdownButton.className = "btn btn-sm btn-primary dropdown-toggle";
+            dropdownButton.type = "button";
+            dropdownButton.style.maxWidth = "80px";
+            dropdownButton.style.minWidth = "80px";
+            dropdownButton.id = `actionDropdown-${index + 1}`;
+            dropdownButton.setAttribute("data-toggle", "dropdown");
+            dropdownButton.setAttribute("aria-haspopup", "true");
+            dropdownButton.setAttribute("aria-expanded", "false");
 
-
-        $(document).ready(function () {
-            $('.dropdown-toggle').dropdown();
-        });
-
-        const btn = document.getElementById('addNewUserBtn')
-        btn.addEventListener('click', function (event) {
-            event.preventDefault();
-            $('#popupDialog').modal('show');
-        })
-        document.getElementById("requestForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            var requestField1Value = document.getElementById("requestField1").value;
-            var requestField2Value = document.getElementById("requestField2").value;
-
-            // Perform any necessary actions with the form values
-
-            $('#popupDialog').modal('hide');
-        });
-
-
-
-        const tableBody = document.getElementById('tableBody');
-        let arr = []
-        async function fetchWithdrawalData() {
-            try {
-                // Fetch data from the API
-                const response = await fetch('https://exuberant-fatigues-jay.cyclic.app/Merchant/getWithdrawals', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
-                    },
-                });
-                const apiData = await response.json();
-                // console.log(apiData);
-                apiData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-                arr = apiData;
-                fillTable(apiData)
-                // fetchAllow(apiData);
-                // fetchCancel(apiData);
-                // fetchPending(apiData);
-
-            } catch (error) {
-                console.error('An error occurred while fetching data:', error);
+            // Check if the merchant status is already 'Allow' or 'Cancel'
+            if (row.merchant_status === "Allow") {
+              dropdownButton.className += " btn-success"; // Set button background color to green
+              dropdownButton.textContent = "Allow"; // Set button text to 'Allow'
+              dropdownButton.disabled = true; // Disable the dropdown button
+            } else if (row.merchant_status === "Cancel") {
+              dropdownButton.className += " btn-danger"; // Set button background color to red
+              dropdownButton.textContent = "Cancel"; // Set button text to 'Cancel'
+              dropdownButton.disabled = true; // Disable the dropdown button
+            } else {
+              dropdownButton.textContent = "Pending"; // Set default button text as 'Pending'
             }
-        }
 
-        // Function to update the merchant status via API
-        async function updateMerchantStatus(withdrawalId, merchantStatus) {
-            try {
-                const response = await fetch('https://exuberant-fatigues-jay.cyclic.app/Merchant/withdrawal/updatestatus', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
-                    },
-                    body: JSON.stringify({
-                        withdrawal_id: withdrawalId,
-                        merchant_status: merchantStatus
-                    })
-                });
-                const data = await response.json();
+            actionCell.appendChild(dropdownButton);
 
+            const deleteContainer = document.createElement("div"); // Create a div container for delete buttons
+            deleteContainer.style.display = "flex"; // Apply flex display
+            deleteContainer.style.alignItems = "center"; // Align items vertically in the center
 
+            const deleteButton = document.createElement("span");
+            deleteButton.className = "delete-button";
+            deleteButton.innerHTML = '<i class="fa fa-eye"></i>';
+            deleteButton.style.cursor = "pointer";
+            deleteButton.style.marginRight = "10px"; // Adjust the margin as needed
+            deleteButton.style.marginLeft = "20px"; // Adjust the margin as needed
+
+            deleteButton.addEventListener("click", function (event) {
+              event.preventDefault();
+              // Call your delete function here or perform other delete actions
+              console.log(`Delete row ${index + 1}`);
+
+              // Set the values for the fields in the modal popup
+              document.getElementById("withdrawalIdField").textContent =
+                row.withdrawal_id;
+              document.getElementById("userIdField").textContent = row.user_id;
+              document.getElementById("userNameField").textContent =
+                row.user_name;
+              document.getElementById("creditAccountNumberField").textContent =
+                row.credit_account_no;
+              document.getElementById("beneficiaryNameField").textContent =
+                row.beneficiary_name;
+              document.getElementById(
+                "beneficiaryBranchCodeField"
+              ).textContent = row.beneficiary_branch_code;
+              document.getElementById("amountField").textContent = row.amount;
+              document.getElementById("dealerCode").textContent =
+                row.dealer_code;
+
+              // Show the Bootstrap modal popup
+              const popupModal = new bootstrap.Modal(
+                document.getElementById("popupModal")
+              );
+              popupModal.show();
+            });
+
+            deleteContainer.appendChild(deleteButton); // Add the delete button to the container
+            actionCell.appendChild(deleteContainer);
+
+            const dropdownMenu = document.createElement("div");
+            dropdownMenu.className = "dropdown-menu";
+            dropdownMenu.setAttribute(
+              "aria-labelledby",
+              `actionDropdown-${index + 1}`
+            );
+            dropdownMenu.style.position = "absolute";
+            dropdownMenu.style.width = "150px"; // Set the desired width of the dropdown menu
+
+            const allowOption = document.createElement("a");
+            allowOption.className = "dropdown-item";
+            allowOption.href = "#";
+            allowOption.textContent = "Allow";
+            allowOption.addEventListener("click", async function (event) {
+              event.preventDefault();
+              if (row.merchant_status === "Allow") {
+                disableDropdown(dropdownButton);
+              } else {
+                const data = await updateMerchantStatus(
+                  row.withdrawal_id,
+                  "Allow"
+                );
+                console.log(data);
                 if (data.error) {
-                    alert(data.error);
-                    return data;
-                }
-                else {
-                    fetchMerchantDetail()
-                    return data;
-                }
-            } catch (error) {
-                console.error('An error occurred while updating the merchant status:', error);
-            }
-        }
-
-        fetchWithdrawalData();
-
-
-
-        function disableDropdown(dropdownButton) {
-            dropdownButton.disabled = true;
-        }
-
-        // Function to handle dropdown selection
-        function selectValue(element, value, rowId) {
-            const dropdownButton = element.parentNode.parentNode.querySelector(".dropdown-toggle");
-            const dropdownMenu = element.parentNode.parentNode.querySelector(".dropdown-menu");
-
-            if (value === 'Allow') {
-                dropdownButton.classList.remove('btn-danger');
-                dropdownButton.classList.add('btn-success');
-            } else if (value === 'Cancel') {
-                dropdownButton.classList.remove('btn-success');
-                dropdownButton.classList.add('btn-danger');
-            }
-
-            dropdownButton.textContent = value;
-            dropdownButton.classList.add('text-white');
-            dropdownMenu.classList.remove('show');
-        }
-
-        function handleFilterChange(selectedValue) {
-            switch (selectedValue) {
-                case 'Allow':
-                    fetchAllow(arr);
-                    break;
-                case 'Cancel':
-                    fetchCancel(arr);
-                    break;
-                case 'Pending':
-                    fetchPending(arr);
-                    break;
-                default:
-                    fetchWithdrawalData();
-                    break;
-            }
-        }
-
-        function fetchAllow(data) {
-            const filteredData = data.filter(item => item.merchant_status === 'Allow');
-            tableBody.innerHTML = '';
-            fillTable(filteredData)
-        }
-
-        function fetchCancel(data) {
-            const filteredData = data.filter(item => item.merchant_status === 'Cancel');
-            tableBody.innerHTML = '';
-            fillTable(filteredData)
-        }
-
-        function fetchPending(data) {
-            const filteredData = data.filter(item => item.merchant_status === 'Pending');
-            tableBody.innerHTML = '';
-            fillTable(filteredData)
-        }
-
-        function fillTable(apiData) {
-            tableBody.innerHTML = '';
-            const searchInput = document.getElementById('searchInput');
-            const searchButton = document.getElementById('searchButton');
-
-            const applyFilter = () => {
-                const query = searchInput.value.toLowerCase().trim();
-                const startDate = document.getElementById('startDate').value;
-                const endDate = document.getElementById('endDate').value;
-
-                // Clear the table body
-                tableBody.innerHTML = '';
-
-                // Filter the data based on the search query and date range
-                const filteredData = apiData.filter((row) => {
-                    const createdAtDate = new Date(row.createdAt.substring(0, 10));
-                    const isRowInDateRange = (!startDate || createdAtDate >= new Date(startDate)) && (!endDate || createdAtDate <= new Date(endDate));
-                    const isRowMatchingQuery = row.withdrawal_id.toLowerCase().includes(query) ||
-                        row.user_id.toLowerCase().includes(query) ||
-                        row.user_name.toLowerCase().includes(query) ||
-                        row.amount.toString().includes(query);
-                    return isRowInDateRange && isRowMatchingQuery;
-                });
-
-                searchButton.addEventListener('click', applyFilter);
-                searchInput.addEventListener('keyup', applyFilter);
-
-                // Find the column indexes for the "status" and "action" columns
-                const table = document.getElementById('myTable');
-
-                let statusColumnIndex = -1;
-                let actionColumnIndex = -1;
-                const headerRow = table.rows[0]; // Assuming the first row contains the table headers
-
-                for (let i = 0; i < headerRow.cells.length; i++) {
-                    const cellContent = headerRow.cells[i].textContent.trim();
-
-                    // Check for "status" column
-                    if (cellContent === "Status") {
-                        statusColumnIndex = i;
-                    }
-
-                    // Check for "action" column
-                    if (cellContent === "Action") {
-                        actionColumnIndex = i;
-                    }
-
-                    // Break the loop if both column indexes are found
-                    if (statusColumnIndex !== -1 && actionColumnIndex !== -1) {
-                        break;
-                    }
-                }
-
-                filteredData.forEach((row, index) => {
-                    const newRow = tableBody.insertRow();
-                    const checkboxCell = newRow.insertCell();
-                    checkboxCell.className = 'checkbox-row';
-                    checkboxCell.innerHTML = '<input class="form-check-input" type="checkbox">';
-
-                    const cells = [
-                        newRow.insertCell(),
-                        newRow.insertCell(),
-                        newRow.insertCell(),
-                        newRow.insertCell(),
-                        newRow.insertCell()
-                    ];
-
-                    cells[0].textContent = index + 1;
-                    cells[1].textContent = row.withdrawal_id;
-                    cells[2].textContent = row.user_id;
-                    cells[3].textContent = row.user_name;
-                    cells[4].textContent = row.amount;
-
-                    cells.forEach(cell => {
-                        cell.classList.add('overflow-hidden-cell');
-                    });
-
-                    // Format the creation_date to display only the date
-                    const creationDate = new Date(row.createdAt);
-                    const formattedDate = creationDate.toLocaleDateString();
-                    newRow.insertCell().textContent = formattedDate;
-
-                    const actionCell = newRow.insertCell();
-                    actionCell.style.position = 'relative';
-                    actionCell.style.display = 'flex';
-                    actionCell.style.alignItems = 'center';
-
-                    const dropdownButton = document.createElement('button');
-                    dropdownButton.className = 'btn btn-sm btn-primary dropdown-toggle';
-                    dropdownButton.type = 'button';
-                    dropdownButton.style.maxWidth = '80px';
-                    dropdownButton.style.minWidth = '80px';
-                    dropdownButton.id = `actionDropdown-${index + 1}`;
-                    dropdownButton.setAttribute('data-toggle', 'dropdown');
-                    dropdownButton.setAttribute('aria-haspopup', 'true');
-                    dropdownButton.setAttribute('aria-expanded', 'false');
-
-                    // Check if the merchant status is already 'Allow' or 'Cancel'
-                    if (row.merchant_status === 'Allow') {
-                        dropdownButton.className += ' btn-success'; // Set button background color to green
-                        dropdownButton.textContent = 'Allow'; // Set button text to 'Allow'
-                        dropdownButton.disabled = true; // Disable the dropdown button
-                    } else if (row.merchant_status === 'Cancel') {
-                        dropdownButton.className += ' btn-danger'; // Set button background color to red
-                        dropdownButton.textContent = 'Cancel'; // Set button text to 'Cancel'
-                        dropdownButton.disabled = true; // Disable the dropdown button
-                    } else {
-                        dropdownButton.textContent = 'Pending'; // Set default button text as 'Pending'
-                    }
-
-                    actionCell.appendChild(dropdownButton);
-
-
-                    const deleteContainer = document.createElement('div'); // Create a div container for delete buttons
-                    deleteContainer.style.display = 'flex'; // Apply flex display
-                    deleteContainer.style.alignItems = 'center'; // Align items vertically in the center
-
-                    const deleteButton = document.createElement('span');
-                    deleteButton.className = 'delete-button';
-                    deleteButton.innerHTML = '<i class="fa fa-eye"></i>';
-                    deleteButton.style.cursor = 'pointer';
-                    deleteButton.style.marginRight = '10px'; // Adjust the margin as needed
-                    deleteButton.style.marginLeft = '20px'; // Adjust the margin as needed
-
-                    deleteButton.addEventListener('click', function (event) {
-                        event.preventDefault();
-                        // Call your delete function here or perform other delete actions
-                        console.log(`Delete row ${index + 1}`);
-
-                        // Set the values for the fields in the modal popup
-                        document.getElementById('withdrawalIdField').textContent = row.withdrawal_id;
-                        document.getElementById('userIdField').textContent = row.user_id;
-                        document.getElementById('userNameField').textContent = row.user_name;
-                        document.getElementById('creditAccountNumberField').textContent = row.credit_account_no;
-                        document.getElementById('beneficiaryNameField').textContent = row.beneficiary_name;
-                        document.getElementById('beneficiaryBranchCodeField').textContent = row.beneficiary_branch_code;
-                        document.getElementById('amountField').textContent = row.amount;
-                        document.getElementById('dealerCode').textContent = row.dealer_code;
-
-                        // Show the Bootstrap modal popup
-                        const popupModal = new bootstrap.Modal(document.getElementById('popupModal'));
-                        popupModal.show();
-                    });
-
-                    deleteContainer.appendChild(deleteButton); // Add the delete button to the container
-                    actionCell.appendChild(deleteContainer);
-
-
-                    const dropdownMenu = document.createElement('div');
-                    dropdownMenu.className = 'dropdown-menu';
-                    dropdownMenu.setAttribute('aria-labelledby', `actionDropdown-${index + 1}`);
-                    dropdownMenu.style.position = 'absolute';
-                    dropdownMenu.style.width = '150px'; // Set the desired width of the dropdown menu
-
-                    const allowOption = document.createElement('a');
-                    allowOption.className = 'dropdown-item';
-                    allowOption.href = '#';
-                    allowOption.textContent = 'Allow';
-                    allowOption.addEventListener('click', async function (event) {
-                        event.preventDefault();
-                        if (row.merchant_status === 'Allow') {
-                            disableDropdown(dropdownButton);
-                        } else {
-                            const data = await updateMerchantStatus(row.withdrawal_id, 'Allow');
-                            console.log(data)
-                            if (data.error) {
-
-                            } else {
-                                selectValue(this, 'Allow', index + 1);
-                                disableDropdown(dropdownButton);
-                                fetchWithdrawalData()
-                            }
-                        }
-                    });
-                    dropdownMenu.appendChild(allowOption);
-
-                    const cancelOption = document.createElement('a');
-                    cancelOption.className = 'dropdown-item';
-                    cancelOption.href = '#';
-                    cancelOption.textContent = 'Cancel';
-                    cancelOption.addEventListener('click', async function (event) {
-                        event.preventDefault();
-                        if (row.merchant_status === 'Cancel') {
-                            disableDropdown(dropdownButton);
-                        } else {
-                            await updateMerchantStatus(row.withdrawal_id, 'Cancel');
-                            selectValue(this, 'Cancel', index + 1);
-                            disableDropdown(dropdownButton);
-                        }
-                    });
-                    dropdownMenu.appendChild(cancelOption);
-
-                    actionCell.appendChild(dropdownMenu);
-                });
-
-
-            }
-            applyFilter();
-            const filterDateButton = document.getElementById('filterDateButton');
-            filterDateButton.addEventListener('click', applyFilter);
-
-            function resetFilters() {
-
-                startDate.value = '';
-                endDate.value = '';
-
-                // Apply filters to reset the table
-                applyFilter();
-            }
-            const resetDateButton = document.getElementById('resetDateButton');
-            resetDateButton.addEventListener('click', resetFilters);
-        }
-
-
-        document.getElementById('requestForm').addEventListener('submit', async function (event) {
-            event.preventDefault(); // Prevent form submission
-
-            // Fetch form values
-            var user_id = document.getElementById('customerCode').value;
-            var user_name = document.getElementById('customerName').value;
-            var dealer_code = document.getElementById('debitAccountNo').value;
-            var creditAccountNo = document.getElementById('creditAccountNo').value;
-            var beneficiaryName = document.getElementById('beneficiaryName').value;
-            var beneficiaryBranchCode = document.getElementById('beneficiaryBranchCode').value;
-            var amount = document.getElementById('amount').value;
-            // var remarks = document.getElementById('remarks').value;
-
-            // Prepare the data object
-            var data = {
-                user_id: user_id,
-                user_name: user_name,
-                dealer_code: dealer_code,
-                credit_account_no: creditAccountNo,
-                beneficiary_name: beneficiaryName,
-                beneficiary_branch_code: beneficiaryBranchCode,
-                amount: amount,
-
-            };
-
-            // console.log(data)
-
-            try {
-                // Send the data to the API endpoint using async/await
-                await sendFormData('https://exuberant-fatigues-jay.cyclic.app/User/withdrawal', data);
-                // Handle the success response
-                // alert('Request submitted successfully!');
-                // Clear the form fields
-                document.getElementById('requestForm').reset();
-            } catch (error) {
-                // Handle the error
-                console.error('Error:', error);
-                alert('Failed to submit the request.');
-            }
-        });
-
-        async function sendFormData(url, data) {
-            // console.log(data)
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                const result = await response.json()
-                // console.log(result.message)
-                if (result.message) {
-                    alert("Request Submit Successfully")
-                    fetchWithdrawalData();
                 } else {
-                    // Handle the error response
-                    throw new Error('Request failed with status ' + response.status);
+                  selectValue(this, "Allow", index + 1);
+                  disableDropdown(dropdownButton);
+                  fetchWithdrawalData();
                 }
-            } catch (error) {
-                // Handle network errors
-                throw new Error('Request failed: ' + error.message);
-            }
-        }
+              }
+            });
+            dropdownMenu.appendChild(allowOption);
 
-        const impbtn = document.getElementById('importButton')
-        impbtn.addEventListener('click', () => {
-            handleImport();
+            const cancelOption = document.createElement("a");
+            cancelOption.className = "dropdown-item";
+            cancelOption.href = "#";
+            cancelOption.textContent = "Cancel";
+            cancelOption.addEventListener("click", async function (event) {
+              event.preventDefault();
+              if (row.merchant_status === "Cancel") {
+                disableDropdown(dropdownButton);
+              } else {
+                await updateMerchantStatus(row.withdrawal_id, "Cancel");
+                selectValue(this, "Cancel", index + 1);
+                disableDropdown(dropdownButton);
+              }
+            });
+            dropdownMenu.appendChild(cancelOption);
+
+            actionCell.appendChild(dropdownMenu);
+          });
+        };
+        applyFilter();
+        const filterDateButton = document.getElementById("filterDateButton");
+        filterDateButton.addEventListener("click", applyFilter);
+
+        function resetFilters() {
+          startDate.value = "";
+          endDate.value = "";
+
+          // Apply filters to reset the table
+          applyFilter();
+        }
+        const resetDateButton = document.getElementById("resetDateButton");
+        resetDateButton.addEventListener("click", resetFilters);
+      }
+
+      document
+        .getElementById("requestForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault(); // Prevent form submission
+
+          // Fetch form values
+          var user_id = document.getElementById("customerCode").value;
+          var user_name = document.getElementById("customerName").value;
+          var dealer_code = document.getElementById("debitAccountNo").value;
+          var creditAccountNo =
+            document.getElementById("creditAccountNo").value;
+          var beneficiaryName =
+            document.getElementById("beneficiaryName").value;
+          var beneficiaryBranchCode = document.getElementById(
+            "beneficiaryBranchCode"
+          ).value;
+          var amount = document.getElementById("amount").value;
+          // var remarks = document.getElementById('remarks').value;
+
+          // Prepare the data object
+          var data = {
+            user_id: user_id,
+            user_name: user_name,
+            dealer_code: dealer_code,
+            credit_account_no: creditAccountNo,
+            beneficiary_name: beneficiaryName,
+            beneficiary_branch_code: beneficiaryBranchCode,
+            amount: amount,
+          };
+
+          // console.log(data)
+
+          try {
+            // Send the data to the API endpoint using async/await
+            await sendFormData(
+              "https://exuberant-fatigues-jay.cyclic.app/User/withdrawal",
+              data
+            );
+            // Handle the success response
+            // alert('Request submitted successfully!');
+            // Clear the form fields
+            document.getElementById("requestForm").reset();
+          } catch (error) {
+            // Handle the error
+            console.error("Error:", error);
+            alert("Failed to submit the request.");
+          }
         });
 
-        function handleImport() {
-            const fileInput = document.getElementById('excelFileInput');
-            const file = fileInput.files[0];
+      async function sendFormData(url, data) {
+        // console.log(data)
+        try {
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${JSON.parse(
+                localStorage.getItem("login_token")
+              )}`,
+            },
+            body: JSON.stringify(data),
+          });
 
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const data = new Uint8Array(e.target.result);
-                const workbook = XLSX.read(data, { type: 'array' });
-                const sheetName = workbook.SheetNames[0];
-                const worksheet = workbook.Sheets[sheetName];
-                const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-
-                const headers = jsonData[0];
-                const importedData = jsonData.slice(1).map((row) => {
-                    const rowData = {};
-                    headers.forEach((header, index) => {
-                        rowData[header] = row[index];
-                    });
-                    return rowData;
-                });
-
-                sendFormData('https://exuberant-fatigues-jay.cyclic.app/User/withdrawal', importedData)
-
-            };
-
-            reader.readAsArrayBuffer(file);
+          const result = await response.json();
+          // console.log(result.message)
+          if (result.message) {
+            alert("Request Submit Successfully");
+            fetchWithdrawalData();
+          } else {
+            // Handle the error response
+            throw new Error("Request failed with status " + response.status);
+          }
+        } catch (error) {
+          // Handle network errors
+          throw new Error("Request failed: " + error.message);
         }
+      }
 
+      const impbtn = document.getElementById("importButton");
+      impbtn.addEventListener("click", () => {
+        handleImport();
+      });
 
-        var dropdownMenus = document.getElementsByClassName('dropdown-menu');
-        document.addEventListener('click', function (event) {
-            for (var i = 0; i < dropdownMenus.length; i++) {
-                if (dropdownMenus[i].contains(event.target)) {
-                    if (event.target.matches('.dropdown-item:nth-child(3)')) {
-                        event.preventDefault();
-                        localStorage.removeItem('login_token');
-                        location.reload();
-                        location.href = '../index.html';
-                    }
-                    break;
-                }
+      function handleImport() {
+        const fileInput = document.getElementById("excelFileInput");
+        const file = fileInput.files[0];
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const data = new Uint8Array(e.target.result);
+          const workbook = XLSX.read(data, { type: "array" });
+          const sheetName = workbook.SheetNames[0];
+          const worksheet = workbook.Sheets[sheetName];
+          const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+          const headers = jsonData[0];
+          const importedData = jsonData.slice(1).map((row) => {
+            const rowData = {};
+            headers.forEach((header, index) => {
+              rowData[header] = row[index];
+            });
+            return rowData;
+          });
+
+          sendFormData(
+            "https://exuberant-fatigues-jay.cyclic.app/User/withdrawal",
+            importedData
+          );
+        };
+
+        reader.readAsArrayBuffer(file);
+      }
+
+      var dropdownMenus = document.getElementsByClassName("dropdown-menu");
+      document.addEventListener("click", function (event) {
+        for (var i = 0; i < dropdownMenus.length; i++) {
+          if (dropdownMenus[i].contains(event.target)) {
+            if (event.target.matches(".dropdown-item:nth-child(3)")) {
+              event.preventDefault();
+              localStorage.removeItem("login_token");
+              location.reload();
+              location.href = "../index.html";
             }
-        });
+            break;
+          }
+        }
+      });
     </script>
-</body>
-
+  </body>
 </html>
