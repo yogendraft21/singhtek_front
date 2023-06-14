@@ -246,13 +246,7 @@
                         <p>
                             <input type="password" placeholder="Password" id="password" required>
                         </p>
-                        <p>
-                            <select id="userTypeSelect" required>
-                                <option value="">Select User Type</option>
-                                <option value="company">Company User</option>
-                                <option value="merchant">Merchant</option>
-                            </select>
-                        </p>
+                        
                         <p>
                             <input id="signInBtn" class="btn" type="submit" value="Sign In" />
                         </p>
@@ -271,26 +265,17 @@
         document.getElementById('signInBtn').addEventListener('click', function (event) {
             event.preventDefault(); // Prevent form submission
 
-            const userTypeSelect = document.getElementById('userTypeSelect');
-            const userType = userTypeSelect.value;
-
-            if (userType === 'company') {
-                loginWithCompany();
-            } else if (userType === 'merchant') {
-                loginWithMerchant();
-            }else{
-                loginWithAdmin();
-            }
+             userLogin();
         });
 
-        async function loginWithCompany() {
+        async function userLogin() {
             const emailInput = document.getElementById('email');
             const passwordInput = document.getElementById('password');
 
             const email = emailInput.value;
             const password = passwordInput.value;
 
-            const url = 'https://exuberant-fatigues-jay.cyclic.app/SinghTek/login';
+            const url = 'https://exuberant-fatigues-jay.cyclic.app/login';
             const data = {
                 email: email,
                 password: password
@@ -311,7 +296,14 @@
                 if(responseData.token){
                     localStorage.setItem('login_token',JSON.stringify(responseData.token));
                     alert("Login Success");
-                    location.href = "./sub_admin/index.html"
+                    if(responseData.UserType == 'merchant'){
+                        location.href = "./merchant/index.html"
+                    }       
+                    else if(responseData.UserType == 'sub-admin'){
+                        location.href = "./sub_admin/index.html"
+                    }else{
+                        location.href = "./admin/index.html"
+                    }
                 }else{
                     alert("Check your email and password")
                 }
@@ -322,80 +314,7 @@
             }
         }
 
-        async function loginWithMerchant() {
-            const emailInput = document.getElementById('email');
-            const passwordInput = document.getElementById('password');
-
-            const email = emailInput.value;
-            const password = passwordInput.value;
-
-            const url = 'https://exuberant-fatigues-jay.cyclic.app/Merchant/login';
-            const data = {
-                email: email,
-                password: password
-            };
-
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                const responseData = await response.json();
-                // Handle the API response
-                if(responseData.token){
-                    localStorage.setItem('login_token',JSON.stringify(responseData.token));
-                    alert("Login Success");
-                    location.href = "./merchant/index.html"
-                }else{
-                    alert("Check your email and password")
-                }
-            } catch (error) {
-                // Handle any errors
-                console.error('Error:', error);
-            }
-        }
-
-        async function loginWithAdmin() {
-            const emailInput = document.getElementById('email');
-            const passwordInput = document.getElementById('password');
-
-            const email = emailInput.value;
-            const password = passwordInput.value;
-
-            const url = 'https://exuberant-fatigues-jay.cyclic.app/Admin/login';
-            const data = {
-                email: email,
-                password: password
-            };
-
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                const responseData = await response.json();
-                // Handle the API response
-                if(responseData.token){
-                    localStorage.setItem('login_token',JSON.stringify(responseData.token));
-                    alert("Login Success");
-                    location.href = "./admin/index.html"
-                }else{
-                    alert("Check your email and password")
-                }
-            } catch (error) {
-                // Handle any errors
-                console.error('Error:', error);
-            }
-        }
-
+     
 
 
     </script>
