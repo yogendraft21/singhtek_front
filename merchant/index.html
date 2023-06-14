@@ -256,7 +256,7 @@
       <!-- Recent Sales Start -->
       <div class="container-fluid pt-4 px-4">
         <div class="bg-light text-center rounded p-4">
-          <div class="d-flex align-items-center justify-content-between mb-4">
+          <!-- <div class="d-flex align-items-center justify-content-between mb-4">
             <h6 class="mb-0" style="width: 300px; margin-left: -10px">
               Latest Withdrawal Request's
             </h6>
@@ -264,9 +264,9 @@
               <input type="text" class="form-control search-input" placeholder="Search..." id="searchInput" />
               <button class="btn btn-primary" type="button" id="searchButton">Search</button>
             </div>
-          </div>
+          </div> -->
 
-          <div class="table-responsive" style="height: 300px; overflow-y: auto">
+          <div class="table-responsive" style="height: calc(100vh - 445px); overflow-y: auto">
             <table id="myTable" class="table text-start align-middle table-bordered table-hover mb-0"
               style="table-layout: fixed">
               <thead>
@@ -292,10 +292,7 @@
       </div>
 
       <!-- Recent Sales End -->
-
-      <!-- Footer Start -->
-
-      <!-- Footer End -->
+      
     </div>
     <!-- Content End -->
 
@@ -570,26 +567,26 @@
 
           tableBody.innerHTML = '';
           // const tableBody = document.getElementById('tableBody');
-          const searchInput = document.getElementById('searchInput');
-          const searchButton = document.getElementById('searchButton');
+          // const searchInput = document.getElementById('searchInput');
+          // const searchButton = document.getElementById('searchButton');
 
           const applyFilter = () => {
-            const query = searchInput.value.toLowerCase().trim();
+            // const query = searchInput.value.toLowerCase().trim();
 
             // Clear the table body
             tableBody.innerHTML = '';
 
             // Filter the data based on the search query
-            const filteredData = apiData.filter(row =>
-              row.withdrawal_id.toLowerCase().includes(query) ||
-              row.user_id.toLowerCase().includes(query) ||
-              row.user_name.toLowerCase().includes(query) ||
-              row.amount.toString().includes(query)
+            // const filteredData = apiData.filter(row =>
+            //   row.withdrawal_id.toLowerCase().includes(query) ||
+            //   row.user_id.toLowerCase().includes(query) ||
+            //   row.user_name.toLowerCase().includes(query) ||
+            //   row.amount.toString().includes(query)
               
-            );
+            // );
 
-            searchButton.addEventListener('click', applyFilter);
-            searchInput.addEventListener('keyup', applyFilter);
+            // searchButton.addEventListener('click', applyFilter);
+            // searchInput.addEventListener('keyup', applyFilter);
 
             // Find the column indexes for the "status" and "action" columns
             const table = document.getElementById('myTable');
@@ -618,7 +615,7 @@
             }
             // console.log(filteredData)
 
-            filteredData.forEach((row, index) => {
+            apiData.forEach((row, index) => {
               const newRow = tableBody.insertRow();
               const checkboxCell = newRow.insertCell();
               checkboxCell.className = "checkbox-row";
