@@ -302,7 +302,7 @@
                   type="date"
                   class="form-control form-control-sm custom-input"
                   id="startDate"
-                  style="margin-left: 25px;"
+                  style="margin-left: 25px"
                 />
               </div>
             </div>
@@ -312,7 +312,7 @@
                   type="date"
                   class="form-control form-control-sm custom-input"
                   id="endDate"
-                  style="margin-left: 25px;"
+                  style="margin-left: 25px"
                 />
               </div>
             </div>
@@ -321,20 +321,22 @@
                 <button
                   type="button"
                   class="btn btn-primary btn-sm"
-                  style="padding: 7px 5px; margin-left: 25px;"
+                  id="filterDateButton"
+                  style="padding: 7px 5px; margin-left: 25px"
                 >
                   Apply Filters
                 </button>
                 <button
                   type="button"
                   class="btn btn-secondary btn-sm"
-                  style="padding: 7px 5px; margin-left: 25px;"
+                  style="padding: 7px 5px; margin-left: 25px"
+                  id="resetDateButton"
                 >
                   Reset Filters
                 </button>
               </div>
             </div>
-            
+        
             <div class="col-md-6 col-12 d-flex justify-content-between">
               <div class="mb-2">
                 <input
@@ -342,15 +344,14 @@
                   class="form-control form-control-sm custom-input"
                   id="search"
                   placeholder="search..."
-                  style="width: 350px; margin-left: 50px;"
+                  style="width: 350px; margin-left: 50px"
                 />
               </div>
               <div class="mb-2 ms-auto">
                 <button
                   type="button"
                   class="btn btn-primary btn-sm"
-                  style="width: 150px;padding: 7px 5px; margin-right: 25px;"
-                  
+                  style="width: 150px; padding: 7px 5px; margin-right: 25px"
                 >
                   Download Sheet
                 </button>
@@ -634,39 +635,85 @@
           // console.log(apiData);
           apiData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-          // Process the fetched API data and add rows dynamically
-          apiData.forEach((row, index) => {
-            const newRow = tableBody.insertRow();
-            newRow.insertCell().textContent = index + 1;
-            newRow.insertCell().textContent = row.withdrawal_id;
-            newRow.insertCell().textContent = row.user_id;
-            newRow.insertCell().textContent = row.user_name;
-            newRow.insertCell().textContent = row.amount;
-            newRow.insertCell().textContent = row.credit_account_no;
-            newRow.insertCell().textContent = row.beneficiary_branch_code;
-            newRow.insertCell().textContent = row.utr_number;
+          tableBody.innerHTML = "";
+          const searchInput = document.getElementById("search");
 
-            // Format the creation_date to display only the date
-            const creationDate = new Date(row.updatedAt);
-            const options = {
-              month: "numeric",
-              day: "numeric",
-              year: "numeric",
-              hour: "numeric",
-              minute: "2-digit",
-              hour12: true,
-              timeZone: "Asia/Kolkata",
-            };
-            const formattedDate = creationDate.toLocaleString("en-IN", options);
+          applyFilter = () => {
+            const query = searchInput.value.toLowerCase().trim();
+            const startDate = document.getElementById("startDate").value;
+            const endDate = document.getElementById("endDate").value;
 
-            const dateCell = newRow.insertCell();
-            dateCell.textContent = formattedDate;
+            // Clear the table body
+            tableBody.innerHTML = "";
 
-            const checkIcon = document.createElement("i");
-            checkIcon.classList.add("fa", "fa-times", "text-danger", "ms-2");
+            // Filter the data based on the search query and date range
+            const filteredData = apiData.filter((row) => {
+              const createdAtDate = new Date(row.createdAt.substring(0, 10));
+              const isRowInDateRange =
+                (!startDate || createdAtDate >= new Date(startDate)) &&
+                (!endDate || createdAtDate <= new Date(endDate));
+              const isRowMatchingQuery =
+                row.withdrawal_id.toLowerCase().includes(query) ||
+                row.user_id.toLowerCase().includes(query) ||
+                row.user_name.toLowerCase().includes(query) ||
+                row.amount.toString().includes(query);
+              return isRowInDateRange && isRowMatchingQuery;
+            });
 
-            dateCell.appendChild(checkIcon);
-          });
+          
+            searchInput.addEventListener("keyup", applyFilter);
+
+            // Process the fetched API data and add rows dynamically
+            filteredData.forEach((row, index) => {
+              const newRow = tableBody.insertRow();
+              newRow.insertCell().textContent = index + 1;
+              newRow.insertCell().textContent = row.withdrawal_id;
+              newRow.insertCell().textContent = row.user_id;
+              newRow.insertCell().textContent = row.user_name;
+              newRow.insertCell().textContent = row.amount;
+              newRow.insertCell().textContent = row.credit_account_no;
+              newRow.insertCell().textContent = row.beneficiary_branch_code;
+              newRow.insertCell().textContent = row.utr_number;
+
+              // Format the creation_date to display only the date
+              const creationDate = new Date(row.updatedAt);
+              const options = {
+                month: "numeric",
+                day: "numeric",
+                year: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true,
+                timeZone: "Asia/Kolkata",
+              };
+              const formattedDate = creationDate.toLocaleString(
+                "en-IN",
+                options
+              );
+
+              const dateCell = newRow.insertCell();
+              dateCell.textContent = formattedDate;
+
+              const checkIcon = document.createElement("i");
+              checkIcon.classList.add("fa", "fa-check", "text-success", "ms-2");
+              dateCell.appendChild(checkIcon);
+            });
+          };
+          applyFilter();
+
+
+          const filterDateButton = document.getElementById("filterDateButton");
+          filterDateButton.addEventListener("click", applyFilter);
+
+          function resetFilters() {
+            startDate.value = "";
+            endDate.value = "";
+
+            // Apply filters to reset the table
+            applyFilter();
+          }
+          const resetDateButton = document.getElementById("resetDateButton");
+          resetDateButton.addEventListener("click", resetFilters);
         } catch (error) {
           console.error("An error occurred while fetching data:", error);
         }

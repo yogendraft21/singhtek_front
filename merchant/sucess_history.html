@@ -113,29 +113,28 @@
     .mid-column {
       width: 120px;
     }
-    .custom-width{
-    width: 80%;
-    max-width: 80%;
-  }
+    .custom-width {
+      width: 80%;
+      max-width: 80%;
+    }
 
-  .wallet-balance {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem;
-  background-color: #fff;
-  border-radius: 4px;
-}
+    .wallet-balance {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+      background-color: #fff;
+      border-radius: 4px;
+    }
 
+    .wallet-balance .balance-text {
+      font-weight: bold;
+      padding-right: 5px;
+    }
 
-.wallet-balance .balance-text {
-  font-weight: bold;
-  padding-right: 5px;
-}
-
-#walletBalance {
-  font-weight: bold;
-  color: #5ea725;
-}
+    #walletBalance {
+      font-weight: bold;
+      color: #5ea725;
+    }
   </style>
 
   <body>
@@ -229,7 +228,9 @@
       <!-- Content Start -->
       <div class="content">
         <!-- Navbar Start -->
-        <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+        <nav
+          class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0"
+        >
           <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
             <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
           </a>
@@ -237,22 +238,41 @@
             <i class="fa fa-bars"></i>
           </a>
           <form class="d-none d-md-flex ms-4 custom-search-form">
-            <input class="form-control border-0" type="search" placeholder="Search" />
+            <input
+              class="form-control border-0"
+              type="search"
+              placeholder="Search"
+            />
           </form>
           <div class="navbar-nav align-items-center ms-auto">
             <div class="wallet-balance me-3">
               <i class="fas fa-inr"></i>
               <span class="balance-text">Balance:</span>
               <span id="walletBalance"></span>
-              <span style="color: #5ea725;font-weight: bold; margin-left: 5px;">&#8377;</span>
+              <span style="color: #5ea725; font-weight: bold; margin-left: 5px"
+                >&#8377;</span
+              >
             </div>
             <div class="nav-item dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <img class="rounded-circle me-lg-2" src="../img/user.jpg" alt="" style="width: 40px; height: 40px" />
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+              >
+                <img
+                  class="rounded-circle me-lg-2"
+                  src="../img/user.jpg"
+                  alt=""
+                  style="width: 40px; height: 40px"
+                />
                 <span class="d-none d-lg-inline-flex" id="n_username"></span>
               </a>
-              <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                <a href="#" id="profileLink" class="dropdown-item">My Profile</a>
+              <div
+                class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0"
+              >
+                <a href="#" id="profileLink" class="dropdown-item"
+                  >My Profile</a
+                >
                 <a href="#" class="dropdown-item">Settings</a>
                 <a href="" class="dropdown-item">Log Out</a>
               </div>
@@ -288,7 +308,7 @@
                   type="date"
                   class="form-control form-control-sm custom-input"
                   id="startDate"
-                  style="margin-left: 25px;"
+                  style="margin-left: 25px"
                 />
               </div>
             </div>
@@ -298,7 +318,7 @@
                   type="date"
                   class="form-control form-control-sm custom-input"
                   id="endDate"
-                  style="margin-left: 25px;"
+                  style="margin-left: 25px"
                 />
               </div>
             </div>
@@ -307,20 +327,22 @@
                 <button
                   type="button"
                   class="btn btn-primary btn-sm"
-                  style="padding: 7px 5px; margin-left: 25px;"
+                  id="filterDateButton"
+                  style="padding: 7px 5px; margin-left: 25px"
                 >
                   Apply Filters
                 </button>
                 <button
                   type="button"
                   class="btn btn-secondary btn-sm"
-                  style="padding: 7px 5px; margin-left: 25px;"
+                  style="padding: 7px 5px; margin-left: 25px"
+                  id="resetDateButton"
                 >
                   Reset Filters
                 </button>
               </div>
             </div>
-            
+        
             <div class="col-md-6 col-12 d-flex justify-content-between">
               <div class="mb-2">
                 <input
@@ -328,15 +350,14 @@
                   class="form-control form-control-sm custom-input"
                   id="search"
                   placeholder="search..."
-                  style="width: 350px; margin-left: 50px;"
+                  style="width: 350px; margin-left: 50px"
                 />
               </div>
               <div class="mb-2 ms-auto">
                 <button
                   type="button"
                   class="btn btn-primary btn-sm"
-                  style="width: 150px;padding: 7px 5px; margin-right: 25px;"
-                  
+                  style="width: 150px; padding: 7px 5px; margin-right: 25px"
                 >
                   Download Sheet
                 </button>
@@ -345,20 +366,19 @@
           </div>
         </div>
         
-        
-        
 
         <!-- filter end -->
 
         <!-- Recent Sales Start -->
         <div class="container-fluid pt-4 px-4">
           <div class="bg-light text-center rounded p-4">
-
-            <div class="table-responsive" style="height: calc(100vh - 445px); overflow-y: auto">
+            <div
+              class="table-responsive"
+              style="height: calc(100vh - 445px); overflow-y: auto"
+            >
               <table
                 id="myTable"
                 class="table text-start align-middle table-bordered table-hover mb-0"
-                
               >
                 <thead>
                   <tr class="text-dark">
@@ -408,31 +428,33 @@
     <script src="../js/main.js"></script>
     <script>
       // fetch merchant detail.
-      let userData = []
-        async function fetchMerchantDetail() {
-            try {
-                const response = await fetch('https://exuberant-fatigues-jay.cyclic.app/Merchant/detail', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
-                    },
-                });
-
-                const name = await response.json();
-                userData = name;
-                console.log(name.user_name)
-                document.getElementById("s_username").innerText = name.user_name
-                document.getElementById("n_username").innerText = name.user_name
-                document.getElementById("walletBalance").innerText = name.amount
-
-
-            } catch (error) {
-                slert(error)
+      let userData = [];
+      async function fetchMerchantDetail() {
+        try {
+          const response = await fetch(
+            "https://exuberant-fatigues-jay.cyclic.app/Merchant/detail",
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${JSON.parse(
+                  localStorage.getItem("login_token")
+                )}`,
+              },
             }
+          );
 
+          const name = await response.json();
+          userData = name;
+          console.log(name.user_name);
+          document.getElementById("s_username").innerText = name.user_name;
+          document.getElementById("n_username").innerText = name.user_name;
+          document.getElementById("walletBalance").innerText = name.amount;
+        } catch (error) {
+          slert(error);
         }
-        fetchMerchantDetail()
+      }
+      fetchMerchantDetail();
 
       function generateProfileHTML(user) {
         const {
@@ -621,38 +643,85 @@
           // console.log(apiData);
           apiData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-          // Process the fetched API data and add rows dynamically
-          apiData.forEach((row, index) => {
-            const newRow = tableBody.insertRow();
-            newRow.insertCell().textContent = index + 1;
-            newRow.insertCell().textContent = row.withdrawal_id;
-            newRow.insertCell().textContent = row.user_id;
-            newRow.insertCell().textContent = row.user_name;
-            newRow.insertCell().textContent = row.amount;
-            newRow.insertCell().textContent = row.credit_account_no;
-            newRow.insertCell().textContent = row.beneficiary_branch_code;
-            newRow.insertCell().textContent = row.utr_number;
+          tableBody.innerHTML = "";
+          const searchInput = document.getElementById("search");
 
-            // Format the creation_date to display only the date
-            const creationDate = new Date(row.updatedAt);
-            const options = {
-              month: "numeric",
-              day: "numeric",
-              year: "numeric",
-              hour: "numeric",
-              minute: "2-digit",
-              hour12: true,
-              timeZone: "Asia/Kolkata",
-            };
-            const formattedDate = creationDate.toLocaleString("en-IN", options);
+          applyFilter = () => {
+            const query = searchInput.value.toLowerCase().trim();
+            const startDate = document.getElementById("startDate").value;
+            const endDate = document.getElementById("endDate").value;
 
-            const dateCell = newRow.insertCell();
-            dateCell.textContent = formattedDate;
+            // Clear the table body
+            tableBody.innerHTML = "";
 
-            const checkIcon = document.createElement("i");
-            checkIcon.classList.add("fa", "fa-check", "text-success", "ms-2");
-            dateCell.appendChild(checkIcon);
-          });
+            // Filter the data based on the search query and date range
+            const filteredData = apiData.filter((row) => {
+              const createdAtDate = new Date(row.createdAt.substring(0, 10));
+              const isRowInDateRange =
+                (!startDate || createdAtDate >= new Date(startDate)) &&
+                (!endDate || createdAtDate <= new Date(endDate));
+              const isRowMatchingQuery =
+                row.withdrawal_id.toLowerCase().includes(query) ||
+                row.user_id.toLowerCase().includes(query) ||
+                row.user_name.toLowerCase().includes(query) ||
+                row.amount.toString().includes(query);
+              return isRowInDateRange && isRowMatchingQuery;
+            });
+
+          
+            searchInput.addEventListener("keyup", applyFilter);
+
+            // Process the fetched API data and add rows dynamically
+            filteredData.forEach((row, index) => {
+              const newRow = tableBody.insertRow();
+              newRow.insertCell().textContent = index + 1;
+              newRow.insertCell().textContent = row.withdrawal_id;
+              newRow.insertCell().textContent = row.user_id;
+              newRow.insertCell().textContent = row.user_name;
+              newRow.insertCell().textContent = row.amount;
+              newRow.insertCell().textContent = row.credit_account_no;
+              newRow.insertCell().textContent = row.beneficiary_branch_code;
+              newRow.insertCell().textContent = row.utr_number;
+
+              // Format the creation_date to display only the date
+              const creationDate = new Date(row.updatedAt);
+              const options = {
+                month: "numeric",
+                day: "numeric",
+                year: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true,
+                timeZone: "Asia/Kolkata",
+              };
+              const formattedDate = creationDate.toLocaleString(
+                "en-IN",
+                options
+              );
+
+              const dateCell = newRow.insertCell();
+              dateCell.textContent = formattedDate;
+
+              const checkIcon = document.createElement("i");
+              checkIcon.classList.add("fa", "fa-check", "text-success", "ms-2");
+              dateCell.appendChild(checkIcon);
+            });
+          };
+          applyFilter();
+
+
+          const filterDateButton = document.getElementById("filterDateButton");
+          filterDateButton.addEventListener("click", applyFilter);
+
+          function resetFilters() {
+            startDate.value = "";
+            endDate.value = "";
+
+            // Apply filters to reset the table
+            applyFilter();
+          }
+          const resetDateButton = document.getElementById("resetDateButton");
+          resetDateButton.addEventListener("click", resetFilters);
         } catch (error) {
           console.error("An error occurred while fetching data:", error);
         }
