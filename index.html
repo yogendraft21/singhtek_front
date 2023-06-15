@@ -296,10 +296,10 @@
                 if(responseData.token){
                     localStorage.setItem('login_token',JSON.stringify(responseData.token));
                     alert("Login Success");
-                    if(responseData.UserType == 'merchant'){
+                    if(responseData.userType == 'merchant'){
                         location.href = "./merchant/index.html"
                     }       
-                    else if(responseData.UserType == 'sub-admin'){
+                    else if(responseData.userType == 'sub-admin'){0 
                         location.href = "./sub_admin/index.html"
                     }else{
                         location.href = "./admin/index.html"
