@@ -1208,7 +1208,7 @@
             );
           });
 
-          console.log("Filtered Data:", filteredData);
+          // console.log("Filtered Data:", filteredData);
           // Clear the table body
           tableBody.innerHTML = "";
 
@@ -1244,6 +1244,7 @@
             }
           }
 
+          let startInd = (currentPage - 1) * itemsPerPage + 1;
           pageData.forEach((row, index) => {
             const newRow = tableBody.insertRow();
             const checkboxCell = newRow.insertCell();
@@ -1259,7 +1260,7 @@
               newRow.insertCell(),
             ];
 
-            cells[0].textContent = index + 1;
+            cells[0].textContent = startInd + index;
             cells[1].textContent = row.withdrawal_id;
             cells[2].textContent = row.user_id;
             cells[3].textContent = row.user_name;
