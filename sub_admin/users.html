@@ -825,7 +825,7 @@
             const mid = JSON.parse(localStorage.getItem('mid'))
             const username = JSON.parse(localStorage.getItem('username'))
             try {
-                const response = await fetch(`https://exuberant-fatigues-jay.cyclic.app/SinghTek/getWithdrawals/${mid}`, {
+                const response = await fetch(`http://localhost:8080/SinghTek/getWithdrawals/${mid}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -924,7 +924,7 @@
 
 
             console.log(dataToSend)
-            fetch('https://exuberant-fatigues-jay.cyclic.app/SinghTek/update/withdrawals', {
+            fetch('http://localhost:8080/SinghTek/update/withdrawals', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
