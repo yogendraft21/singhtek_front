@@ -301,67 +301,78 @@
 
 
             <!-- filter start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-12">
-                        <div class="bg-light rounded p-3"> <!-- Reduced padding from p-4 to p-2 -->
-                            <h6 class="mb-3">Filters</h6>
-                            <div class="row align-items-center">
-                                <div class="col-md-3">
-                                    <div class="mb-2"> <!-- Reduced margin from mb-3 to mb-2 -->
-                                        <label for="startDate" class="form-label">Start Date</label>
-                                        <input type="date" class="form-control form-control-sm custom-input"
-                                            id="startDate">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-2"> <!-- Reduced margin from mb-3 to mb-2 -->
-                                        <label for="endDate" class="form-label">End Date</label>
-                                        <input type="date" class="form-control form-control-sm custom-input"
-                                            id="endDate">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-2"> <!-- Reduced margin from mb-3 to mb-2 -->
-                                        <button type="button" class="btn btn-primary btn-sm"
-                                            style="margin-top:30px; padding: 7px 5px;">Apply Filters</button>
-                                        <!-- Adjusted margin-top value -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
+            <div class="container-fluid pt-4 px-4">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="bg-light rounded p-3">
+                    <div class="d-flex">
+                      <div class="flex-grow-1 me-3">
+                        <input
+                          type="date"
+                          class="form-control form-control-sm custom-input"
+                          id="startDate"
+                        />
+                      </div>
+                      <div class="flex-grow-1 me-3">
+                        <input
+                          type="date"
+                          class="form-control form-control-sm custom-input"
+                          id="endDate"
+                        />
+                      </div>
+                      <div>
+                        <button
+                          type="button"
+                          class="btn btn-primary btn-sm"
+                          id="filterDateButton"
+                          style="margin: 5px 10px 0px 0px"
+                        >
+                          Apply Filters
+                        </button>
+                      </div>
+                      <div>
+                        <button
+                          type="button"
+                          class="btn btn-secondary btn-sm"
+                          id="resetDateButton"
+                          style="margin-top: 5px"
+                        >
+                          Reset Filters
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <div class="flex-grow-1 me-3">
+                      <button
+                        class="btn btn-primary btn-sm"
+                        id="exportButton"
+                        style="margin-top: 5px"
+                      >
+                        Export
+                      </button>
+                    </div>
+                    <div class="text-center me-3 mt-2 d-flex justify-content-center">
+                      <input
+                        type="file"
+                        id="importInput"
+                        accept=".xlsx, .xls"
+                        style="display: inline-block; width: 220px"
+                      />
+                      <button class="btn btn-primary btn-sm ms-2" id="importButton">
+                        Import
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <!-- filter end -->
 
 
             <!-- Recent Sales Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light text-center rounded p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0" style="flex:1; margin-left: -20px;">All Transaction Requests</h6>
-                        <!-- <button class="btn btn-primary" id="addNewUserBtn" style="flex: 0.5; margin-left: 20px;">
-                            Add Request
-                        </button> -->
-                        <div class="input-group" style="flex:2.5; margin-right: 20px;">
-                            <input type="text" class="form-control search-input" placeholder="Search...">
-                            <button class="btn btn-primary" type="button">Search</button>
-                        </div>
-                        <div class="input-group" style="flex: 1;">
-                            <select id="nameFilter" class="form-select" style="margin-left: 10px;" size="1"
-                                onchange="handleFilterChange(this.value)">
-                                <option value="">Filter Transaction's</option>
-                                <option value="">All</option>
-                                <option value="Pending">Pending</option>
-                                <option value="Allow">Allow</option>
-                                <option value="Cancel">Cancel</option>
-                            </select>
-                        </div>
-
-                    </div>
-
+                   
 
 
                     <div class="table-responsive" style="height: 300px; overflow-y: auto;">
@@ -809,26 +820,129 @@
         }
 
 
-//         document.getElementById('exportAllButton').addEventListener('click', function () {
-//   // Create a new workbook and worksheet
-//   var workbook = XLSX.utils.book_new();
-//   var worksheet = XLSX.utils.json_to_sheet(filteredData);
+        const exportData = document.getElementById('exportButton');
+        exportData.addEventListener('click', async () => {
+            const mid = JSON.parse(localStorage.getItem('mid'))
+            const username = JSON.parse(localStorage.getItem('username'))
+            try {
+                const response = await fetch(`https://exuberant-fatigues-jay.cyclic.app/SinghTek/getWithdrawals/${mid}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
+                    },
+                });
 
-//   // Add the worksheet to the workbook
-//   XLSX.utils.book_append_sheet(workbook, worksheet, 'All Payouts');
+                const filteredData = await response.json();
+                console.log(filteredData)
 
-//   // Convert the workbook to an Excel file
-//   var excelFile = XLSX.write(workbook, { bookType: 'xls', type: 'array' });
+                var excludedFields = ['userID', 'merchantID', 'subAdminID', '_id', '__v', 'createdAt', 'updatedAt', 'withdrawal_id', 'user_id', 'user_name', 'transaction_id', 'merchant_status'];
+                var headers = ['SR_NUMBER', 'CUSTOMER_CODE', 'CUSTOMER_NAME', 'DEBIT_ACCOUNT_NUMBER', 'PRODUCT_CODE', 'DEALER_CODE', 'BENEFICIARY_NAME', 'CREDIT_ACCOUNT_NUMBER', 'BENEFICIARY_BRANCH_CODE', 'AMOUNT', 'REMARKS_1', 'STATUS', 'UTR'];
+                var exportData = filteredData.map(function (item, index) {
+                    var exportItem = {};
+                    exportItem['SR_NUMBER'] = index + 1; // Auto-incrementing SR_NUMBER
 
-//   // Create a Blob from the Excel file data
-//   var blob = new Blob([excelFile], { type: 'application/vnd.ms-excel' });
+                    Object.keys(item).forEach(function (header) {
+                        if (!excludedFields.includes(header)) {
+                            var formattedHeader = header;
+                            if (header === 'bank_status') {
+                                formattedHeader = 'STATUS';
+                            } else if (header === 'utr_number') {
+                                formattedHeader = 'UTR';
+                            }
+                            exportItem[formattedHeader.toUpperCase()] = item[header];
+                        }
+                    });
 
-//   // Create a download link and trigger the download
-//   var downloadLink = document.createElement('a');
-//   downloadLink.href = URL.createObjectURL(blob);
-//   downloadLink.download = 'All_Payouts.xls';
-//   downloadLink.click();
-// });
+                    return exportItem;
+                });
+
+                // Create a new workbook and worksheet
+                var workbook = XLSX.utils.book_new();
+                var worksheet = XLSX.utils.json_to_sheet(exportData, { header: headers });
+
+                // Add the worksheet to the workbook
+                XLSX.utils.book_append_sheet(workbook, worksheet, 'All Payouts');
+
+                // Convert the workbook to an Excel file
+                var excelFile = XLSX.write(workbook, { bookType: 'xls', type: 'array' });
+
+                // Create a Blob from the Excel file data
+                var blob = new Blob([excelFile], { type: 'application/vnd.ms-excel' });
+
+                // Create a download link and trigger the download
+                var downloadLink = document.createElement('a');
+                downloadLink.href = URL.createObjectURL(blob);
+                downloadLink.download = `${username}_Payouts.xls`;
+                downloadLink.click();
+
+
+            } catch (error) {
+                alert(error)
+            }
+        });
+
+        document.getElementById('importButton').addEventListener('click', function () {
+            const fileInput = document.getElementById('importInput');
+            const file = fileInput.files[0];
+
+            const fileReader = new FileReader();
+            fileReader.onload = function (e) {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, { type: 'array' });
+                const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+                const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+                // Process the imported data if needed
+
+                // Send the updated data to the backend API
+
+                updateData(jsonData);
+            };
+
+            fileReader.readAsArrayBuffer(file);
+        });
+
+        function updateData(updatedData) {
+            const headers = updatedData[0].map(header => header.toLowerCase());
+            const dataToSend = updatedData.slice(1).map(row => {
+                const obj = {};
+                headers.forEach((header, index) => {
+                    let value = row[index];
+                    if (header === 'sr_number') {
+                        return; // Skip the "SR_NUMBER" field
+                    }
+                    if (header === 'utr') {
+                        header = 'utr_number';
+                    } else if (header === 'status') {
+                        header = 'bank_status';
+                    }
+                    obj[header] = value;
+                });
+                return obj;
+            });
+
+
+            console.log(dataToSend)
+            fetch('https://exuberant-fatigues-jay.cyclic.app/SinghTek/update/withdrawals', {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${JSON.parse(localStorage.getItem('login_token'))}`
+                },
+                body: JSON.stringify(dataToSend),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Data updated successfully');
+                    const fileInput = document.getElementById('importInput');
+                    fileInput.value = '';
+                    // console.log(data);
+                })
+                .catch(error => {
+                    console.error('Error updating data:', error);
+                });
+        }
 
 var dropdownMenus = document.getElementsByClassName('dropdown-menu');
 
