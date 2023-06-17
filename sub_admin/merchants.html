@@ -824,6 +824,7 @@
                         } else {
                             // Proceed with the click event for other columns
                             localStorage.setItem('mid', JSON.stringify(row._id));
+                            localStorage.setItem('username', JSON.stringify(row.user_name));
                             window.location.href = "./users.html";
                         }
                     };
@@ -974,7 +975,7 @@
         }
 
         async function updateMerchantStatus(mid, merchantStatus) {
-            console.log(mid, merchantStatus)
+            // console.log(mid, merchantStatus)
             try {
                 const response = await fetch('https://exuberant-fatigues-jay.cyclic.app/SinghTek/merchant/updatestatus', {
                     method: 'POST',
@@ -999,9 +1000,9 @@
 
         const exportData = document.getElementById('exportButton');
         exportData.addEventListener('click', async () => {
-            console.log("hi")
+            // const mid = JSON.parse(localStorage.getItem('mid'))
             try {
-                const response = await fetch('https://exuberant-fatigues-jay.cyclic.app/SinghTek/allWithdrawals', {
+                const response = await fetch(`https://exuberant-fatigues-jay.cyclic.app/SinghTek/allWithdrawals`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -1013,7 +1014,7 @@
                 console.log(filteredData)
 
                 var excludedFields = ['userID', 'merchantID', 'subAdminID', '_id', '__v', 'createdAt', 'updatedAt', 'withdrawal_id', 'user_id', 'user_name', 'transaction_id', 'merchant_status'];
-                var headers = ['SR_NUMBER', 'CUSTOMER_CODE', 'CUSTOMER_NAME', 'DEBIT_ACCOUNT_NO', 'PRODUCT_CODE', 'DEALER_CODE', 'BENEFICIARY_NAME', 'CREDIT_ACCOUNT_NO', 'BENEFICIARY_BRANCH_CODE', 'AMOUNT', 'REMARKS_1', 'STATUS', 'UTR'];
+                var headers = ['SR_NUMBER', 'CUSTOMER_CODE', 'CUSTOMER_NAME', 'DEBIT_ACCOUNT_NUMBER', 'PRODUCT_CODE', 'DEALER_CODE', 'BENEFICIARY_NAME', 'CREDIT_ACCOUNT_NUMBER', 'BENEFICIARY_BRANCH_CODE', 'AMOUNT', 'REMARKS_1', 'STATUS', 'UTR'];
                 var exportData = filteredData.map(function (item, index) {
                     var exportItem = {};
                     exportItem['SR_NUMBER'] = index + 1; // Auto-incrementing SR_NUMBER

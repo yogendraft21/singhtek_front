@@ -291,7 +291,7 @@
                 });
 
                 const responseData = await response.json();
-                // console.log(responseData)
+                console.log(responseData)
                 // Handle the API response
                 if(responseData.token){
                     localStorage.setItem('login_token',JSON.stringify(responseData.token));
