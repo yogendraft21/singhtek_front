@@ -359,7 +359,7 @@
 
         async function fetchSinghTekDetail() {
             try {
-                const response = await fetch('https://exuberant-fatigues-jay.cyclic.app/SinghTek/detail', {
+                const response = await fetch('http://localhost:8080/SinghTek/detail', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -385,7 +385,7 @@
         async function fetchDashDetail() {
       try {
         const response = await fetch(
-          "https://exuberant-fatigues-jay.cyclic.app/SinghTek/dashboard/data",
+          "http://localhost:8080/SinghTek/dashboard/data",
           {
             method: "GET",
             headers: {
@@ -414,7 +414,7 @@
         async function fetchMerchantsData() {
             try {
                 // Fetch data from the API
-                const response = await fetch('https://exuberant-fatigues-jay.cyclic.app/SinghTek/merchants', {
+                const response = await fetch('http://localhost:8080/SinghTek/merchants', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -476,7 +476,7 @@
             if (selectedMerchantId && !isNaN(amount)) {
                 try {
                     // Make a PUT request to the API endpoint to add the amount to the merchant
-                    const response = await fetch(`https://exuberant-fatigues-jay.cyclic.app/SinghTek/add/amount/${selectedMerchantId}`, {
+                    const response = await fetch(`http://localhost:8080/SinghTek/add/amount/${selectedMerchantId}`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',

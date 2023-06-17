@@ -322,7 +322,7 @@
     async function fetchMerchantDetail() {
       try {
         const response = await fetch(
-          "https://exuberant-fatigues-jay.cyclic.app/Merchant/detail",
+          "http://localhost:8080/Merchant/detail",
           {
             method: "GET",
             headers: {
@@ -348,7 +348,7 @@
     async function fetchDashDetail() {
       try {
         const response = await fetch(
-          "https://exuberant-fatigues-jay.cyclic.app/Merchant/dashboard/data",
+          "http://localhost:8080/Merchant/dashboard/data",
           {
             method: "GET",
             headers: {
@@ -546,7 +546,7 @@
       try {
         // Fetch data from the API
         const response = await fetch(
-          "https://exuberant-fatigues-jay.cyclic.app/Merchant/getWithdrawals",
+          "http://localhost:8080/Merchant/getWithdrawals",
           {
             method: "GET",
             headers: {
@@ -739,7 +739,7 @@
     async function updateMerchantStatus(withdrawalId, merchantStatus) {
       try {
         const response = await fetch(
-          "https://exuberant-fatigues-jay.cyclic.app/Merchant/withdrawal/updatestatus",
+          "http://localhost:8080/Merchant/withdrawal/updatestatus",
           {
             method: "POST",
             headers: {
