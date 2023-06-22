@@ -391,58 +391,6 @@
           </div>
         </div>
 
-        <!-- filter start -->
-        <!-- <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-12">
-                        <div class="bg-light rounded p-3">
-                            <h6 class="mb-3">Filters</h6>
-                            <div class="row align-items-center">
-                                <div class="col-md-3">
-                                    <div class="mb-2">
-                                        <label for="startDate" class="form-label">Start Date</label>
-                                        <input type="date" class="form-control form-control-sm custom-input"
-                                            id="startDate">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-2">
-                                        <label for="endDate" class="form-label">End Date</label>
-                                        <input type="date" class="form-control form-control-sm custom-input"
-                                            id="endDate">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-2">
-                                        <button type="button" class="btn btn-primary btn-sm"
-                                            style="margin-top:30px; padding: 7px 5px;" id="filterDateButton">Apply
-                                            Filters</button>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-2">
-                                        <button type="button" class="btn btn-secondary btn-sm"
-                                            style="margin-top:30px; padding: 7px 5px; margin-left: -150px;"
-                                            id="resetDateButton">Reset Filters</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col-12 text-end">
-                        <div class="text-center" style="background-color: #dfdbdb; padding: 10px;">
-                            <span style="font-size: medium; margin-right: 10px; color: black; font-weight: bold;">Import Excel Sheet</span>
-                            <input type="file" id="excelFileInput" accept=".xlsx, .xls" style="display: inline-block;">
-                            <button class="btn btn-primary" id="importButton">Import</button>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
-        <!-- filter end -->
-
         <!-- Recent Sales Start -->
         <div class="container-fluid pt-4 px-4">
           <div class="bg-light text-center rounded p-4">
@@ -475,7 +423,6 @@
                   style="margin-left: 10px"
                   size="1"
                 >
-                  
                   <option value="All">All</option>
                   <option value="Pending">Pending</option>
                   <option value="Allow">Allow</option>
@@ -528,16 +475,8 @@
                     >Previous</a
                   >
                 </li>
-                <li class="page-item active" aria-current="page">
-                  <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item">
+               
+                <li class="page-item" style="margin-left: 20px">
                   <a class="page-link" href="#" id="nextButton">Next</a>
                 </li>
               </ul>
@@ -617,19 +556,21 @@
 
             <!-- request detail popup end -->
 
-            <!-- Popup dialog for displaying row information -->
+            <!-- request edit dialog start here  -->
+
             <div
+              id="popupDialog1"
               class="modal fade"
-              id="viewModal"
               tabindex="-1"
-              aria-labelledby="viewModalLabel"
+              aria-labelledby="popupDialogLabel"
               aria-hidden="true"
             >
-              <div class="modal-dialog">
+              <div class="modal-dialog modal-lg">
+                <!-- Add 'modal-lg' class to increase the width -->
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="viewModalLabel">
-                      User Information
+                    <h5 class="modal-title" id="popupDialogLabel">
+                      Update  Request
                     </h5>
                     <button
                       type="button"
@@ -639,20 +580,135 @@
                     ></button>
                   </div>
                   <div class="modal-body">
-                    <div id="userInfo"></div>
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >
-                      Close
-                    </button>
+                    <form id="requestForm">
+                      <div class="row">
+                        <!-- Add 'row' class to create a row for two fields -->
+                        <div class="col-md-6">
+                          <!-- Use 'col-md-6' class to make two fields occupy half of the width each -->
+                          <div class="mb-3">
+                            <label for="customerCode" class="form-label"
+                              >User ID:</label
+                            >
+                            <input
+                              type="text"
+                              id="customerCodeE"
+                              class="form-control"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="mb-3">
+                            <label for="customerName" class="form-label"
+                              >User Name:</label
+                            >
+                            <input
+                              type="text"
+                              id="customerNameE"
+                              class="form-control"
+                              required
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <!-- Add 'row' class to create a row for two fields -->
+                        <div class="col-md-6">
+                          <!-- Use 'col-md-6' class to make two fields occupy half of the width each -->
+                          <div class="mb-3">
+                            <label for="customerCode" class="form-label"
+                              >Dealer Code:</label
+                            >
+                            <input
+                              type="text"
+                              id="dealerCodeE"
+                              class="form-control"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="mb-3">
+                            <label for="customerName" class="form-label"
+                              >Credit Account Number:</label
+                            >
+                            <input
+                              type="text"
+                              id="creditAccountNoE"
+                              class="form-control"
+                              required
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <!-- Add 'row' class to create a row for two fields -->
+                        <div class="col-md-6">
+                          <!-- Use 'col-md-6' class to make two fields occupy half of the width each -->
+                          <div class="mb-3">
+                            <label for="customerCode" class="form-label"
+                              >Beneficairy Name:</label
+                            >
+                            <input
+                              type="text"
+                              id="beneficiaryNameE"
+                              class="form-control"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="mb-3">
+                            <label for="customerName" class="form-label"
+                              >Beneficairy Branch Code:</label
+                            >
+                            <input
+                              type="text"
+                              id="beneficiaryBranchCodeE"
+                              class="form-control"
+                              required
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <!-- Add 'row' class to create a row for two fields -->
+                        <div class="col-md-6">
+                          <!-- Use 'col-md-6' class to make two fields occupy half of the width each -->
+                          <div class="mb-3">
+                            <label for="customerCode" class="form-label"
+                              >Amount:</label
+                            >
+                            <input
+                              type="number"
+                              id="amountE"
+                              class="form-control"
+                              required
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Add more fields in similar row and column structure -->
+
+                      <div class="text-end mt-4">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                          Update
+                        </button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
             </div>
+            <!-- request edit dialog end here  -->
 
             <!-- Add New User Modal -->
             <div
@@ -1050,94 +1106,132 @@
           $("#popupDialog").modal("hide");
         });
 
-      const tableBody = document.getElementById("tableBody");
-      let arr = [];
-      let currentPage = 1; // Current page number
-      const itemsPerPage = 10; // Number of items per page
+        const tableBody = document.getElementById("tableBody");
 
-      async function fetchWithdrawalData(page) {
-        try {
-          // Fetch all data from the API
-          const response = await fetch(
-            "http://localhost:8080/Merchant/getWithdrawals",
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${JSON.parse(
-                  localStorage.getItem("login_token")
-                )}`,
-              },
-            }
-          );
-          const apiData = await response.json();
-          // console.log(apiData);
-          apiData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-          arr = apiData;
+let arr = [];
+let currentPage = 1; // Current page number
+const itemsPerPage = 10; // Number of items per page
 
-          const totalItems = apiData.length;
-          const totalPages = Math.ceil(totalItems / itemsPerPage);
+async function fetchWithdrawalData(page) {
+  try {
+    // Fetch all data from the API
+    const response = await fetch("http://localhost:8080/Merchant/getWithdrawals", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem("login_token"))}`,
+      },
+    });
+    const apiData = await response.json();
+    apiData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    arr = apiData;
 
-          fillTable(apiData);
-          updatePagination();
+    const totalItems = apiData.length;
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-          const nextButton = document.getElementById("nextButton");
-          if (apiData.length < itemsPerPage) {
-            nextButton.parentElement.classList.add("disabled");
-            nextButton.setAttribute("aria-disabled", "true");
-          } else {
-            nextButton.parentElement.classList.remove("disabled");
-            nextButton.setAttribute("aria-disabled", "false");
-          }
-        } catch (error) {
-          console.error("An error occurred while fetching data:", error);
-        }
-      }
+    fillTable(apiData);
+    updatePagination();
 
-      function nextPage() {
-        currentPage++;
-        fetchWithdrawalData(currentPage);
-      }
+    const nextButton = document.getElementById("nextButton");
+    if (currentPage === totalPages) {
+  nextButton.parentElement.classList.add("disabled");
+  nextButton.setAttribute("aria-disabled", "true");
+} else {
+  nextButton.parentElement.classList.remove("disabled");
+  nextButton.setAttribute("aria-disabled", "false");
+}
 
-      // Function to navigate to the previous page
-      function previousPage() {
-        if (currentPage > 1) {
-          currentPage--;
-          fetchWithdrawalData(currentPage);
-        }
-      }
+  } catch (error) {
+    console.error("An error occurred while fetching data:", error);
+  }
+}
 
-      // Event listener for the next button
-      nextButton.addEventListener("click", () => {
-        nextPage();
-        updatePagination();
-      });
+function fillTable(data) {
+  // Clear existing table rows
+  tableBody.innerHTML = "";
 
-      // Event listener for the previous button
-      previousButton.addEventListener("click", () => {
-        previousPage();
-        updatePagination();
-      });
+  // Calculate the starting and ending indexes for the current page
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
 
-      function updatePagination() {
-        const pageItems = document.querySelectorAll(".page-item");
-        pageItems.forEach((item) => item.classList.remove("active"));
-        pageItems[currentPage].classList.add("active");
+  // Loop through the data and create table rows for the current page
+  for (let i = startIndex; i < endIndex && i < data.length; i++) {
+    const row = document.createElement("tr");
+    const item = data[i];
 
-        const previousButton = document.getElementById("previousButton");
-        const nextButton = document.getElementById("nextButton");
+    // Create table cells for each data field
+    const cell1 = createTableCell(item.field1);
+    const cell2 = createTableCell(item.field2);
+    // Add more cells as needed
 
-        if (currentPage > 1) {
-          previousButton.parentElement.classList.remove("disabled");
-          previousButton.setAttribute("aria-disabled", "false");
-        } else {
-          previousButton.parentElement.classList.add("disabled");
-          previousButton.setAttribute("aria-disabled", "true");
-        }
-      }
+    // Append the cells to the row
+    row.appendChild(cell1);
+    row.appendChild(cell2);
+    // Append more cells as needed
 
-      // Update the initial pagination state
-      updatePagination();
+    // Append the row to the table body
+    tableBody.appendChild(row);
+  }
+}
+
+function createTableCell(value) {
+  const cell = document.createElement("td");
+  cell.textContent = value;
+  return cell;
+}
+
+function nextPage() {
+  currentPage++;
+  fetchWithdrawalData(currentPage);
+}
+
+// Function to navigate to the previous page
+function previousPage() {
+  if (currentPage > 1) {
+    currentPage--;
+    fetchWithdrawalData(currentPage);
+  }
+}
+
+// Event listener for the next button
+const nextButton = document.getElementById("nextButton");
+nextButton.addEventListener("click", () => {
+  nextPage();
+  updatePagination();
+});
+
+// Event listener for the previous button
+const previousButton = document.getElementById("previousButton");
+previousButton.addEventListener("click", () => {
+  previousPage();
+  updatePagination();
+});
+
+function updatePagination() {
+  const previousButton = document.getElementById("previousButton");
+  const nextButton = document.getElementById("nextButton");
+
+  if (currentPage > 1) {
+    previousButton.parentElement.classList.remove("disabled");
+    previousButton.setAttribute("aria-disabled", "false");
+  } else {
+    previousButton.parentElement.classList.add("disabled");
+    previousButton.setAttribute("aria-disabled", "true");
+  }
+
+  const totalPages = Math.ceil(arr.length / itemsPerPage);
+  if (currentPage === totalPages) {
+    nextButton.parentElement.classList.add("disabled");
+    nextButton.setAttribute("aria-disabled", "true");
+  } else {
+    nextButton.parentElement.classList.remove("disabled");
+    nextButton.setAttribute("aria-disabled", "false");
+  }
+}
+
+// Fetch data for the initial page
+fetchWithdrawalData(currentPage);
+
 
       fetchWithdrawalData();
 
@@ -1179,7 +1273,6 @@
           const selectedFilterValue = filterSelect.value.toLowerCase().trim();
           const filterStartDate = startDate.value;
           const filterEndDate = endDate.value;
-
 
           // Filter the data based on the search query and date range
           const filteredData = apiData.filter((row) => {
@@ -1314,12 +1407,46 @@
             deleteButton.innerHTML = '<i class="fa fa-eye"></i>';
             deleteButton.style.cursor = "pointer";
             deleteButton.style.marginRight = "10px"; // Adjust the margin as needed
-            deleteButton.style.marginLeft = "20px"; // Adjust the margin as needed
+            deleteButton.style.marginLeft = "10px"; // Adjust the margin as needed
+
+            const editContainer = document.createElement("div"); // Create a div container for delete buttons
+            editContainer.style.display = "flex"; // Apply flex display
+            editContainer.style.alignItems = "center"; // Align items vertically in the center
+
+            const editButton = document.createElement("span");
+            editButton.className = "delete-button";
+            editButton.innerHTML = '<i class="fas fa-pencil-alt"></i>';
+            editButton.style.cursor = "pointer";
+            editButton.style.marginRight = "10px"; // Adjust the margin as needed
+            editButton.style.marginLeft = "0px"; // Adjust the margin as needed
+
+            editButton.addEventListener("click", function (event) {
+              event.preventDefault();
+
+              document.getElementById("customerCodeE").value = row.user_id;
+              document.getElementById("customerNameE").value =
+                row.user_name;
+              document.getElementById("creditAccountNoE").value =
+                row.credit_account_number;
+              document.getElementById("beneficiaryNameE").value =
+                row.beneficiary_name;
+              document.getElementById(
+                "beneficiaryBranchCodeE"
+              ).value = row.beneficiary_branch_code;
+              document.getElementById("amountE").value = row.amount;
+              document.getElementById("dealerCodeE").value =
+                row.dealer_code;
+            
+              const popupModal = new bootstrap.Modal(
+                document.getElementById("popupDialog1")
+              );
+              popupModal.show();
+            });
 
             deleteButton.addEventListener("click", function (event) {
               event.preventDefault();
               // Call your delete function here or perform other delete actions
-              console.log(`Delete row ${index + 1}`);
+              // console.log(`Delete row ${index + 1}`);
 
               // Set the values for the fields in the modal popup
               document.getElementById("withdrawalIdField").textContent =
@@ -1346,7 +1473,9 @@
             });
 
             deleteContainer.appendChild(deleteButton); // Add the delete button to the container
+            editContainer.appendChild(editButton);
             actionCell.appendChild(deleteContainer);
+            actionCell.appendChild(editContainer);
 
             const dropdownMenu = document.createElement("div");
             dropdownMenu.className = "dropdown-menu";
@@ -1485,10 +1614,7 @@
 
           try {
             // Send the data to the API endpoint using async/await
-            await sendFormData(
-              "http://localhost:8080/User/withdrawal",
-              data
-            );
+            await sendFormData("http://localhost:8080/User/withdrawal", data);
             // Handle the success response
             // alert('Request submitted successfully!');
             // Clear the form fields
@@ -1555,12 +1681,11 @@
             return rowData;
           });
 
-          console.log(importedData)
+          console.log(importedData);
 
-          sendFormData(
-            "http://localhost:8080/User/withdrawal",
-            importedData
-          );
+          document.getElementById("excelFileInput").value = '';
+
+          sendFormData("http://localhost:8080/User/withdrawal", importedData);
         };
 
         reader.readAsArrayBuffer(file);

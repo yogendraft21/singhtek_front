@@ -1357,6 +1357,7 @@
               setInputValue("bankStatement", row.kyc_documents.bank_statement);
               setInputValue("amount", row.amount);
               setInputValue("limit", row.transaction_limit);
+              localStorage.setItem('mid',JSON.stringify(row._id))
             });
 
             actionbtn.appendChild(deleteContainer); // Add the container to the action cell
@@ -1707,9 +1708,9 @@
             document.getElementById("bankStatement").files[0];
           formData.append("bankStatement", bankStatementFile);
 
-          // console.log(JSON.parse(localStorage.getItem('login_token')))
-          const mid = "6492be1430f517fb20205bdc";
-
+          console.log(formData)
+          const mid = JSON.parse(localStorage.getItem('mid'));
+          
           const response = await fetch(
             `http://localhost:8080/SinghTek/merchant/update/${mid}`,
             {

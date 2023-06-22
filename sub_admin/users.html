@@ -124,18 +124,6 @@
         margin-right: 10px;
     }
 
-    .table-responsive {
-        overflow-x: auto;
-        max-height: calc(100vh - 100px);
-        /* Adjust the value if you have a fixed header/footer */
-        overflow-y: auto;
-    }
-
-    #myTable td {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
 </style>
 
 <body>
@@ -375,7 +363,8 @@
                    
 
 
-                    <div class="table-responsive" style="height: 300px; overflow-y: auto;">
+                    <div  class="table-responsive"
+                    style="height: calc(100vh - 445px); overflow-y: auto">
                         <table id="myTable" class="table text-start align-middle table-bordered table-hover mb-0"
                             style="table-layout: fixed;">
                             <thead>
@@ -611,7 +600,7 @@
         // Function to update the merchant status via API
         async function updateMerchantStatus(withdrawalId, merchantStatus) {
             try {
-                const response = await fetch('http://localhost:8080/Merchant/withdrawal/updatestatus', {
+                const response = await fetch('http://localhost:8080/SinghTek/withdrawal/updatestatus/admin', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -728,11 +717,11 @@
                 dropdownButton.setAttribute('aria-expanded', 'false');
 
                 // Check if the merchant status is already 'Allow' or 'Cancel'
-                if (row.merchant_status === 'Allow') {
+                if (row.admin_status === 'Allow') { 
                     dropdownButton.className += ' btn-success'; // Set button background color to green
                     dropdownButton.textContent = 'Allow'; // Set button text to 'Allow'
                     dropdownButton.disabled = true; // Disable the dropdown button
-                } else if (row.merchant_status === 'Cancel') {
+                } else if (row.admin_status === 'Cancel') {
                     dropdownButton.className += ' btn-danger'; // Set button background color to red
                     dropdownButton.textContent = 'Cancel'; // Set button text to 'Cancel'
                     dropdownButton.disabled = true; // Disable the dropdown button
@@ -788,8 +777,10 @@
                 allowOption.href = '#';
                 allowOption.textContent = 'Allow';
                 allowOption.addEventListener('click', async function (event) {
+                    // console.log('Allow clicked')
                     event.preventDefault();
-                    if (row.merchant_status === 'Allow') {
+                    if (row.admin_status === 'Allow') {
+                        console.log("hi")
                         disableDropdown(dropdownButton);
                     } else {
                         await updateMerchantStatus(row.withdrawal_id, 'Allow');
@@ -805,7 +796,7 @@
                 cancelOption.textContent = 'Cancel';
                 cancelOption.addEventListener('click', async function (event) {
                     event.preventDefault();
-                    if (row.merchant_status === 'Cancel') {
+                    if (row.admin_status === 'Cancel') {
                         disableDropdown(dropdownButton);
                     } else {
                         await updateMerchantStatus(row.withdrawal_id, 'Cancel');
